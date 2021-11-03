@@ -93,6 +93,7 @@ input {
 }
 
 figure {
+  position: relative;
   margin: 0 0 var(--s4);
 }
 
@@ -108,7 +109,8 @@ section.grid {
 hr {
   width: 100%;
   border: none;
-  border-top: 1px solid var(--muted);
+  border-top: 1px solid;
+  opacity: 0.66;
 }
 
 section.grid + hr {

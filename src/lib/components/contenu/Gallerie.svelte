@@ -27,7 +27,6 @@
 
 <style lang="scss">
   figure {
-    position: relative;
     margin-bottom: 0;
   }
 

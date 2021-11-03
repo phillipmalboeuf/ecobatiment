@@ -1,0 +1,73 @@
+<script context="module" lang="ts">
+  import type { Load } from '@sveltejs/kit'
+  import { respond } from '$lib/responses'
+  
+  export const load: Load = async ({ page, fetch, session, stuff }) => {
+		return respond(fetch, `/projets/${page.params.id}.json`)
+	}
+</script>
+
+<script lang="ts">
+  import type { Entry, EntryCollection } from 'contentful'
+  import type { Item } from '$lib/components/Collection.svelte'
+  import type { Theme } from '$lib/components/Themes.svelte'
+  import Page from '$lib/components/Page.svelte'
+  import Document from '$lib/components/document/Document.svelte'
+  import Picture from '$lib/components/Picture.svelte'
+  import Connexe from '$lib/components/Connexe.svelte'
+import Themes from '$lib/components/Themes.svelte'
+
+	export let projet: Entry<Item & {
+    contenu: Entry<any>[],
+    elementsConnexes: Entry<any>[]
+  }>
+</script>
+
+{#if projet.fields.photo}
+<figure>
+  <figcaption><h1>{projet.fields.titre}</h1></figcaption>
+  <Picture media={projet.fields.photo} ar={1 / 3} />
+</figure>
+{:else}
+<h1>{projet.fields.titre}</h1>
+{/if}
+
+<section class="grid">
+  <aside>
+    <Themes base="projets" themes={projet.fields.themes} />
+    <h6>{projet.fields.date}</h6>
+    {#if projet.fields.corps}<Document body={projet.fields.corps} />{/if}
+  </aside>
+</section>
+
+<hr>
+
+<Page page={projet} />
+
+{#if projet.fields.elementsConnexes}
+<Connexe items={projet.fields.elementsConnexes} />
+{/if}
+
+
+<style lang="scss">
+  figure {
+    figcaption {
+      position: absolute;
+      top: var(--s3);
+      left: var(--s3);
+    }
+
+    h1 {
+      color: var(--light);
+      font-size: 2rem;
+    }
+  }
+
+  aside {
+    grid-column: span 8;
+
+    :global(p) {
+      font-size: 2rem;
+    }
+  }
+</style>

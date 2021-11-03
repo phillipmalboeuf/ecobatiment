@@ -27,6 +27,11 @@
   }
 </script>
 
+<svelte:head>
+  <title>{base} – Écobâtiment</title>
+</svelte:head>
+
+
 <nav>
   <ul>
   {#each themes.items as theme}
@@ -41,14 +46,17 @@
 <section>
 {#each items.items.filter(item => item.fields.vedette) as item}
   <article class="vedette">
-    {#if item.fields.photo}<figure>
-      <Picture media={item.fields.photo} noDescription ar={1 / 3} />
-    </figure>{/if}
+    {#if item.fields.photo}
+    <a href="/{base}/{item.fields.id}">
+      <figure>
+        <Picture media={item.fields.photo} noDescription ar={1 / 3} />
+      </figure>
+    </a>{/if}
     <Themes {base} themes={item.fields.themes} />
     <a href="/{base}/{item.fields.id}">
       <h4>{item.fields.titre}</h4>
-      <small>{item.fields.date}</small>
     </a>
+    <small>{item.fields.date}</small>
   </article>
 {/each}
 
@@ -62,8 +70,8 @@
     <Themes {base} themes={item.fields.themes} />
     <a href="/{base}/{item.fields.id}">
       <h5>{item.fields.titre}</h5>
-      <small>{item.fields.date}</small>
     </a>
+    <small>{item.fields.date}</small>
   </article>
 {/each}
 </section>

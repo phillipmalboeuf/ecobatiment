@@ -3,8 +3,8 @@
 
   import { onMount, getContext } from 'svelte'
   import { fade, fly } from 'svelte/transition'
-import Footer from './Footer.svelte'
-  import Logo from './icons/Logo.svelte'
+  import Footer from './Footer.svelte'
+  import Logotype from './icons/Logotype.svelte'
   import type { Lien } from './Link.svelte'
 
   export let path: string
@@ -49,7 +49,7 @@ import Footer from './Footer.svelte'
 
 <header>
   <a class="logo" href="/" on:click={click} aria-label="Écobâtiment">
-    <Logo />
+    <Logotype />
   </a>
 
   <nav>  
@@ -122,7 +122,7 @@ import Footer from './Footer.svelte'
     color: var(--light);
     background: var(--dark);
     height: var(--height);
-    padding: var(--margins);
+    padding: calc(var(--margins) * 2);
     // padding-left: calc(var(--gutter) * 7.75);
     margin-bottom: calc(var(--height) * -1);
 

@@ -5,8 +5,8 @@
   export interface PageDocument {
     titre: string
     id: string
-    description: RichTextContent
-    thumbnail: Asset
+    corps: RichTextContent
+    photo: Asset
     contenu: Entry<any>[]
   }
 
@@ -19,6 +19,12 @@
 	export let page: Entry<PageDocument>
 </script>
 
-<!-- <h1>{page.fields.titre}</h1> -->
+<svelte:head>
+  <title>{page.fields.titre} – Écobâtiment</title>
+</svelte:head>
 
+{#key page.fields.id}
+{#if page.fields.contenu}
 <Contenu contenu={page.fields.contenu} />
+{/if}
+{/key}
