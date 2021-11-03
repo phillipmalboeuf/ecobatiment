@@ -3,14 +3,13 @@
 
   import { onMount, getContext } from 'svelte'
   import { fade, fly } from 'svelte/transition'
+import Footer from './Footer.svelte'
+  import Logo from './icons/Logo.svelte'
+  import type { Lien } from './Link.svelte'
 
   export let path: string
   export let navigation: Entry<{
-		liens: Entry<{
-			titre: string
-			lien: string
-			externe: boolean
-		}>[]
+		liens: Entry<Lien>[]
 	}>
   
   let visible = false
@@ -37,30 +36,25 @@
 </script>
 
 <div bind:this={footer}>
-{#if visible}
-<footer class="visible" transition:fly={{ y: 100 }}>
-  <nav>
-    {#each navigation.fields.liens as lien}
-    <a class:active={path.includes(lien.fields.lien)} href={lien.fields.lien}>{lien.fields.titre}</a>
-    {/each}
-  </nav>
-</footer>
-{:else}
-<footer>
-  <nav>
-    {#each navigation.fields.liens as lien}
-    <a href={lien.fields.lien}>{lien.fields.titre}</a>
-    {/each}
-  </nav>
-</footer>
-{/if}
+  {#if visible}
+  <footer class="visible" transition:fly={{ y: 100 }}>
+    <Footer {navigation} />
+  </footer>
+  {:else}
+  <footer>
+    <Footer {navigation} />
+  </footer>
+  {/if}
 </div>
 
 <header>
-  <nav>
-    <a class="logo" href="/" on:click={click}>Écobâtiment</a>
+  <a class="logo" href="/" on:click={click} aria-label="Écobâtiment">
+    <Logo />
+  </a>
+
+  <nav>  
     {#each navigation.fields.liens as lien}
-    <a href={lien.fields.lien}>{lien.fields.titre}</a>
+    <a class:active={path.includes(lien.fields.lien)} href={lien.fields.lien}>{lien.fields.titre}</a>
     {/each}
   </nav>
   {#if scrolled && !visible}
@@ -83,7 +77,7 @@
 
 <style lang="scss">
   :root {
-    --height: 66vh;
+    --height: 50vh;
 
     // @media (max-width: 900px) {
     //   --height: 6.66rem;
@@ -98,19 +92,27 @@
     
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
+
+    padding: var(--margins);
 
     button {
       background: none;
       border: none;
-      padding: 1rem 0;
+      // padding: 1rem 0;
     }
 
     nav {
-      width: 100%;
-      // display: grid;
-      // grid-template-columns: 1fr 6fr;
-      // column-gap: var(--gutter);
+      display: flex;
+      column-gap: var(--gutter);
+
+      a {
+        text-transform: uppercase;
+      }
+
+      a.active {
+        text-decoration: underline;
+      }
     }
   }
 
@@ -119,7 +121,8 @@
     width: 100%;
     color: var(--light);
     background: var(--dark);
-    padding-bottom: var(--height);
+    height: var(--height);
+    padding: var(--margins);
     // padding-left: calc(var(--gutter) * 7.75);
     margin-bottom: calc(var(--height) * -1);
 
@@ -128,44 +131,6 @@
       top: 100%;
       transform: translateY(-100%);
     }
-
-    a {
-      display: block;
-      // padding: 0.2rem 0;
-
-      &:last-child {
-        margin-bottom: 10vh;
-      }
-    }
-  }
-
-  nav {
-    padding: var(--margins);
-
-    // @media (max-width: 900px) {
-    //   padding: 1.5rem 0;
-    // }
-
-    a {
-      // font-size: 1.75rem;
-      // line-height: 1.222;
-    }
-
-    a.active {
-      opacity: 0.3;
-    }
-
-    a.logo {
-      // font-size: 3rem;
-      line-height: 1;
-      font-weight: bold;
-      text-decoration: none;
-      display: inline-block;
-
-      @media (max-width: 900px) {
-        font-size: 1.75rem;
-      }
-    }
   }
 
   svg {
@@ -173,7 +138,7 @@
     height: 49px;
     polygon,
     rect {
-      fill: black;
+      fill: currentColor;
     }
   }
 </style>

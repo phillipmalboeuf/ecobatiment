@@ -19,6 +19,6 @@
 	export let page: Entry<PageDocument>
 </script>
 
-<h1>{page.fields.titre}</h1>
+<!-- <h1>{page.fields.titre}</h1> -->
 
 <Contenu contenu={page.fields.contenu} />
