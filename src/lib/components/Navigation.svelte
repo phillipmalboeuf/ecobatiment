@@ -117,9 +117,10 @@
   footer {
     z-index: 3;
     width: 100%;
-    background: grey;
+    color: var(--light);
+    background: var(--dark);
     padding-bottom: var(--height);
-    padding-left: calc(var(--gutter) * 7.75);
+    // padding-left: calc(var(--gutter) * 7.75);
     margin-bottom: calc(var(--height) * -1);
 
     &.visible {
@@ -139,15 +140,15 @@
   }
 
   nav {
-    padding: 2rem 0;
+    padding: var(--margins);
 
-    @media (max-width: 900px) {
-      padding: 1.5rem 0;
-    }
+    // @media (max-width: 900px) {
+    //   padding: 1.5rem 0;
+    // }
 
     a {
-      font-size: 1.75rem;
-      line-height: 1.222;
+      // font-size: 1.75rem;
+      // line-height: 1.222;
     }
 
     a.active {
@@ -155,12 +156,11 @@
     }
 
     a.logo {
-      font-size: 3rem;
+      // font-size: 3rem;
       line-height: 1;
       font-weight: bold;
       text-decoration: none;
       display: inline-block;
-      margin-left: var(--gutter);
 
       @media (max-width: 900px) {
         font-size: 1.75rem;

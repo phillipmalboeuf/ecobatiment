@@ -40,38 +40,9 @@
 <Navigation {navigation} path={$page.path} />
 
 <style lang="scss">
-	:global(:root) {
-		font-family: "Helvetica Now", "Helvetica Neue", Helvetica, sans-serif;
-    letter-spacing: -0.08em;
-
-    --yellow: yellow;
-
-    --large: 1444px;
-    --medium: 1024px;
-    --small: 375px;
-
-    --gutter: 2vw;
-    --top: 6rem;
-
-    --textcolor: black;
-    --highlight: var(--yellow);
-    --background: white;
-
-    @media (max-width: 900px) {
-      --gutter: 4vw;
-    }
-	}
-
-	:global(body) {
-    padding: 0;
-    margin: 0;
-    min-height: 120vh;
-    background: var(--background);
-  }
-
 	main {
-    min-height: 120vh;
-    margin-top: var(--top);
-    padding: var(--gutter);
+    min-height: 100vh;
+    margin-top: var(--s5);
+    padding: var(--margins);
 	}
 </style>

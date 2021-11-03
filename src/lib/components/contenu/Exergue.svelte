@@ -1,0 +1,56 @@
+<script lang="ts">
+  import type { Entry, RichTextContent } from 'contentful'
+  import type { Lien } from '../Link.svelte'
+  import Document from '../document/Document.svelte'
+  import Link from '../Link.svelte'
+
+
+  export let intro: Entry<{
+    titre: string
+    corps: RichTextContent
+    technicalites: RichTextContent
+    lien: Entry<Lien>
+  }>
+</script>
+
+<section class="grid">
+  <nav>
+    {#if intro.fields.titre}<h6>{intro.fields.titre}</h6>{/if}
+    {#if intro.fields.lien}
+    <Link lien={intro.fields.lien} plus />
+    {/if}
+  </nav>
+
+  <div>
+    <Document body={intro.fields.corps} />
+  </div>
+  
+  <aside>
+    <Document body={intro.fields.technicalites} />
+  </aside>
+</section>
+
+<hr>
+
+<style lang="scss">
+  div {
+    grid-column: span 5;
+  }
+
+  nav {
+    grid-column: span 12;
+    margin-bottom: var(--s1);
+  }
+
+  h6 {
+    margin-bottom: var(--s1);
+  }
+
+  div :global(p) {
+    font-size: 2rem;
+  }
+
+  aside {
+    grid-column: 7 / span 4;
+  }
+</style>

@@ -1,3 +1,99 @@
+:root {
+  --width: 1680px;
+
+  --s0: 0.5rem;
+  --s1: 1rem;
+  --s2: 2rem;
+  --s3: 2.6rem;
+  --s4: 4rem;
+  --s5: 5rem;
+
+  --gutter: var(--s1);
+  --margins: var(--s3);
+
+  --textcolor: black;
+  --dark: black;
+  --light: white;
+  --muted: grey;
+  --highlight: yellow;
+}
+
+html {
+  font-family: 'Lato', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 22px;
+  line-height: 1.25;
+}
+
 body {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  background: var(--background);
+}
+
+a {
+  color: currentColor;
+  text-decoration: none;
+}
+
+h1, .h1 {
+  font-size: 4rem;
+  font-weight: normal;
+  margin: 0 auto var(--s4);
+}
+
+h2, .h2 {
+  font-size: 3rem;
+  font-weight: normal;
+  margin: 0 auto var(--s4);
+}
+
+h4, .h4 {
+  font-size: 2rem;
+  font-weight: normal;
+  margin: 0 auto var(--s4);
+}
+
+h5, .h5 {
+  font-size: 1.3rem;
+  font-weight: normal;
+  margin: 0 auto var(--s2);
+}
+
+h6, .h6 {
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 0 auto var(--s2);
+}
+
+p {
+  font-size: 1rem;
+  margin: 0 auto var(--s1);
+  white-space: pre-line;
+}
+
+p > a {
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+}
+
+figure {
+  margin: 0 0 var(--s4);
+}
+
+section.grid {
+  max-width: var(--width);
+  margin: var(--s4) auto;
+
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gutter);
+}
+
+section.grid + hr {
+  max-width: var(--width);
+  margin: 0 auto;
 }
