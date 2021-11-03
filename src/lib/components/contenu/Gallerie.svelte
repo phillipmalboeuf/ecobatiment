@@ -10,11 +10,15 @@
   }>
 </script>
 
-<section class="grid {gallerie.fields.taille}" style="grid-template-columns: repeat({gallerie.fields.photos.length > 4 ? gallerie.fields.photos.length : 4}, 1fr);">  
+<section class="grid" style="grid-template-columns: repeat({gallerie.fields.photos.length > 4 ? gallerie.fields.photos.length : 4}, 1fr);">  
   {#each gallerie.fields.photos as media, index}
   <figure>
     {#if gallerie.fields.titre && index === 0}<figcaption>{gallerie.fields.titre}</figcaption>{/if}
-    <Picture {media} small />
+    <Picture {media} small ar={{
+      'Grand': 3 / 1,
+      'Medium': 2 / 1,
+      'Petit': 1
+    }[gallerie.fields.taille] || 1} />
   </figure>
   {/each}
 </section>
@@ -34,16 +38,16 @@
     width: 100%;
   }
 
-  figure :global(img) {
-    height: 25vw;
-    object-fit: cover;
-  }
+  // figure :global(img) {
+  //   height: 25vw;
+  //   object-fit: cover;
+  // }
 
-  section.Moyen figure :global(img) {
-    height: 50vw;
-  }
+  // section.Moyen figure :global(img) {
+  //   height: 50vw;
+  // }
 
-  section.Grand figure :global(img) {
-    height: 75vw;
-  }
+  // section.Grand figure :global(img) {
+  //   height: 75vw;
+  // }
 </style>

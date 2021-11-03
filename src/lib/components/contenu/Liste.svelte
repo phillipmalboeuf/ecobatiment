@@ -33,7 +33,7 @@
   {#each liste.fields.items as item, index}
     {#if item.fields.photo}<figure>
       <a href="/{item.sys.contentType.sys.id}s/{item.fields.id}">
-        <Picture media={item.fields.photo} />
+        <Picture media={item.fields.photo} ar={1 / 3} />
       </a>
     </figure>{/if}
     <article id={item.fields.id}>
@@ -68,11 +68,6 @@
 
   figure {
     grid-column: span 12;
-  }
-
-  figure :global(img) {
-    height: 25vw;
-    object-fit: cover;
   }
 
   article {

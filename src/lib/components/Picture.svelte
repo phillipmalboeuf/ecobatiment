@@ -1,6 +1,7 @@
 <script>
   export let media
   export let small = false
+  export let noDescription = false
   export let ar = undefined
 </script>
 
@@ -28,6 +29,6 @@
 </picture>
 {/if}
 
-{#if media.fields.description}
+{#if !noDescription && media.fields.description}
 <small>{media.fields.description}</small>
 {/if}

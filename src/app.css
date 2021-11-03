@@ -39,36 +39,36 @@ a {
 h1, .h1 {
   font-size: 4rem;
   font-weight: normal;
-  margin: 0 auto var(--s4);
+  margin: 0 0 var(--s4);
 }
 
 h2, .h2 {
   font-size: 3rem;
   font-weight: normal;
-  margin: 0 auto var(--s4);
+  margin: 0 0 var(--s4);
 }
 
 h4, .h4 {
   font-size: 2rem;
   font-weight: normal;
-  margin: 0 auto var(--s4);
+  margin: 0 0 var(--s4);
 }
 
 h5, .h5 {
   font-size: 1.3rem;
   font-weight: normal;
-  margin: 0 auto var(--s2);
+  margin: 0 0 var(--s2);
 }
 
 h6, .h6 {
   font-weight: bold;
   font-size: 1rem;
-  margin: 0 auto var(--s2);
+  margin: 0 0 var(--s2);
 }
 
 p {
   font-size: 1rem;
-  margin: 0 auto var(--s1);
+  margin: 0 0 var(--s1);
   white-space: pre-line;
 }
 
@@ -76,7 +76,9 @@ p > a {
   text-decoration: underline;
 }
 
-button {
+button,
+label,
+input {
   cursor: pointer;
 }
 
@@ -91,6 +93,10 @@ section.grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   column-gap: var(--gutter);
+}
+
+hr {
+  width: 100%;
 }
 
 section.grid + hr {
