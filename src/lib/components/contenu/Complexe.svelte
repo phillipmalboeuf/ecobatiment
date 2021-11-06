@@ -5,6 +5,7 @@
 
 
   export let contenu: Entry<{
+    id: string
     titre: string
     corps: RichTextContent
     technicalites: RichTextContent
@@ -12,7 +13,7 @@
   }>
 </script>
 
-<section class="grid">  
+<section class="grid" id={contenu.fields.id}>  
   <aside>
     <h4>{contenu.fields.titre}</h4>
     {#if contenu.fields.technicalites}<Document body={contenu.fields.technicalites} />{/if}

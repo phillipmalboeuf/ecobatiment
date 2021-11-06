@@ -11,6 +11,10 @@
   export let navigation: Entry<{
 		liens: Entry<Lien>[]
 	}>
+  export let sousNavigation: Entry<{
+		liens: Entry<Lien>[]
+	}>
+  export let contact: Entry<any>
   
   let visible = false
   let scrolled: boolean
@@ -38,11 +42,11 @@
 <div bind:this={footer}>
   {#if visible}
   <footer class="visible" transition:fly={{ y: 100 }}>
-    <Footer {navigation} />
+    <Footer {navigation} {sousNavigation} {contact} />
   </footer>
   {:else}
   <footer>
-    <Footer {navigation} />
+    <Footer {navigation} {sousNavigation} {contact} />
   </footer>
   {/if}
 </div>

@@ -3,6 +3,7 @@
     titre: string
     lien: string
     externe: boolean
+    sousLiens: Entry<Lien>[]
   }
 </script>
 

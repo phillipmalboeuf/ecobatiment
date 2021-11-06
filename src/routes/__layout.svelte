@@ -3,9 +3,7 @@
 		const res = await fetch(`/layout.json`)
 
 		return {
-			props: {
-				navigation: (await res.json()).navigation
-			}
+			props: await res.json()
 		}
 	}
 </script>
@@ -16,14 +14,15 @@
 
 	import Navigation from '$lib/components/Navigation.svelte'
 	import { getStores, navigating, page, session } from '$app/stores'
+	import type { Lien } from '$lib/components/Link.svelte'
 
 	export let navigation: Entry<{
-		liens: Entry<{
-			titre: string
-			lien: string
-			externe: boolean
-		}>[]
+		liens: Entry<Lien>[]
 	}>
+	export let sousNavigation: Entry<{
+		liens: Entry<Lien>[]
+	}>
+	export let contact: Entry<any>
 </script>
 
 <!-- <nav>
@@ -37,7 +36,7 @@
 	<slot></slot>
 </main>
 
-<Navigation {navigation} path={$page.path} />
+<Navigation {navigation} {sousNavigation} {contact} path={$page.path} />
 
 <style lang="scss">
 	main {

@@ -97,6 +97,10 @@ figure {
   margin: 0 0 var(--s4);
 }
 
+[id] {
+  scroll-margin-top: calc(var(--s5) * 2);
+}
+
 section.grid {
   max-width: var(--width);
   margin: var(--s4) auto;
