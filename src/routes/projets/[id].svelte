@@ -15,7 +15,7 @@
   import Document from '$lib/components/document/Document.svelte'
   import Picture from '$lib/components/Picture.svelte'
   import Connexe from '$lib/components/Connexe.svelte'
-import Themes from '$lib/components/Themes.svelte'
+  import Themes from '$lib/components/Themes.svelte'
 
 	export let projet: Entry<Item & {
     contenu: Entry<any>[],
@@ -55,6 +55,7 @@ import Themes from '$lib/components/Themes.svelte'
       position: absolute;
       top: var(--s3);
       left: var(--s3);
+      width: 80%;
     }
 
     h1 {
@@ -68,6 +69,14 @@ import Themes from '$lib/components/Themes.svelte'
 
     :global(p) {
       font-size: 2rem;
+    }
+
+    @media (max-width: 888px) {
+      grid-column: span 12;
+
+      :global(p) {
+        font-size: 1rem;
+      }
     }
   }
 </style>

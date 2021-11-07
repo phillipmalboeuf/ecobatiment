@@ -55,6 +55,14 @@
     grid-column: span 4;
     margin-bottom: var(--s4);
 
+    @media (max-width: 888px) {
+      grid-column: span 6;
+    }
+
+    @media (max-width: 666px) {
+      grid-column: span 12;
+    }
+
     span :global(a) {
       position: absolute;
       z-index: 2;
@@ -89,6 +97,11 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: var(--gutter);
+
+    @media (max-width: 888px) {
+      grid-template-columns: 1fr;
+      row-gap: var(--gutter);
+    }
   }
 
   aside :global(p) {

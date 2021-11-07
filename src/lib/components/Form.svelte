@@ -21,6 +21,10 @@
     column-gap: var(--gutter);
     row-gap: var(--s1);
     margin-bottom: var(--s4);
+
+    @media (max-width: 888px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   label {
@@ -38,6 +42,10 @@
   button {
     grid-column: span 2;
     margin-top: var(--s1);
+
+    @media (max-width: 888px) {
+      grid-column: span 1;
+    }
 
     font-size: var(--s1);
     color: var(--light);

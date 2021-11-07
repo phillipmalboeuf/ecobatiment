@@ -49,6 +49,10 @@
   aside {
     grid-column: span 6;
 
+    @media (max-width: 888px) {
+      grid-column: span 12;
+    }
+
     a {
       display: block;
       margin-bottom: var(--s0);
@@ -61,5 +65,9 @@
 
   div {
     grid-column: span 6;
+
+    @media (max-width: 888px) {
+      grid-column: span 12;
+    }
   }
 </style>

@@ -14,3 +14,12 @@
 <path d="M155.1 0.700012H141.7V4.5H155.1V0.700012Z" fill="#D59576"/>
 <path d="M202.2 0.700012H195.2V4.5H202.2V0.700012Z" fill="#D59576"/>
 </svg>
+
+
+<style lang="scss">
+  svg {
+    @media (max-width: 888px) {
+      width: 200px;
+    }
+  }
+</style>

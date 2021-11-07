@@ -33,16 +33,15 @@
     document.getElementById('main').addEventListener('click', () => visible = false, { passive: true, capture: false })
 	})
 
-  function click(e) {
+  function hide() {
     visible = false
-    path = e.currentTarget.href
   }
 </script>
 
 <div bind:this={footer}>
   {#if visible}
   <footer class="visible" transition:fly={{ y: 100 }}>
-    <Footer {navigation} {sousNavigation} {contact} />
+    <Footer {navigation} {sousNavigation} {contact} on:click={hide} />
   </footer>
   {:else}
   <footer>
@@ -52,7 +51,7 @@
 </div>
 
 <header>
-  <a class="logo" href="/" on:click={click} aria-label="Écobâtiment">
+  <a class="logo" href="/" on:click={hide} aria-label="Écobâtiment">
     <Logotype />
   </a>
 
@@ -83,9 +82,9 @@
   :root {
     --height: 50vh;
 
-    // @media (max-width: 900px) {
-    //   --height: 6.66rem;
-    // }
+    @media (max-width: 888px) {
+      --height: 80vh;
+    }
   }
   
   header {
@@ -103,12 +102,16 @@
     button {
       background: none;
       border: none;
-      // padding: 1rem 0;
+      padding: 0;
     }
 
     nav {
       display: flex;
       column-gap: var(--gutter);
+
+      @media (max-width: 1200px) {
+        display: none;
+      }
 
       a {
         text-transform: uppercase;
@@ -126,6 +129,7 @@
     color: var(--light);
     background: var(--dark);
     height: var(--height);
+    overflow-y: scroll;
     padding: calc(var(--margins) * 2);
     // padding-left: calc(var(--gutter) * 7.75);
     margin-bottom: calc(var(--height) * -1);

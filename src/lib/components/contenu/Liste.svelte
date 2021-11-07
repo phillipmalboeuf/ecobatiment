@@ -38,6 +38,10 @@
 
     &.long {
       padding-left: calc(25% + (3 * var(--gutter)));
+
+      @media (max-width: 888px) {
+        padding-left: 0;
+      }
     }
   }
 

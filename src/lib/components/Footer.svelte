@@ -18,10 +18,10 @@
 <nav>
   {#each navigation.fields.liens as lien}
   <div>
-    <h5><a href={lien.fields.lien}>{lien.fields.titre}</a></h5>
+    <h5><a on:click href={lien.fields.lien}>{lien.fields.titre}</a></h5>
     {#if lien.fields.sousLiens}
     {#each lien.fields.sousLiens as l}
-    <a href={l.fields.lien}>{l.fields.titre}</a>
+    <a on:click href={l.fields.lien}>{l.fields.titre}</a>
     {/each}
     {/if}
   </div>
@@ -56,10 +56,10 @@
 
   {#each sousNavigation.fields.liens as lien}
   <div>
-    <h5><a href={lien.fields.lien}>{lien.fields.titre}</a></h5>
+    <h5><a on:click href={lien.fields.lien}>{lien.fields.titre}</a></h5>
     {#if lien.fields.sousLiens}
     {#each lien.fields.sousLiens as l}
-    <a href={l.fields.lien}>{l.fields.titre}</a>
+    <a on:click href={l.fields.lien}>{l.fields.titre}</a>
     {/each}
     {/if}
   </div>
@@ -69,7 +69,7 @@
 
 <nav>
   <small>{contact.fields.copyright}</small>
-  <a href="/" class="logo">
+  <a on:click href="/" class="logo">
     <Logo />
     <Logotype />
   </a>
@@ -90,6 +90,11 @@
     display: flex;
     justify-content: space-between;
 
+    @media (max-width: 888px) {
+      flex-direction: column;
+      row-gap: var(--gutter);
+    }
+
     > small {
       align-self: flex-end;
     }
@@ -108,5 +113,9 @@
 
   figure {
     max-width: 25%;
+
+    @media (max-width: 888px) {
+      max-width: 66%;
+    }
   }
 </style>

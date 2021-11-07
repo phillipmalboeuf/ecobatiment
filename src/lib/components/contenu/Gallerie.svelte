@@ -28,7 +28,7 @@
 
 <style lang="scss">
   figure {
-    margin-bottom: 0;
+    margin-bottom: var(--s1);
   }
 
   figcaption {
@@ -36,6 +36,12 @@
     top: var(--s1);
     left: var(--s1);
     width: 100%;
+  }
+
+  @media (max-width: 888px) {
+    section.grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
   }
 
   // figure :global(img) {

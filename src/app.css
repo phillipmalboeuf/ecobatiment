@@ -17,6 +17,13 @@
   --highlight: #d59476;
 }
 
+@media (max-width: 888px) {
+  :root {
+    --gutter: var(--s0);
+    --margins: var(--s1);
+  }
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -131,4 +138,13 @@ section.grid + hr {
 .columns > ol {
   column-count: 2;
   column-gap: var(--gutter);
+}
+
+@media (max-width: 888px) {
+  .columns > p,
+  .columns > ul,
+  .columns > ol {
+    column-count: 1;
+  }
+
 }

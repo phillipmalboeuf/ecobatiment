@@ -36,6 +36,10 @@
 <style lang="scss">
   div {
     grid-column: span 5;
+
+    @media (max-width: 888px) {
+      grid-column: span 12;
+    }
   }
 
   nav {
@@ -53,5 +57,9 @@
 
   aside {
     grid-column: 7 / span 4;
+
+    @media (max-width: 888px) {
+      grid-column: span 12;
+    }
   }
 </style>

@@ -28,14 +28,24 @@
 <style lang="scss">
   div {
     grid-column: span 8;
+    @media (max-width: 888px) {
+      grid-column: span 12;
+    }
   }
 
   div :global(p) {
     font-size: 3rem;
+
+    @media (max-width: 888px) {
+      font-size: 1.5rem;
+    }
   }
 
   nav {
     grid-row-start: 2;
     grid-column: span 8;
+    @media (max-width: 888px) {
+      grid-column: span 12;
+    }
   }
 </style>

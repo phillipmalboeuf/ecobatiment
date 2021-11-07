@@ -12,7 +12,7 @@
 </script>
 
 <section id={chiffres.fields.id} class="grid" style="grid-template-columns: repeat({chiffres.fields.chiffres.length > 4 ? chiffres.fields.chiffres.length : 4}, 1fr);">  
-{#if chiffres.fields.titre}<nav><h6>{chiffres.fields.titre}</h6></nav>{/if}
+  {#if chiffres.fields.titre}<nav><h6>{chiffres.fields.titre}</h6></nav>{/if}
   {#each chiffres.fields.chiffres as item, index}
   <figure>
     <Document body={item.fields.corps} />
@@ -29,7 +29,7 @@
   }
 
   nav {
-    grid-column: span 12;
+    grid-column: span 4;
   }
 
   h6 {
@@ -37,10 +37,18 @@
   }
 
   figure {
+    grid-column: span 1;
+
     :global(h2),
     :global(h4),
     :global(h6) {
       margin-bottom: var(--s0);
     }
+
+    @media (max-width: 888px) {
+      grid-column: span 2;
+    }
   }
+
+  
 </style>

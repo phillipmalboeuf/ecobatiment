@@ -17,6 +17,7 @@
   import Connexe from '$lib/components/Connexe.svelte'
   import Themes from '$lib/components/Themes.svelte'
   import Form from '$lib/components/Form.svelte'
+import { date } from '$lib/formatters'
 
 	export let publication: Entry<Item & {
     contenu: Entry<any>[]
@@ -48,7 +49,7 @@
     {/if}
   </aside>
   <div>
-    <h6>{publication.fields.date}</h6>
+    <h6>{date(publication.fields.date)}</h6>
     <h2>{publication.fields.titre}</h2>
     {#if publication.fields.corps}<Document body={publication.fields.corps} />{/if}
     
@@ -70,10 +71,18 @@
 <style lang="scss">
   aside {
     grid-column: span 5;
+
+    @media (max-width: 888px) {
+      grid-column: span 12;
+    }
   }
 
   div {
     grid-column: 7 / span 6;
+
+    @media (max-width: 888px) {
+      grid-column: span 12;
+    }
   }
 
   // aside {
