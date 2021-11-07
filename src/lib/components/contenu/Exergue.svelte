@@ -7,13 +7,14 @@
 
   export let intro: Entry<{
     titre: string
+    id: string
     corps: RichTextContent
     technicalites: RichTextContent
     lien: Entry<Lien>
   }>
 </script>
 
-<section class="grid">
+<section id={intro.fields.id} class="grid">
   <nav>
     {#if intro.fields.titre}<h6>{intro.fields.titre}</h6>{/if}
     {#if intro.fields.lien}

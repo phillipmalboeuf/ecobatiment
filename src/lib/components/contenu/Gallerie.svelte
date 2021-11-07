@@ -5,12 +5,13 @@
 
   export let gallerie: Entry<{
     titre: string
+    id: string
     photos: Asset[]
     taille: string
   }>
 </script>
 
-<section class="grid" style="grid-template-columns: repeat({gallerie.fields.photos.length > 4 ? gallerie.fields.photos.length : 4}, 1fr);">  
+<section id={gallerie.fields.id} class="grid" style="grid-template-columns: repeat({gallerie.fields.photos.length > 4 ? gallerie.fields.photos.length : 4}, 1fr);">  
   {#each gallerie.fields.photos as media, index}
   <figure>
     {#if gallerie.fields.titre && index === 0}<figcaption>{gallerie.fields.titre}</figcaption>{/if}

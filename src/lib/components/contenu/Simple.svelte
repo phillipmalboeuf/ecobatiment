@@ -6,12 +6,13 @@
 
   export let contenu: Entry<{
     titre: string
+    id: string
     corps: RichTextContent
     photos: Asset[]
   }>
 </script>
 
-<section class="grid">  
+<section id={contenu.fields.id} class="grid">  
   <aside>
     {#each contenu.fields.photos as media}
     <figure>

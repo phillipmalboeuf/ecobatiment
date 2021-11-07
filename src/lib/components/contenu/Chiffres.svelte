@@ -5,12 +5,13 @@
 
 
   export let chiffres: Entry<{
+    id: string
     titre: string
     chiffres: Entry<{ corps: RichTextContent }>[]
   }>
 </script>
 
-<section class="grid" style="grid-template-columns: repeat({chiffres.fields.chiffres.length > 4 ? chiffres.fields.chiffres.length : 4}, 1fr);">  
+<section id={chiffres.fields.id} class="grid" style="grid-template-columns: repeat({chiffres.fields.chiffres.length > 4 ? chiffres.fields.chiffres.length : 4}, 1fr);">  
 {#if chiffres.fields.titre}<nav><h6>{chiffres.fields.titre}</h6></nav>{/if}
   {#each chiffres.fields.chiffres as item, index}
   <figure>

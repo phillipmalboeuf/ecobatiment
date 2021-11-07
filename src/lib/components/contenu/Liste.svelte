@@ -8,6 +8,7 @@
 
   export let liste: Entry<{
     titre: string
+    id: string
     lien: Entry<Lien>
     items: Entry<{
       titre: string
@@ -20,7 +21,7 @@
   }>
 </script>
 
-<section class="grid">
+<section id={liste.fields.id} class="grid">
   <div>
     {#if liste.fields.titre}
     <h2>{liste.fields.titre}</h2>
