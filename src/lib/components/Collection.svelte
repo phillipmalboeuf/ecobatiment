@@ -45,11 +45,11 @@
 </nav>
 
 <section>
-  <Items items={items.items.filter(item => item.fields.vedette)} {base} vedette />
+  <Items items={items.items.filter(item => item.fields.vedette)} vedette />
 
   <hr>
 
-  <Items items={items.items.filter(item => !item.fields.vedette)} {base} />
+  <Items items={items.items.filter(item => !item.fields.vedette)} />
 </section>
 
 <style lang="scss">

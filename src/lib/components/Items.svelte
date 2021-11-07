@@ -7,10 +7,13 @@
   import type { Item } from './Collection.svelte'
   import Document from './document/Document.svelte'
 
-  export let base: string
   export let items: Entry<Item>[]
   export let vedette:boolean = false
   export let corps:boolean = false
+
+  function base(id: string) {
+    return id === 'service' ? 'consultation#' : `${id}s/`
+  }
 </script>
 
 
@@ -20,7 +23,7 @@
   <span class:disabled={item.fields.lien.fields.disabled}><Link lien={item.fields.lien} /></span>
   {/if}
   {#if item.fields.photo}
-  <a href="/{base}/{item.fields.id}">
+  <a href="/{base(item.sys.contentType.sys.id)}{item.fields.id}">
     <figure>
       <Picture media={item.fields.photo} noDescription={!corps} ar={vedette ? 1 / 3 : 1} />
     </figure>
@@ -28,8 +31,8 @@
 
   <div class:corps>
     <div>
-      {#if item.fields.themes}<Themes {base} themes={item.fields.themes} />{/if}
-      <a href="/{base}/{item.fields.id}">
+      {#if item.fields.themes}<Themes base={base(item.sys.contentType.sys.id)} themes={item.fields.themes} />{/if}
+      <a href="/{base(item.sys.contentType.sys.id)}{item.fields.id}">
         {#if vedette}<h4>{item.fields.titre}</h4>{:else}<h5>{item.fields.titre}</h5>{/if}
       </a>
       {#if item.fields.date}<small>{date(item.fields.date)}</small>{/if}

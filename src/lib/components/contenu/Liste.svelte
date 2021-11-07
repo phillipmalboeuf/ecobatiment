@@ -26,7 +26,7 @@
 
 <section id={liste.fields.id} class="grid" class:long={liste.fields.grid && liste.fields.items?.length > 4}>
   {#if liste.fields.items}
-  <Items items={liste.fields.items} base="{liste.fields.items[0].sys.contentType.sys.id}s" vedette={!liste.fields.grid} corps={!liste.fields.grid} />
+  <Items items={liste.fields.items} vedette={!liste.fields.grid} corps={!liste.fields.grid} />
   {/if}
 </section>
 
