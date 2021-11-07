@@ -3,6 +3,7 @@
     titre: string
     lien: string
     externe: boolean
+    disabled: boolean
     sousLiens: Entry<Lien>[]
   }
 </script>
@@ -14,10 +15,10 @@
   export let plus = false
 </script>
 
-<a href={lien.fields.lien} target={lien.fields.externe && '_blank'}>{#if plus}<span>⨁</span> {/if}{lien.fields.titre}</a>
+<a class:disabled={lien.fields.disabled} href={lien.fields.lien} target={lien.fields.externe && '_blank'}>{#if plus}<span>⨁</span> {/if}{lien.fields.titre}</a>
 
 <style>
-  span {
-    /* border-radius: ⨁; */
+  a.disabled {
+    pointer-events: none;
   }
 </style>

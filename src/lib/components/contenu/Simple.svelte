@@ -14,14 +14,16 @@
 
 <section id={contenu.fields.id} class="grid">  
   <aside>
+    {#if contenu.fields.photos}
     {#each contenu.fields.photos as media}
     <figure>
       <Picture {media} small />
     </figure>
     {/each}
+    {/if}
   </aside>
   <div>
-    <h4>{contenu.fields.titre}</h4>
+    {#if contenu.fields.titre}<h4>{contenu.fields.titre}</h4>{/if}
     <Document body={contenu.fields.corps} />
   </div>
 </section>

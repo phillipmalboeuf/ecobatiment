@@ -6,13 +6,14 @@
   import Gallerie from './contenu/Gallerie.svelte'
   import Intro from './contenu/Intro.svelte'
   import Liste from './contenu/Liste.svelte'
+  import Service from './contenu/Service.svelte'
   import Simple from './contenu/Simple.svelte'
 
   export let contenu: Entry<any>[]
 </script>
 
 
-{#each contenu as entry (entry.sys.id)}
+{#each contenu as entry}
 {#if entry.sys.contentType.sys.id === 'intro'}
 <Intro intro={entry} />
 {:else if entry.sys.contentType.sys.id === 'liste'}
@@ -27,6 +28,8 @@
 <Chiffres chiffres={entry} />
 {:else if entry.sys.contentType.sys.id === 'exergue'}
 <Exergue intro={entry} />
+{:else if entry.sys.contentType.sys.id === 'service'}
+<Service service={entry} />
 {/if}
 {/each}
 

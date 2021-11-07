@@ -18,7 +18,7 @@
     <h4>{contenu.fields.titre}</h4>
     {#if contenu.fields.technicalites}<Document body={contenu.fields.technicalites} />{/if}
   </aside>
-  <div>
+  <div class="columns">
     {#each contenu.fields.photos as media}
     <figure>
       <Picture {media} small />

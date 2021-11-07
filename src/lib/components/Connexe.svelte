@@ -12,7 +12,7 @@
 
 
 <section class="grid" style="grid-template-columns: repeat({grid}, 1fr);">  
-  <h5>Contenu connexe</h5>
+  <h5 style="grid-column: span {grid};">Contenu connexe</h5>
 
   {#each items as item, index}
   <article>
@@ -36,7 +36,6 @@
 <style lang="scss">
   h5 {
     text-transform: uppercase;
-    // grid-column: span;
   }
 
   figure {

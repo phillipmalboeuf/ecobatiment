@@ -1,4 +1,6 @@
 <script context="module">
+	import '../app.css'
+
 	export async function load({ page, fetch, session, context }) {
 		const res = await fetch(`/layout.json`)
 
@@ -10,7 +12,7 @@
 
 <script lang="ts">
 	import type { Entry, RichTextContent } from 'contentful'
-	import '../app.css'
+	
 
 	import Navigation from '$lib/components/Navigation.svelte'
 	import { getStores, navigating, page, session } from '$app/stores'

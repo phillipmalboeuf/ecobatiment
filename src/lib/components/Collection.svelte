@@ -1,6 +1,7 @@
 <script context="module" lang="ts">
   import type { Asset, Entry, RichTextContent } from 'contentful'
   import type { Theme } from '$lib/components/Themes.svelte'
+  import type { Lien } from './Link.svelte'
 
   export interface Item {
     titre: string
@@ -10,13 +11,13 @@
     corps: RichTextContent
     themes: Entry<Theme>[]
     vedette: boolean
+    lien: Entry<Lien>
   }
 </script>
 
 <script lang="ts">
   import type { EntryCollection } from 'contentful'
-  import Picture from './Picture.svelte'
-  import Themes from './Themes.svelte'
+  import Items from './Items.svelte'
 
   export let base: string
   export let items: EntryCollection<Item>
@@ -44,36 +45,11 @@
 </nav>
 
 <section>
-{#each items.items.filter(item => item.fields.vedette) as item}
-  <article class="vedette">
-    {#if item.fields.photo}
-    <a href="/{base}/{item.fields.id}">
-      <figure>
-        <Picture media={item.fields.photo} noDescription ar={1 / 3} />
-      </figure>
-    </a>{/if}
-    <Themes {base} themes={item.fields.themes} />
-    <a href="/{base}/{item.fields.id}">
-      <h4>{item.fields.titre}</h4>
-    </a>
-    <small>{item.fields.date}</small>
-  </article>
-{/each}
+  <Items items={items.items.filter(item => item.fields.vedette)} {base} vedette />
 
-<hr>
+  <hr>
 
-{#each items.items.filter(item => !item.fields.vedette) as item}
-  <article>
-    {#if item.fields.photo}<figure>
-      <Picture media={item.fields.photo} noDescription ar={1} />
-    </figure>{/if}
-    <Themes {base} themes={item.fields.themes} />
-    <a href="/{base}/{item.fields.id}">
-      <h5>{item.fields.titre}</h5>
-    </a>
-    <small>{item.fields.date}</small>
-  </article>
-{/each}
+  <Items items={items.items.filter(item => !item.fields.vedette)} {base} />
 </section>
 
 <style lang="scss">
@@ -88,26 +64,9 @@
     column-gap: var(--gutter);
   }
 
-  h4, h5 {
-    margin-bottom: var(--s1);
-  }
-
   hr {
     grid-column: span 12;
     margin-bottom: var(--s4);
-  }
-
-  article {
-    grid-column: span 4;
-    margin-bottom: var(--s4);
-  }
-
-  article.vedette {
-    grid-column: span 12;
-  }
-
-  figure {
-    margin-bottom: var(--s2);
   }
 
   nav {

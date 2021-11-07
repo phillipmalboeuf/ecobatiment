@@ -82,6 +82,10 @@ p {
   white-space: pre-line;
 }
 
+small > p {
+  font-size: 0.75rem;
+}
+
 p > a {
   text-decoration: underline;
 }
@@ -114,10 +118,17 @@ hr {
   width: 100%;
   border: none;
   border-top: 1px solid;
-  opacity: 0.66;
+  opacity: 0.1;
 }
 
 section.grid + hr {
   max-width: var(--width);
   margin: 0 auto;
+}
+
+.columns > p,
+.columns > ul,
+.columns > ol {
+  column-count: 2;
+  column-gap: var(--gutter);
 }
