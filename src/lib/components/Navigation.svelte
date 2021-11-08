@@ -89,7 +89,7 @@
   
   header {
     z-index: 3;
-    position: fixed;
+    position: absolute;
     top: 0;
     width: 100%;
     
