@@ -21,6 +21,14 @@
 
 <svelte:head>
   <title>{page.fields.titre} – Écobâtiment</title>
+  {#if page.fields.contenu && page.fields.contenu[0].sys.contentType.sys.id === 'hero'}
+  <style>
+    header {
+      --header-color: var(--light) !important;
+      --header-background: var(--dark) !important;
+    }
+  </style>
+  {/if}
 </svelte:head>
 
 {#key page.fields.id}

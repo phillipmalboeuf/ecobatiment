@@ -3,24 +3,30 @@
   import type { Lien } from '../Link.svelte'
   import Document from '../document/Document.svelte'
   import Link from '../Link.svelte'
-
+  import Logo from '../icons/Logo.svelte'
 
   export let intro: Entry<{
     titre: string
     id: string
     corps: RichTextContent
     lien: Entry<Lien>
+    logo: boolean
   }>
 </script>
 
 <section id={intro.fields.id} class="grid">
+  {#if intro.fields.logo}
+  <figure>
+    <Logo />
+  </figure>
+  {/if}
   <div>
     {#if intro.fields.titre}<h6>{intro.fields.titre}</h6>{/if}
     <Document body={intro.fields.corps} />
+    {#if intro.fields.lien}
+    <nav><Link lien={intro.fields.lien} plus /></nav>
+    {/if}
   </div>
-  {#if intro.fields.lien}
-  <nav><Link lien={intro.fields.lien} plus /></nav>
-  {/if}
 </section>
 
 <hr>
@@ -41,11 +47,20 @@
     }
   }
 
-  nav {
-    grid-row-start: 2;
-    grid-column: span 8;
+  // nav {
+  //   grid-row-start: 2;
+  //   grid-column: span 8;
+  //   @media (max-width: 888px) {
+  //     grid-column: span 12;
+  //   }
+  // }
+
+  figure {
+    grid-column: span 1;
+    // grid-row: span 2;
+
     @media (max-width: 888px) {
-      grid-column: span 12;
+      display: none;
     }
   }
 </style>

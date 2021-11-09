@@ -68,7 +68,7 @@
   {:else}
   <button on:click={() => visible = !visible}>
     {#if visible}
-    <svg viewBox="0 0 65.14 49.16"><rect x="20.32" y="23.19" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -7.8412 30.2298)" class="st0" width="24.49" height="2.79"/><rect x="31.18" y="12.33" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -7.8412 30.2298)" class="st0" width="2.79" height="24.49"/></svg>
+    <svg viewBox="0 0 65.14 49.16"><rect x="20.32" y="23.19" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -7.8412 30.2298)" width="24.49" height="2.79"/><rect x="31.18" y="12.33" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -7.8412 30.2298)" width="2.79" height="24.49"/></svg>
     {:else}
     <svg viewBox="0 0 65.14 49.16"><rect x="22.96" y="15.98" width="19.69" height="2.79"/><rect x="22.96" y="30.24" width="19.69" height="2.79"/></svg>
     {/if}
@@ -88,10 +88,16 @@
   }
   
   header {
+    --header-color: var(--dark);
+    --header-background: var(--light);
+
     z-index: 3;
     position: absolute;
     top: 0;
     width: 100%;
+    
+    color: var(--header-color);
+    background: var(--header-background);
     
     display: flex;
     justify-content: space-between;
@@ -100,6 +106,7 @@
     padding: var(--margins);
 
     button {
+      color: currentColor;
       background: none;
       border: none;
       padding: 0;

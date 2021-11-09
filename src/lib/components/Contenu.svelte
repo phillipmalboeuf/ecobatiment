@@ -4,6 +4,7 @@
   import Complexe from './contenu/Complexe.svelte'
   import Exergue from './contenu/Exergue.svelte'
   import Gallerie from './contenu/Gallerie.svelte'
+  import Hero from './contenu/Hero.svelte'
   import Intro from './contenu/Intro.svelte'
   import Liste from './contenu/Liste.svelte'
   import Service from './contenu/Service.svelte'
@@ -16,6 +17,8 @@
 {#each contenu as entry}
 {#if entry.sys.contentType.sys.id === 'intro'}
 <Intro intro={entry} />
+{:else if entry.sys.contentType.sys.id === 'hero'}
+<Hero hero={entry} />
 {:else if entry.sys.contentType.sys.id === 'liste'}
 <Liste liste={entry} />
 {:else if entry.sys.contentType.sys.id === 'contenuComplexe'}
