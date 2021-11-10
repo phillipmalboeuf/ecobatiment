@@ -80,7 +80,7 @@
 
 <style lang="scss">
   :root {
-    --height: 50vh;
+    --height: 66vh;
 
     @media (max-width: 888px) {
       --height: 80vh;
@@ -135,7 +135,7 @@
     width: 100%;
     color: var(--light);
     background: var(--dark);
-    height: var(--height);
+    
     overflow-y: scroll;
     padding: calc(var(--margins) * 2);
     // padding-left: calc(var(--gutter) * 7.75);
@@ -145,6 +145,7 @@
       position: fixed;
       top: 100%;
       transform: translateY(-100%);
+      max-height: var(--height);
     }
   }
 
