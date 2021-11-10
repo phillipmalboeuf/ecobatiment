@@ -49,6 +49,7 @@
 
 <style lang="scss">
   section {
+    cursor: ew-resize;
     position: relative;
     background-color: var(--mutedlight);
     margin: var(--s4) auto;
