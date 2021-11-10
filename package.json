@@ -14,6 +14,7 @@
     "node-sass": "^6.0.1",
     "sass": "^1.43.4",
     "svelte": "^3.42.6",
+    "svelte-carousel": "^1.0.16",
     "svelte-check": "^2.2.6",
     "svelte-preprocess": "^4.9.4",
     "tslib": "^2.3.1",
