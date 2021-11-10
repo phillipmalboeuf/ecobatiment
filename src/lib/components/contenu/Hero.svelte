@@ -21,7 +21,7 @@
     <h1>{hero.fields.titre}</h1>
   </section>
 
-  <hr>
+  <!-- <hr> -->
 </div>
 
 
@@ -39,12 +39,13 @@
       left: calc(var(--margins) * -1);
       top: calc(var(--s4) * -1);
       width: calc(100% + (var(--margins) * 2));
-      height: 70%;
+      height: 80%;
     }
   }
 
   figure {
     grid-column: span 8;
+    margin: 0;
   }
 
   h1 {

@@ -2,6 +2,7 @@
   import type { Entry } from 'contentful'
   import Chiffres from './contenu/Chiffres.svelte'
   import Complexe from './contenu/Complexe.svelte'
+import Equipe from './contenu/Equipe.svelte';
   import Exergue from './contenu/Exergue.svelte'
   import Gallerie from './contenu/Gallerie.svelte'
   import Hero from './contenu/Hero.svelte'
@@ -21,6 +22,8 @@
 <Hero hero={entry} />
 {:else if entry.sys.contentType.sys.id === 'liste'}
 <Liste liste={entry} />
+{:else if entry.sys.contentType.sys.id === 'equipe'}
+<Equipe equipe={entry} />
 {:else if entry.sys.contentType.sys.id === 'contenuComplexe'}
 <Complexe contenu={entry} />
 {:else if entry.sys.contentType.sys.id === 'contenuSimplifie'}
