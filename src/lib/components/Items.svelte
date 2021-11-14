@@ -18,14 +18,14 @@
 
 
 {#each items as item}
-<article class:vedette>
+<article class:vedette class:service={item.sys.contentType.sys.id === 'service'}>
   {#if item.fields.lien}
   <span class:disabled={item.fields.lien.fields.disabled}><Link lien={item.fields.lien} /></span>
   {/if}
   {#if item.fields.photo}
   <a href="/{base(item.sys.contentType.sys.id)}{item.fields.id}">
     <figure>
-      <Picture media={item.fields.photo} noDescription={!corps} ar={vedette ? 1 / 3 : 1} />
+      <Picture media={item.fields.photo} noDescription={!corps} ar={(vedette || item.sys.contentType.sys.id === 'service') ? 1 / 3 : 1} />
     </figure>
   </a>{/if}
 
@@ -87,6 +87,10 @@
 
   article.vedette {
     grid-column: span 12;
+  }
+
+  article.service {
+    grid-column: span 6;
   }
 
   figure {

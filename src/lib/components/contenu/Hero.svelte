@@ -23,7 +23,7 @@
 
   <!-- <hr> -->
 </div>
-
+ 
 
 
 <style lang="scss">
@@ -39,7 +39,7 @@
       left: calc(var(--margins) * -1);
       top: calc(var(--s4) * -1);
       width: calc(100% + (var(--margins) * 2));
-      height: 80%;
+      height: 100%;
     }
   }
 
