@@ -16,6 +16,7 @@
   import Picture from '$lib/components/Picture.svelte'
   import Connexe from '$lib/components/Connexe.svelte'
   import Themes from '$lib/components/Themes.svelte'
+  import { date } from '$lib/formatters'
 
 	export let projet: Entry<Item & {
     contenu: Entry<any>[],
@@ -35,7 +36,7 @@
 <section class="grid">
   <aside>
     <Themes base="projets" themes={projet.fields.themes} />
-    <h6>{projet.fields.date}</h6>
+    <h6>{date(projet.fields.date)}</h6>
     {#if projet.fields.corps}<Document body={projet.fields.corps} />{/if}
   </aside>
 </section>

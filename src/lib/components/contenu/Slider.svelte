@@ -6,6 +6,7 @@
   
   import Document from '../document/Document.svelte'
   import Picture from '../Picture.svelte'
+import I from '../icons/I.svelte';
 
   let ready: boolean
   onMount(async () => {
@@ -28,12 +29,22 @@
     let:currentPageIndex
     let:pagesCount
     let:showPage
+    let:showPrevPage
+    let:showNextPage
   >
     {#each slider.fields.slides as slide, index}
     <article>
       <Document body={slide.fields.corps} />
     </article>
     {/each}
+    <button slot="prev" on:click={showPrevPage} class="arrow arrow-prev">
+      <I i='arrow-left' />
+    </button>
+
+    <button slot="next" on:click={showNextPage} class="arrow arrow-next">
+      <I i='arrow-right' />
+    </button>
+
     <div slot="dots" class="dots">
       {#each Array(pagesCount) as _, pageIndex (pageIndex)}
         <button
@@ -82,5 +93,11 @@
         background: currentColor;
       }
     }
+  }
+
+  button.arrow {
+    border: none;
+    background: transparent;
+    padding: var(--s1);
   }
 </style>

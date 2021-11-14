@@ -3,6 +3,7 @@
   import { fade, fly } from 'svelte/transition'
   
   import Document from '../document/Document.svelte'
+import I from '../icons/I.svelte'
   import Picture from '../Picture.svelte'
 
 
@@ -21,7 +22,7 @@
     }>[]
   }>
 
-  let selected: number = 2
+  let selected: number
 </script>
 
 <section id={equipe.fields.id} class="grid" style="grid-template-columns: repeat({equipe.fields.membres.length > 5 ? equipe.fields.membres.length + 1 : 6}, 1fr);">  
@@ -39,7 +40,13 @@
       <h6>{membre.fields.poste}</h6>
       <h5>{membre.fields.nom}</h5>
       <h6>{membre.fields.acros}</h6>
-      <br>
+      <br><br>
+
+      {#if index === selected}
+      <I i="arrow-top" big />
+      {:else}
+      <I i="arrow-bottom" big />
+      {/if}
     </button>
   </article>
   {/each}
@@ -54,8 +61,8 @@
   </div>
 
   <nav>
-    {#if equipe.fields.membres[selected].fields.courriel}<h6><a href="mailto:{equipe.fields.membres[selected].fields.courriel}" target="_blank">{equipe.fields.membres[selected].fields.courriel}</a></h6>{/if}
-    {#if equipe.fields.membres[selected].fields.phone}<h6><a href="tel:{equipe.fields.membres[selected].fields.phone}" target="_blank">{equipe.fields.membres[selected].fields.phone}</a></h6>{/if}
+    {#if equipe.fields.membres[selected].fields.courriel}<h6><a href="mailto:{equipe.fields.membres[selected].fields.courriel}" target="_blank"><I i="courriel" /> {equipe.fields.membres[selected].fields.courriel}</a></h6>{/if}
+    {#if equipe.fields.membres[selected].fields.phone}<h6><a href="tel:{equipe.fields.membres[selected].fields.phone}" target="_blank"><I i="phone" /> {equipe.fields.membres[selected].fields.phone}</a></h6>{/if}
   </nav>
 
   <aside class="columns">
@@ -114,11 +121,19 @@
 
   div {
     grid-column: 3 / span 5;
+
+    h6:last-child {
+      margin-bottom: var(--s2);
+    }
   }
 
   nav {
     text-align: right;
     grid-column: span 5;
+
+    h6 {
+      margin-bottom: var(--s0);
+    }
   }
 
   aside {

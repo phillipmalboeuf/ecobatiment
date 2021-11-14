@@ -4,6 +4,7 @@
   import { onMount, getContext } from 'svelte'
   import { fade, fly } from 'svelte/transition'
   import Footer from './Footer.svelte'
+  import I from './icons/I.svelte'
   import Logotype from './icons/Logotype.svelte'
   import type { Lien } from './Link.svelte'
 
@@ -60,20 +61,27 @@
     <a class:active={path.includes(lien.fields.lien)} href={lien.fields.lien}>{lien.fields.titre}</a>
     {/each}
   </nav>
-  {#if scrolled && !visible}
-  <button on:click={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-    <svg viewBox="0 0 65.14 49.16"><rect x="22.72" y="15.35" width="19.69" height="2.79"/><polygon points="42.22,28.69 32.57,19.04 22.92,28.69 24.9,30.66 31.02,24.53 31.02,34.65 34.12,34.65 34.12,24.53 
-	40.24,30.66 "/></svg>
-  </button>
-  {:else}
-  <button on:click={() => visible = !visible}>
-    {#if visible}
-    <svg viewBox="0 0 65.14 49.16"><rect x="20.32" y="23.19" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -7.8412 30.2298)" width="24.49" height="2.79"/><rect x="31.18" y="12.33" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -7.8412 30.2298)" width="2.79" height="24.49"/></svg>
+
+  <div>
+    <button>
+      <I i='panier' big />
+    </button>
+
+    {#if scrolled && !visible}
+    <button on:click={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+      <I i='up' big />
+    </button>
     {:else}
-    <svg viewBox="0 0 65.14 49.16"><rect x="22.96" y="15.98" width="19.69" height="2.79"/><rect x="22.96" y="30.24" width="19.69" height="2.79"/></svg>
+    <button on:click={() => visible = !visible}>
+      {#if visible}
+      <I i='close' big />
+      {:else}
+      <I i='menu' big />
+      {/if}
+    </button>
     {/if}
-  </button>
-  {/if}
+  </div>
+  
 </header>
 
 
@@ -146,15 +154,6 @@
       top: 100%;
       transform: translateY(-100%);
       max-height: var(--height);
-    }
-  }
-
-  svg {
-    width: 64px;
-    height: 49px;
-    polygon,
-    rect {
-      fill: currentColor;
     }
   }
 </style>

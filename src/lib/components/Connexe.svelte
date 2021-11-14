@@ -3,6 +3,7 @@
   import Picture from './Picture.svelte'
   import type { Item } from './Collection.svelte'
   import Themes from './Themes.svelte'
+import I from './icons/I.svelte';
 
   export let items: Entry<Item>[]
 
@@ -12,6 +13,7 @@
 
 
 <section class="grid" style="grid-template-columns: repeat({grid}, 1fr);">  
+  <h6><I i="arrow-far-right" /></h6>
   <h5 style="grid-column: span {grid};">Contenu connexe</h5>
 
   {#each items as item, index}
@@ -36,6 +38,7 @@
 <style lang="scss">
   h5 {
     text-transform: uppercase;
+    margin-bottom: var(--s3);
   }
 
   figure {

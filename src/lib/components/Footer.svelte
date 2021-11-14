@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Entry } from 'contentful'
+import I from './icons/I.svelte'
   import Logo from './icons/Logo.svelte'
   import Logotype from './icons/Logotype.svelte'
   import type { Lien } from './Link.svelte'
@@ -33,9 +34,10 @@
 <nav>
   <div>
     <h5>Contact</h5>
-    {#if contact.fields.telephone}<a href="tel:{contact.fields.telephone}" target="_blank">{contact.fields.telephone}</a>{/if}
-    {#if contact.fields.email}<a href="mailto:{contact.fields.email}" target="_blank">{contact.fields.email}</a>{/if}
-    {#if contact.fields.adresse}<a href="{contact.fields.lienDadresse}" target="_blank">
+    {#if contact.fields.telephone}<a href="tel:{contact.fields.telephone}" target="_blank"><I  i="phone" /> {contact.fields.telephone}</a>{/if}
+    {#if contact.fields.email}<a href="mailto:{contact.fields.email}" target="_blank"><I  i="courriel" /> {contact.fields.email}</a>{/if}
+    {#if contact.fields.adresse}<a style="display: flex;" href="{contact.fields.lienDadresse}" target="_blank">
+      <I  i="map" />
       <p>{contact.fields.adresse}</p>
     </a>{/if}
   </div>
@@ -48,10 +50,10 @@
 
   <div>
     <h5>Médias sociaux</h5>
-    {#if contact.fields.facebook}<a href="{contact.fields.facebook}" target="_blank">Facebook</a>{/if}
-    {#if contact.fields.twitter}<a href="{contact.fields.twitter}" target="_blank">Twitter</a>{/if}
-    {#if contact.fields.instagram}<a href="{contact.fields.instagram}" target="_blank">Instagram</a>{/if}
-    {#if contact.fields.linkedIn}<a href="{contact.fields.linkedIn}" target="_blank">LinkedIn</a>{/if}
+    {#if contact.fields.facebook}<a href="{contact.fields.facebook}" target="_blank"><I  i="facebook" /> Facebook</a>{/if}
+    {#if contact.fields.twitter}<a href="{contact.fields.twitter}" target="_blank"><I  i="twitter" /> Twitter</a>{/if}
+    {#if contact.fields.instagram}<a href="{contact.fields.instagram}" target="_blank"><I  i="instagram" /> Instagram</a>{/if}
+    {#if contact.fields.linkedIn}<a href="{contact.fields.linkedIn}" target="_blank"><I  i="linkedin" /> LinkedIn</a>{/if}
   </div>
 
   {#each sousNavigation.fields.liens as lien}
