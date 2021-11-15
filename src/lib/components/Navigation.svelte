@@ -3,6 +3,7 @@
 
   import { onMount, getContext } from 'svelte'
   import { fade, fly } from 'svelte/transition'
+  import Cart from './Cart.svelte'
   import Footer from './Footer.svelte'
   import I from './icons/I.svelte'
   import Logotype from './icons/Logotype.svelte'
@@ -16,10 +17,12 @@
 		liens: Entry<Lien>[]
 	}>
   export let contact: Entry<any>
+  export let panier: Entry<any>
   
   let visible = false
   let scrolled: boolean
   let footer: HTMLDivElement
+  let cartVisible = false
 
   // let locale = getContext('locale')
 
@@ -63,8 +66,12 @@
   </nav>
 
   <div>
-    <button>
+    <button on:click={() => cartVisible = !cartVisible}>
+      {#if cartVisible}
+      <I i='close' big />
+      {:else}
       <I i='panier' big />
+      {/if}
     </button>
 
     {#if scrolled && !visible}
@@ -84,6 +91,7 @@
   
 </header>
 
+<Cart bind:visible={cartVisible} {panier} />
 
 
 <style lang="scss">

@@ -11,7 +11,7 @@
   <label for="quantity">Quantité</label>
   <input type="number" min=1 name="quantity" id="quantity" value=1>
 
-  <button type="submit">Ajouter au panier d'achat</button>
+  <button class="full" type="submit">Ajouter au panier d'achat</button>
 </form>
 
 <style lang="scss">
@@ -46,16 +46,5 @@
     @media (max-width: 888px) {
       grid-column: span 1;
     }
-
-    font-size: var(--s1);
-    color: var(--light);
-    background: var(--dark);
-    text-transform: uppercase;
-    text-align: center;
-    
-    width: 100%;
-    border: none;
-    padding: var(--s1);
-    border-radius: var(--s2);
   }
 </style>

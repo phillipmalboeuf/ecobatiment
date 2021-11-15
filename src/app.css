@@ -16,6 +16,7 @@
   --muted: rgba(66, 69, 80, 0.66);
   --mutedlight: rgba(66, 69, 80, 0.33);
   --highlight: #d59476;
+  --alt: #C9C6B7;
 }
 
 @media (max-width: 888px) {
@@ -103,6 +104,19 @@ label,
 input {
   color: currentColor;
   cursor: pointer;
+}
+
+button.full {
+  font-size: var(--s1);
+  color: var(--light);
+  background: var(--dark);
+  text-transform: uppercase;
+  text-align: center;
+  
+  width: 100%;
+  border: none;
+  padding: var(--s1);
+  border-radius: var(--s2);
 }
 
 button:hover,

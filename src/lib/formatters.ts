@@ -13,3 +13,6 @@ export const date = (value: string | Date, time=false, lang='fr') =>
       }
     )
   : '–'
+
+export const money = (value: number) => 
+  value !== undefined && value !== null ? `$${value.toFixed(2)}` : `–`

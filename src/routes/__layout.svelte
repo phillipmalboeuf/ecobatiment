@@ -25,6 +25,7 @@
 		liens: Entry<Lien>[]
 	}>
 	export let contact: Entry<any>
+	export let panier: Entry<any>
 </script>
 
 <!-- <nav>
@@ -38,7 +39,7 @@
 	<slot></slot>
 </main>
 
-<Navigation {navigation} {sousNavigation} {contact} path={$page.path} />
+<Navigation {navigation} {sousNavigation} {contact} {panier} path={$page.path} />
 
 <style lang="scss">
 	main {
