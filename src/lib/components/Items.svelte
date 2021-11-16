@@ -85,16 +85,20 @@
     }
   }
 
+  figure {
+    margin-bottom: var(--s2);
+  }
+
   article.vedette {
     grid-column: span 12;
   }
 
   article.service {
     grid-column: span 6;
-  }
 
-  figure {
-    margin-bottom: var(--s2);
+    figure {
+      margin-bottom: var(--s1);
+    }
   }
 
   div.corps {
