@@ -35,7 +35,7 @@
 	{/each}
 </nav> -->
 
-<main id="main">
+<main class:navigating={$navigating} id="main">
 	<slot></slot>
 </main>
 
@@ -46,5 +46,23 @@
     min-height: 100vh;
     margin: var(--s4) 0;
     padding: var(--margins);
+	}
+
+	main:before {
+		content: "";
+		border-top: 2px solid var(--highlight);
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 0%;
+		box-sizing: border-box;
+		transition: none;
+		opacity: 0;
+	}
+
+	main.navigating:before {
+		opacity: 1;
+		width: 100%;
+		transition: width 666ms, opacity 333ms;
 	}
 </style>
