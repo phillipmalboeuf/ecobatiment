@@ -46,6 +46,10 @@
   figure {
     grid-column: span 8;
     margin: 0;
+
+    @media (max-width: 888px) {
+      grid-column: span 12;
+    }
   }
 
   h1 {
@@ -53,6 +57,10 @@
     color: var(--light);
     grid-column: span 4;
     padding: var(--s4);
+
+    @media (max-width: 888px) {
+      grid-column: span 12;
+    }
 
     &:before {
       content: "";

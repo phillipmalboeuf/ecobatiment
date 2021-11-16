@@ -98,7 +98,7 @@ import I from './icons/I.svelte'
 
     @media (max-width: 888px) {
       flex-direction: column;
-      row-gap: var(--gutter);
+      row-gap: var(--s2);
     }
 
     > small {

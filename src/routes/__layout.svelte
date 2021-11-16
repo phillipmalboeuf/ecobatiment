@@ -46,6 +46,10 @@
     min-height: 80vh;
     margin: var(--s4) 0;
     padding: var(--margins);
+
+		@media (max-width: 888px) {
+      margin-top: var(--s3);
+    }
 	}
 
 	main:before {

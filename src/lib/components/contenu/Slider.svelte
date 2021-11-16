@@ -71,6 +71,10 @@ import I from '../icons/I.svelte';
   article {
     text-align: center;
     padding: var(--s5) 20vw;
+
+    @media (max-width: 888px) {
+      padding: var(--s5) 0;
+    }
   }
 
   .dots {
