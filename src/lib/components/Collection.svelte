@@ -18,6 +18,7 @@
 <script lang="ts">
   import type { EntryCollection } from 'contentful'
   import Items from './Items.svelte'
+import I from './icons/I.svelte';
 
   export let base: string
   export let items: EntryCollection<Item>
@@ -26,6 +27,9 @@
   function toggle(id: string) {
 
   }
+
+  let visibleThemes = true
+  let visibleDate = true
 </script>
 
 <svelte:head>
@@ -34,13 +38,35 @@
 
 
 <nav>
+  <input class="hidden" on:input={() => visibleDate = !visibleDate} type="checkbox" name="date" id="date" />
+  <label for="date">Par date <I i="chevron" small rotate={visibleDate ? 0 : 180} /></label>
+
+  
   <ul>
-  {#each themes.items as theme}
-  <li>
-    <input on:input={() => toggle(theme.fields.id)} type="checkbox" name={theme.fields.id} id={theme.fields.id} />
-    <label for={theme.fields.id}>{theme.fields.titre}</label>
-  </li>
-  {/each}
+    {#if visibleDate}
+    <li>
+      <input on:input={() => false} type="checkbox" name="future" id="future" />
+      <label for="future">À venir</label>
+    </li>
+    <li>
+      <input on:input={() => false} type="checkbox" name="archived" id="archived" />
+      <label for="archived">Disponibles</label>
+    </li>
+    {/if}
+  </ul>
+
+  <input class="hidden" on:input={() => visibleThemes = !visibleThemes} type="checkbox" name="themes" id="themes" />
+  <label for="themes">Par thèmes <I i="chevron" small rotate={visibleThemes ? 0 : 180} /></label>
+
+  <ul>
+    {#if visibleThemes}
+    {#each themes.items as theme}
+    <li>
+      <input on:input={() => toggle(theme.fields.id)} type="checkbox" name={theme.fields.id} id={theme.fields.id} />
+      <label for={theme.fields.id}>{theme.fields.titre}</label>
+    </li>
+    {/each}
+    {/if}
   </ul>
 </nav>
 
@@ -69,16 +95,26 @@
     margin-bottom: var(--s4);
   }
 
+  label {
+    text-transform: uppercase;
+  }
+
   nav {
     ul {
       list-style: none;
       padding-left: 0;
+      margin-bottom: var(--s4);
     }
 
     li {
-      label {
-        text-transform: uppercase;
-      }
+      display: grid;
+      grid-template-columns: 1fr 8fr;
+      column-gap: var(--s0);
+      margin-bottom: var(--s0);
     }
+  }
+
+  input.hidden {
+    display: none;
   }
 </style>

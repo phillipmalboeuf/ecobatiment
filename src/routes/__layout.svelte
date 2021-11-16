@@ -43,18 +43,19 @@
 
 <style lang="scss">
 	main {
-    min-height: 100vh;
+    min-height: 80vh;
     margin: var(--s4) 0;
     padding: var(--margins);
 	}
 
 	main:before {
 		content: "";
-		border-top: 2px solid var(--highlight);
+		border-top: 2px solid black;
 		position: fixed;
 		top: 0;
 		left: 0;
 		width: 0%;
+		z-index: 100;
 		box-sizing: border-box;
 		transition: none;
 		opacity: 0;

@@ -81,6 +81,10 @@ import I from './icons/I.svelte'
   nav {
     margin-bottom: var(--s3);
 
+    &:last-child {
+      margin-bottom: 0;
+    }
+
     a {
       display: block;
     }

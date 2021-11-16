@@ -33,7 +33,7 @@
 
 html {
   font-family: 'Lato', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.25;
 }
 
@@ -122,6 +122,37 @@ button.full {
 button:hover,
 button:focus {
   color: var(--highlight);
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  margin: 0;
+  margin-right: 0.25em;
+  font: inherit;
+  color: currentColor;
+
+  width: 1em;
+  height: 1em;
+  border: 2px solid;
+  border-radius: 0.25em;
+  transform: translateY(0.15em);
+
+  position: relative;
+}
+
+input[type="checkbox"]:checked:before {
+  content: "";
+  background-color: currentColor;
+  width: 0.70em;
+  height: 0.70em;
+  border-radius: 0.15em;
+  /* border-radius: 0.33em; */
+
+  position: absolute;
+  top: 0.05em;
+  left: 0.05em;
 }
 
 figure {

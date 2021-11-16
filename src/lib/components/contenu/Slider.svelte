@@ -62,7 +62,7 @@ import I from '../icons/I.svelte';
   section {
     cursor: ew-resize;
     position: relative;
-    background-color: var(--mutedlight);
+    background-color: var(--alt);
     margin: var(--s4) auto;
     margin-left: calc(var(--margins) * -1);
     width: calc(100% + (var(--margins) * 2));

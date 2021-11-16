@@ -128,15 +128,25 @@
       padding: 0;
     }
 
+    > a,
+    > div {
+      width: 25%;
+    }
+
+    > div {
+      text-align: right;
+    }
+
     nav {
       display: flex;
-      column-gap: var(--gutter);
+      column-gap: calc(var(--gutter) * 1.5);
 
       @media (max-width: 1200px) {
         display: none;
       }
 
       a {
+        font-size: 0.88rem;
         text-transform: uppercase;
       }
 
