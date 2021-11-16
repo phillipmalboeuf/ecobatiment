@@ -43,7 +43,7 @@
 
 <style lang="scss">
 	main {
-    min-height: 80vh;
+    min-height: 100vh;
     margin: var(--s4) 0;
     padding: var(--margins);
 
