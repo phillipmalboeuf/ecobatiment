@@ -111,6 +111,10 @@ import I from './icons/I.svelte';
       grid-template-columns: 1fr 8fr;
       column-gap: var(--s0);
       margin-bottom: var(--s0);
+
+      &:before {
+        content: none;
+      }
     }
   }
 
