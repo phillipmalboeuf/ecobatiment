@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Entry } from 'contentful'
-import I from './icons/I.svelte'
+  import I from './icons/I.svelte'
   import Logo from './icons/Logo.svelte'
   import Logotype from './icons/Logotype.svelte'
   import type { Lien } from './Link.svelte'

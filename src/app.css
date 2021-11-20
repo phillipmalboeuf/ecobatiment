@@ -151,6 +151,29 @@ button.full {
   border-radius: var(--s2);
 }
 
+ul,
+ol {
+  padding-left: 1rem;
+}
+
+ul {
+  list-style: none;
+}
+
+ul > li {
+  position: relative;
+}
+
+ul > li:before {
+  content: "–";
+  color: var(--highlight);
+  font-weight: bold;
+  position: absolute;
+  right: 100%;
+  top: 0;
+  padding-right: 0.5rem;
+}
+
 button:hover,
 button:focus {
   color: var(--highlight);
@@ -220,15 +243,15 @@ section.grid + hr {
 .columns > p,
 .columns > ul,
 .columns > ol {
-  column-count: 2;
-  column-gap: var(--gutter);
+  /* column-count: 2;
+  column-gap: var(--gutter); */
 }
 
 @media (max-width: 888px) {
-  .columns > p,
+  /* .columns > p,
   .columns > ul,
   .columns > ol {
     column-count: 1;
-  }
+  } */
 
 }
