@@ -3,7 +3,7 @@
   import { fade, fly } from 'svelte/transition'
   
   import Document from '../document/Document.svelte'
-import I from '../icons/I.svelte'
+  import I from '../icons/I.svelte'
   import Picture from '../Picture.svelte'
 
 
@@ -37,42 +37,46 @@ import I from '../icons/I.svelte'
         <Picture media={membre.fields.photo} small ar={3 / 1} noDescription />
       </figure>
 
-      <h6>{membre.fields.poste}</h6>
-      <h5>{membre.fields.nom}</h5>
-      <h6>{membre.fields.acros}</h6>
-      <br><br>
+      <div>
+        <h6>{membre.fields.poste}</h6>
+        <h5>{membre.fields.nom}</h5>
+        <h6>{membre.fields.acros}</h6>
+        <br><br>
 
-      <span>
-      {#if index === selected}
-      <I i="arrow-top" big />
-      {:else}
-      <I i="arrow-bottom" big />
-      {/if}
-      </span>
+        <span>
+        {#if index === selected}
+        <I i="arrow-top" big />
+        {:else}
+        <I i="arrow-bottom" big />
+        {/if}
+        </span>
+      </div>
     </button>
   </article>
   {/each}
+
+  {#if selected !== undefined}
+  {#key selected}
+  <section transition:fly={{ y: -50 }} class="grid corps" style="--start: {selected + 3};">
+    <div>
+      <h6>{equipe.fields.membres[selected].fields.poste}</h6>
+      <h5>{equipe.fields.membres[selected].fields.nom}</h5>
+      <h6>{equipe.fields.membres[selected].fields.acros}</h6>
+    </div>
+
+    <nav>
+      {#if equipe.fields.membres[selected].fields.courriel}<h6><a href="mailto:{equipe.fields.membres[selected].fields.courriel}" target="_blank"><I i="courriel" /> {equipe.fields.membres[selected].fields.courriel}</a></h6>{/if}
+      {#if equipe.fields.membres[selected].fields.phone}<h6><a href="tel:{equipe.fields.membres[selected].fields.phone}" target="_blank"><I i="phone" /> {equipe.fields.membres[selected].fields.phone}</a></h6>{/if}
+    </nav>
+
+    <aside class="columns">
+      <Document body={equipe.fields.membres[selected].fields.biographie} />
+    </aside>
+    
+  </section>
+  {/key}
+  {/if}
 </section>
-
-{#if selected !== undefined}
-<section transition:fly={{ y: -50 }} class="grid">
-  <div>
-    <h6>{equipe.fields.membres[selected].fields.poste}</h6>
-    <h5>{equipe.fields.membres[selected].fields.nom}</h5>
-    <h6>{equipe.fields.membres[selected].fields.acros}</h6>
-  </div>
-
-  <nav>
-    {#if equipe.fields.membres[selected].fields.courriel}<h6><a href="mailto:{equipe.fields.membres[selected].fields.courriel}" target="_blank"><I i="courriel" /> {equipe.fields.membres[selected].fields.courriel}</a></h6>{/if}
-    {#if equipe.fields.membres[selected].fields.phone}<h6><a href="tel:{equipe.fields.membres[selected].fields.phone}" target="_blank"><I i="phone" /> {equipe.fields.membres[selected].fields.phone}</a></h6>{/if}
-  </nav>
-
-  <aside class="columns">
-    <Document body={equipe.fields.membres[selected].fields.biographie} />
-  </aside>
-  
-</section>
-{/if}
 
 <hr>
 
@@ -81,6 +85,16 @@ import I from '../icons/I.svelte'
   article {
     position: relative;
     overflow-y: visible;
+
+    @media (max-width: 888px) {
+      grid-column: span 12;
+      margin-bottom: var(--s2);;
+
+      :global(svg) {
+        height: 2em !important;
+        width: 2em !important;
+      }
+    }
   }
 
   figure {
@@ -97,15 +111,11 @@ import I from '../icons/I.svelte'
       object-position: top;
       transition: height 666ms;
 
-      .selected & {
-        height: 166%;
+      @media (min-width: 888px) {
+        .selected & {
+          height: 166%;
+        }
       }
-    }
-  }
-
-  @media (max-width: 888px) {
-    section.grid {
-      grid-template-columns: repeat(2, 1fr) !important;
     }
   }
 
@@ -120,6 +130,12 @@ import I from '../icons/I.svelte'
       position: absolute;
       top: calc(100% - 1.5rem);
     }
+
+    @media (max-width: 888px) {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      column-gap: var(--s2);
+    }
   }
 
   h6, h5 {
@@ -127,26 +143,52 @@ import I from '../icons/I.svelte'
     margin-bottom: var(--s1);
   }
 
-  div {
-    grid-column: 3 / span 5;
+  .corps {
+    grid-column: span 6;
 
-    h6:last-child {
-      margin-bottom: var(--s2);
+    @media (max-width: 888px) {
+      grid-column: span 12;
     }
-  }
 
-  nav {
-    text-align: right;
-    grid-column: span 5;
+    div {
+      grid-column: 3 / span 5;
 
-    h6 {
-      margin-bottom: var(--s0);
+      h6:last-child {
+        margin-bottom: var(--s2);
+      }
     }
-  }
 
-  aside {
-    grid-column: 3 / span 10;
-    grid-row-start: 2;
+    nav {
+      text-align: right;
+      grid-column: span 5;
+
+      h6 {
+        margin-bottom: var(--s0);
+      }
+    }
+
+    aside {
+      grid-column: 3 / span 10;
+      grid-row-start: 2;
+    }
+
+    @media (max-width: 888px) {
+      grid-row-start: var(--start);
+      margin-top: 0;
+
+      aside,
+      nav {
+        grid-column: span 12;
+      }
+
+      nav {
+        text-align: left;
+      }
+
+      div {
+        display: none;
+      }
+    }
   }
 
   // figure :global(img) {

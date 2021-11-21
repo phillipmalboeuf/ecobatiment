@@ -34,6 +34,8 @@
     {/if}
   </aside>
   <div class="columns">
+    <h4 class="mobile">{service.fields.titre}</h4>
+
     {#if service.fields.photo}
     <figure>
       <Picture media={service.fields.photo} small />
@@ -50,7 +52,7 @@
     grid-column: span 6;
 
     @media (max-width: 888px) {
-      grid-column: span 12;
+      display: none;
     }
 
     a {
@@ -60,6 +62,13 @@
 
     h6 {
       margin-top: var(--s4);
+    }
+  }
+
+  h4.mobile {
+    margin-bottom: var(--s1);
+    @media (min-width: 888px) {
+      display: none;
     }
   }
 

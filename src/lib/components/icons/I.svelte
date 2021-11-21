@@ -209,7 +209,7 @@
   {/if}
 </svg>
 
-<style>
+<style lang="scss">
   svg {
     height: 1.6em;
     width: 1.6em;

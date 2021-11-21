@@ -13,6 +13,7 @@
 		liens: Entry<Lien>[]
 	}>
   export let contact: Entry<any>
+  export let visible: boolean
   export let cartVisible: boolean
 </script>
 
@@ -25,9 +26,15 @@
     {/if}
   </button>
 
+  {#if !visible}
   <button on:click={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
     <I i='up' big />
   </button>
+  {:else}
+  <button on:click={() => visible = false}>
+    <I i='close' big />
+  </button>
+  {/if}
 </aside>
 
 <nav>
@@ -62,7 +69,7 @@
     </a>
   </figure>{/if}
 
-  <div>
+  <div class="social">
     <h5>Médias sociaux</h5>
     {#if contact.fields.facebook}<a href="{contact.fields.facebook}" target="_blank"><I  i="facebook" /> Facebook</a>{/if}
     {#if contact.fields.twitter}<a href="{contact.fields.twitter}" target="_blank"><I  i="twitter" /> Twitter</a>{/if}
@@ -95,6 +102,10 @@
     margin: calc(var(--s2) * -1) calc(var(--s2) * -1) var(--s3) auto; 
     text-align: right;
 
+    @media (max-width: 888px) {
+      margin: calc(var(--s1) * -1) calc(var(--s1) * -1) var(--s3) auto; 
+    }
+
     button {
       background: transparent;
       border: none;
@@ -126,10 +137,31 @@
     @media (max-width: 888px) {
       flex-direction: column;
       row-gap: var(--s2);
+
+      h5 {
+        font-size: 1.5rem;
+        // margin-bottom: 0;
+      }
+
+      &:first-of-type h5 {
+        margin-bottom: 0;
+      }
+
+      &:first-of-type > div > a {
+        display: none;
+      }
+
+      .social {
+        order: -1;
+      }
     }
 
     > small {
       align-self: flex-end;
+
+      @media (max-width: 888px) {
+        align-self: flex-start;
+      }
     }
   }
 
@@ -149,7 +181,7 @@
     max-width: 25%;
 
     @media (max-width: 888px) {
-      max-width: 66%;
+      display: none;
     }
   }
 </style>

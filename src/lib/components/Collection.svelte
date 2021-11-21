@@ -18,7 +18,7 @@
 <script lang="ts">
   import type { EntryCollection } from 'contentful'
   import Items from './Items.svelte'
-import I from './icons/I.svelte';
+  import I from './icons/I.svelte'
 
   export let base: string
   export let items: EntryCollection<Item>
@@ -36,6 +36,8 @@ import I from './icons/I.svelte';
   <title>{base} – Écobâtiment</title>
 </svelte:head>
 
+<input class="hidden filters" type="checkbox" name="filters" id="filters" />
+<label for="filters"><I i="menu" small /> Filtres</label>
 
 <nav>
   <input class="hidden" on:input={() => visibleDate = !visibleDate} type="checkbox" name="date" id="date" />
@@ -81,6 +83,10 @@ import I from './icons/I.svelte';
 <style lang="scss">
   nav {
     grid-column: span 2;
+
+    @media (max-width: 888px) {
+      grid-column: span 12;
+    }
   }
 
   section {
@@ -88,6 +94,10 @@ import I from './icons/I.svelte';
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     column-gap: var(--gutter);
+
+    @media (max-width: 888px) {
+      grid-column: span 12;
+    }
   }
 
   hr {
@@ -120,5 +130,47 @@ import I from './icons/I.svelte';
 
   input.hidden {
     display: none;
+  }
+
+  input.filters {
+
+    + label {
+      @media (min-width: 888px) {
+        display: none;
+      }
+
+      // color: var(--light);
+      background: var(--alt);
+      padding: var(--s0);
+      border-radius: var(--s0);
+      margin-bottom: var(--s2);
+      grid-column: span 12;
+
+      + nav {
+        background: var(--alt);
+        padding: var(--s2);
+        border-bottom-left-radius: var(--s0);
+        border-bottom-right-radius: var(--s0);
+        display: none;
+
+        ul:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    &:checked {
+
+      + label {
+        margin-bottom: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+
+        + nav {
+          display: block;
+          margin-bottom: var(--s2);
+        }
+      }
+    }
   }
 </style>

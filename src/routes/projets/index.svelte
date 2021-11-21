@@ -27,5 +27,10 @@
 <style lang="scss">
   h1 {
     grid-column: 4 / span 9;
+
+    @media (max-width: 888px) {
+      grid-column: span 12;
+      font-size: 2rem;
+    }
   }
 </style>

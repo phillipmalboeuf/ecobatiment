@@ -48,6 +48,10 @@
 <style lang="scss">
   h4, h5 {
     margin-bottom: var(--s1);
+
+    @media (max-width: 888px) {
+      margin-bottom: var(--s0);
+    }
   }
 
   article {
@@ -60,7 +64,7 @@
     }
 
     @media (max-width: 666px) {
-      grid-column: span 12;
+      // grid-column: span 12;
     }
 
     span :global(a) {
@@ -108,7 +112,7 @@
 
     @media (max-width: 888px) {
       grid-template-columns: 1fr;
-      row-gap: var(--gutter);
+      row-gap: var(--s3);
     }
 
     aside {

@@ -20,21 +20,20 @@
   export let panier: Entry<any>
   
   let visible = false
-  let scrolled: boolean
   let footer: HTMLDivElement
   let cartVisible = false
 
   // let locale = getContext('locale')
 
   onMount(() => {
-		const scrolledObserver = new IntersectionObserver( 
-			([e]) => scrolled = e.isIntersecting,
-			{ threshold: [0] }
-		)
+		// const scrolledObserver = new IntersectionObserver( 
+		// 	([e]) => scrolled = e.isIntersecting,
+		// 	{ threshold: [0] }
+		// )
 
-		scrolledObserver.observe(footer)
+		// scrolledObserver.observe(footer)
 
-    document.getElementById('main').addEventListener('click', () => visible = false, { passive: true, capture: false })
+    // document.getElementById('main').addEventListener('click', () => visible = false, { passive: true, capture: false })
 	})
 
   function hide() {
@@ -45,11 +44,11 @@
 <div bind:this={footer}>
   {#if visible}
   <footer class="visible" transition:fly={{ y: 100 }}>
-    <Footer {navigation} {sousNavigation} {contact} bind:cartVisible on:click={hide} />
+    <Footer {navigation} {sousNavigation} {contact} bind:cartVisible bind:visible on:click={hide} />
   </footer>
   {:else}
   <footer>
-    <Footer {navigation} {sousNavigation} {contact} bind:cartVisible />
+    <Footer {navigation} {sousNavigation} {contact} bind:cartVisible bind:visible />
   </footer>
   {/if}
 </div>
@@ -77,11 +76,6 @@
       {/if}
     </button>
 
-    {#if scrolled && !visible}
-    <button on:click={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-      <I i='up' big />
-    </button>
-    {:else}
     <button on:click={() => visible = !visible}>
       {#if visible}
       <I i='close' big />
@@ -89,7 +83,6 @@
       <I i='menu' big />
       {/if}
     </button>
-    {/if}
   </div>
   </nav>
 </header>
@@ -98,13 +91,6 @@
 
 
 <style lang="scss">
-  :root {
-    --height: 66vh;
-
-    @media (max-width: 888px) {
-      --height: 80vh;
-    }
-  }
   
   header {
     --header-color: var(--dark);
@@ -167,21 +153,19 @@
   }
 
   footer {
-    z-index: 3;
+    z-index: 4;
     width: 100%;
     color: var(--light);
     background: var(--dark);
     
     overflow-y: scroll;
     padding: calc(var(--margins) * 2);
-    // padding-left: calc(var(--gutter) * 7.75);
-    margin-bottom: calc(var(--height) * -1);
 
     &.visible {
       position: fixed;
       top: 100%;
       transform: translateY(-100%);
-      max-height: var(--height);
+      max-height: 100vh;
     }
   }
 </style>

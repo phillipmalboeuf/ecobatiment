@@ -52,6 +52,16 @@
 
 <style lang="scss">
   figure {
+
+    @media (max-width: 888px) {
+      margin-bottom: calc(var(--s2) * -1);
+    
+      :global(img) {
+        object-fit: cover;
+        aspect-ratio: 1 !important;
+      }
+    }
+
     figcaption {
       position: absolute;
       top: var(--s3);

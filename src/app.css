@@ -23,6 +23,11 @@
   :root {
     --gutter: var(--s0);
     --margins: var(--s1);
+
+    --s2: 1.66rem;
+    --s3: 2.25rem;
+    --s4: 3rem;
+    --s5: 4rem;
   }
 }
 
@@ -37,7 +42,13 @@ html {
   line-height: 1.25;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-tap-highlight-color: var(--highlight);
+  -webkit-tap-highlight-color: var(--mutedlight);
+}
+
+@media (max-width: 888px) {
+  html {
+    font-size: 16px;
+  }
 }
 
 body {

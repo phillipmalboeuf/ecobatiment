@@ -49,6 +49,7 @@
 
     @media (max-width: 888px) {
       grid-column: span 12;
+      grid-row-start: 2;
     }
   }
 
@@ -60,6 +61,7 @@
 
     @media (max-width: 888px) {
       grid-column: span 12;
+      padding: 0;
     }
 
     &:before {
@@ -70,6 +72,10 @@
       height: 3px;
       background: var(--highlight);
       width: 20%;
+
+      @media (max-width: 888px) {
+        display: none;
+      }
     }
   }
 </style>

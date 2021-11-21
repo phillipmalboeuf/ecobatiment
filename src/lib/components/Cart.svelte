@@ -384,7 +384,7 @@ import Chiffres from './contenu/Chiffres.svelte';
     bottom: 0;
     z-index: 2;
     width: 100%;
-    max-height: 88vh;
+    max-height: 100vh;
     color: var(--dark);
     background: var(--alt);
     
@@ -419,10 +419,6 @@ import Chiffres from './contenu/Chiffres.svelte';
   li, aside {
     padding: var(--s2);
     background: var(--light);
-
-    @media (max-width: 888px) {
-      padding: var(--s1);
-    }
   }
 
   aside {
