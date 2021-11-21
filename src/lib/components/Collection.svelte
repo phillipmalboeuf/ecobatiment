@@ -146,6 +146,7 @@
       margin-bottom: var(--s2);
       grid-column: span 12;
 
+      @media (max-width: 888px) {
       + nav {
         background: var(--alt);
         padding: var(--s2);
@@ -156,6 +157,7 @@
         ul:last-child {
           margin-bottom: 0;
         }
+      }
       }
     }
 
