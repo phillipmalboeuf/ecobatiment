@@ -42,11 +42,13 @@ import I from '../icons/I.svelte'
       <h6>{membre.fields.acros}</h6>
       <br><br>
 
+      <span>
       {#if index === selected}
       <I i="arrow-top" big />
       {:else}
       <I i="arrow-bottom" big />
       {/if}
+      </span>
     </button>
   </article>
   {/each}
@@ -77,7 +79,8 @@ import I from '../icons/I.svelte'
 <style lang="scss">
 
   article {
-    overflow-y: hidden;
+    position: relative;
+    overflow-y: visible;
   }
 
   figure {
@@ -112,6 +115,11 @@ import I from '../icons/I.svelte'
     background: transparent;
     padding: 0;
     text-align: left;
+
+    span {
+      position: absolute;
+      top: calc(100% - 1.5rem);
+    }
   }
 
   h6, h5 {
