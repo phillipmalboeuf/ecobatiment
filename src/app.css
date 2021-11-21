@@ -95,6 +95,7 @@ p {
   white-space: pre-line;
 }
 
+small,
 small > p {
   font-size: 0.75rem;
 }
@@ -234,13 +235,17 @@ section.grid {
 hr {
   width: 100%;
   border: none;
-  border-top: 1px solid;
+  border-top: 2px solid;
   opacity: 0.1;
 }
 
 section.grid + hr {
   max-width: var(--width);
   margin: 0 auto;
+}
+
+main > hr:last-child {
+  display: none;
 }
 
 .columns > p,

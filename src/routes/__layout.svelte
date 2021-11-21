@@ -44,7 +44,7 @@
 <style lang="scss">
 	main {
     min-height: 100vh;
-    margin: var(--s4) 0;
+    margin: var(--s4) 0 0;
     padding: var(--margins);
 
 		@media (max-width: 888px) {

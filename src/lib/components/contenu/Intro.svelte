@@ -40,7 +40,7 @@
   }
 
   div :global(p) {
-    font-size: 3rem;
+    font-size: 2.66rem;
 
     @media (max-width: 888px) {
       font-size: 1.5rem;
@@ -57,6 +57,7 @@
 
   figure {
     grid-column: span 1;
+    margin-top: 0.66rem;
     // grid-row: span 2;
 
     @media (max-width: 888px) {

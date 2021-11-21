@@ -33,9 +33,9 @@
     <div>
       {#if item.fields.themes}<Themes base={base(item.sys.contentType.sys.id)} themes={item.fields.themes} />{/if}
       <a href="/{base(item.sys.contentType.sys.id)}{item.fields.id}">
-        {#if vedette}<h4>{item.fields.titre}</h4>{:else}<h5>{item.fields.titre}</h5>{/if}
+        {#if vedette || item.sys.contentType.sys.id === 'service'}<h4>{item.fields.titre}</h4>{:else}<h5>{item.fields.titre}</h5>{/if}
       </a>
-      {#if item.fields.date}<small>{date(item.fields.date)}</small>{/if}
+      {#if item.fields.date}{date(item.fields.date)}{/if}
     </div>
 
     {#if corps && item.fields.corps}<aside>
@@ -110,9 +110,13 @@
       grid-template-columns: 1fr;
       row-gap: var(--gutter);
     }
+
+    aside {
+      padding-right: 10%;
+    }
   }
 
   aside :global(p) {
-    font-size: 1.25rem;
+    font-size: 1.33rem;
   }
 </style>

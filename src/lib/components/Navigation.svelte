@@ -45,25 +45,28 @@
 <div bind:this={footer}>
   {#if visible}
   <footer class="visible" transition:fly={{ y: 100 }}>
-    <Footer {navigation} {sousNavigation} {contact} on:click={hide} />
+    <Footer {navigation} {sousNavigation} {contact} bind:cartVisible on:click={hide} />
   </footer>
   {:else}
   <footer>
-    <Footer {navigation} {sousNavigation} {contact} />
+    <Footer {navigation} {sousNavigation} {contact} bind:cartVisible />
   </footer>
   {/if}
 </div>
 
 <header>
-  <a class="logo" href="/" on:click={hide} aria-label="Écobâtiment">
-    <Logotype />
-  </a>
+  <nav>
+  <div>
+    <a class="logo" href="/" on:click={hide} aria-label="Écobâtiment">
+      <Logotype />
+    </a>
+  </div>
 
-  <nav>  
+  <div>
     {#each navigation.fields.liens as lien}
     <a class:active={path.includes(lien.fields.lien)} href={lien.fields.lien}>{lien.fields.titre}</a>
     {/each}
-  </nav>
+  </div>
 
   <div>
     <button on:click={() => cartVisible = !cartVisible}>
@@ -88,7 +91,7 @@
     </button>
     {/if}
   </div>
-  
+  </nav>
 </header>
 
 <Cart bind:visible={cartVisible} {panier} />
@@ -115,10 +118,6 @@
     color: var(--header-color);
     background: var(--header-background);
     
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
     padding: var(--margins);
 
     button {
@@ -128,30 +127,41 @@
       padding: 0;
     }
 
-    > a,
-    > div {
-      width: 25%;
-    }
-
-    > div {
-      text-align: right;
-    }
-
     nav {
       display: flex;
+      justify-content: space-between;
+      align-items: center;
       column-gap: calc(var(--gutter) * 1.5);
-
-      @media (max-width: 1200px) {
-        display: none;
+      width: 100%;
+      // max-width: var(--width);
+      // margin: 0 auto;
+      
+      > div {
+        width: 25%;
       }
 
-      a {
-        font-size: 0.88rem;
-        text-transform: uppercase;
+      > div:last-child {
+        text-align: right;
       }
 
-      a.active {
-        text-decoration: underline;
+      > div:nth-child(2) {
+        width: auto;
+        display: flex;
+        align-items: center;
+        column-gap: calc(var(--gutter) * 1.5);
+
+        @media (max-width: 1200px) {
+          display: none;
+        }
+
+        a {
+          font-size: 1rem;
+          text-transform: uppercase;
+        }
+
+        a.active {
+          text-decoration: underline;
+        }
       }
     }
   }

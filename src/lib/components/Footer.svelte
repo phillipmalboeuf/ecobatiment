@@ -1,8 +1,7 @@
 <script lang="ts">
   import type { Entry } from 'contentful'
   import I from './icons/I.svelte'
-  import Logo from './icons/Logo.svelte'
-  import Logotype from './icons/Logotype.svelte'
+  import LogoComplet from './icons/LogoComplet.svelte'
   import type { Lien } from './Link.svelte'
   import Picture from './Picture.svelte'
 
@@ -14,7 +13,22 @@
 		liens: Entry<Lien>[]
 	}>
   export let contact: Entry<any>
+  export let cartVisible: boolean
 </script>
+
+<aside>
+  <button on:click={() => cartVisible = !cartVisible}>
+    {#if cartVisible}
+    <I i='close' big />
+    {:else}
+    <I i='panier' big />
+    {/if}
+  </button>
+
+  <button on:click={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+    <I i='up' big />
+  </button>
+</aside>
 
 <nav>
   {#each navigation.fields.liens as lien}
@@ -72,17 +86,30 @@
 <nav>
   <small>{contact.fields.copyright}</small>
   <a on:click href="/" class="logo">
-    <Logo />
-    <Logotype />
+    <LogoComplet />
   </a>
 </nav>
 
 <style lang="scss">
+  aside {
+    margin: calc(var(--s2) * -1) calc(var(--s2) * -1) var(--s3) auto; 
+    text-align: right;
+
+    button {
+      background: transparent;
+      border: none;
+    }
+  }
+
   nav {
+    width: 100%;
+    max-width: var(--width);
+    margin: 0 auto;
     margin-bottom: var(--s3);
 
     &:last-child {
       margin-bottom: 0;
+      max-width: none;
     }
 
     a {
@@ -107,7 +134,8 @@
   }
 
   hr {
-    margin-bottom: var(--s3);
+    margin: var(--s3) auto;
+    max-width: var(--width);
   }
 
   a.logo {

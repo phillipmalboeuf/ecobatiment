@@ -37,7 +37,7 @@
     margin-bottom: 0;
 
     &.long {
-      padding-left: calc(25% + (3 * var(--gutter)));
+      padding-left: calc(15% + (3 * var(--gutter)));
 
       @media (max-width: 888px) {
         padding-left: 0;
@@ -51,6 +51,6 @@
 
   div {
     max-width: var(--width);
-    margin: var(--s3) auto;
+    margin: var(--s4) auto var(--s3);
   }
 </style>

@@ -19,8 +19,12 @@
 </nav>
 
 <style lang="scss">
+  nav {
+    margin-bottom: var(--s0);
+  }
+  
   a {
-    text-transform: uppercase;
+    text-transform: none;
 
     &:not(:last-child):after {
       content: ", ";
