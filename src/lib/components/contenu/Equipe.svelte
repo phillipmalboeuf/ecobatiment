@@ -34,7 +34,7 @@
       e.currentTarget.blur()
     }}>
       <figure>
-        <Picture media={membre.fields.photo} small ar={3 / 1} noDescription />
+        <Picture media={membre.fields.photo} small ar={2.5 / 1} noDescription />
       </figure>
 
       <div>

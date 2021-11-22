@@ -4,10 +4,11 @@ import { date, money } from '$lib/formatters';
   import type { Entry } from 'contentful'
 
   import { fade, fly } from 'svelte/transition'
-import Chiffres from './contenu/Chiffres.svelte';
   import I from './icons/I.svelte'
   import Picture from './Picture.svelte'
   import Themes from './Themes.svelte'
+
+	const token = "a5789537d2790d52bedca5cdd42ffa15"
 
 
   export let panier: Entry<any>

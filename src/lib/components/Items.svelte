@@ -25,7 +25,7 @@
   {#if item.fields.photo}
   <a href="/{base(item.sys.contentType.sys.id)}{item.fields.id}">
     <figure>
-      <Picture media={item.fields.photo} noDescription={!corps} ar={(vedette || item.sys.contentType.sys.id === 'service') ? 1 / 3 : 1} />
+      <Picture media={item.fields.photo} noDescription={!corps} ar={(vedette || item.sys.contentType.sys.id === 'service') ? 1 / 2.5 : 1} />
     </figure>
   </a>{/if}
 

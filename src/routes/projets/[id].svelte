@@ -27,7 +27,7 @@
 {#if projet.fields.photo}
 <figure>
   <figcaption><h1>{projet.fields.titre}</h1></figcaption>
-  <Picture media={projet.fields.photo} ar={1 / 3} />
+  <Picture media={projet.fields.photo} ar={1 / 2.5} />
 </figure>
 {:else}
 <h1>{projet.fields.titre}</h1>
