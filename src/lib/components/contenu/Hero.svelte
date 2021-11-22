@@ -27,6 +27,10 @@
 
 
 <style lang="scss">
+  section.grid {
+    margin-top: var(--s3);
+  }
+
   div {
     position: relative;
 

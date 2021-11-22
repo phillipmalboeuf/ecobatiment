@@ -33,7 +33,7 @@
     <div>
       {#if item.fields.themes}<Themes base={base(item.sys.contentType.sys.id)} themes={item.fields.themes} />{/if}
       <a href="/{base(item.sys.contentType.sys.id)}{item.fields.id}">
-        {#if vedette || item.sys.contentType.sys.id === 'service'}<h4>{item.fields.titre}</h4>{:else}<h5>{item.fields.titre}</h5>{/if}
+        <h4>{item.fields.titre}</h4>
       </a>
       {#if item.fields.date}{date(item.fields.date)}{/if}
     </div>
@@ -46,7 +46,7 @@
 {/each}
 
 <style lang="scss">
-  h4, h5 {
+  h4 {
     margin-bottom: var(--s1);
 
     @media (max-width: 888px) {
@@ -95,6 +95,10 @@
 
   article.vedette {
     grid-column: span 12;
+    
+    figure {
+      margin-bottom: var(--s3);
+    }
   }
 
   article.service {

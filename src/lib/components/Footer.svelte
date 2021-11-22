@@ -40,7 +40,7 @@
 <nav>
   {#each navigation.fields.liens as lien}
   <div>
-    <h5><a on:click href={lien.fields.lien}>{lien.fields.titre}</a></h5>
+    <h4><a on:click href={lien.fields.lien}>{lien.fields.titre}</a></h4>
     {#if lien.fields.sousLiens}
     {#each lien.fields.sousLiens as l}
     <a on:click href={l.fields.lien}>{l.fields.titre}</a>
@@ -54,7 +54,7 @@
 
 <nav>
   <div>
-    <h5>Contact</h5>
+    <h4>Contact</h4>
     {#if contact.fields.telephone}<a href="tel:{contact.fields.telephone}" target="_blank"><I  i="phone" /> {contact.fields.telephone}</a>{/if}
     {#if contact.fields.email}<a href="mailto:{contact.fields.email}" target="_blank"><I  i="courriel" /> {contact.fields.email}</a>{/if}
     {#if contact.fields.adresse}<a style="display: flex;" href="{contact.fields.lienDadresse}" target="_blank">
@@ -70,7 +70,7 @@
   </figure>{/if}
 
   <div class="social">
-    <h5>Médias sociaux</h5>
+    <h4>Médias sociaux</h4>
     {#if contact.fields.facebook}<a href="{contact.fields.facebook}" target="_blank"><I  i="facebook" /> Facebook</a>{/if}
     {#if contact.fields.twitter}<a href="{contact.fields.twitter}" target="_blank"><I  i="twitter" /> Twitter</a>{/if}
     {#if contact.fields.instagram}<a href="{contact.fields.instagram}" target="_blank"><I  i="instagram" /> Instagram</a>{/if}
@@ -79,7 +79,7 @@
 
   {#each sousNavigation.fields.liens as lien}
   <div>
-    <h5><a on:click href={lien.fields.lien}>{lien.fields.titre}</a></h5>
+    <h4><a on:click href={lien.fields.lien}>{lien.fields.titre}</a></h4>
     {#if lien.fields.sousLiens}
     {#each lien.fields.sousLiens as l}
     <a on:click href={l.fields.lien}>{l.fields.titre}</a>
@@ -127,7 +127,7 @@
       display: block;
     }
 
-    h5 {
+    h4 {
       margin-bottom: var(--s1);
     }
 
@@ -138,12 +138,12 @@
       flex-direction: column;
       row-gap: var(--s2);
 
-      h5 {
+      h4 {
         font-size: 1.5rem;
         // margin-bottom: 0;
       }
 
-      &:first-of-type h5 {
+      &:first-of-type h4 {
         margin-bottom: 0;
       }
 
