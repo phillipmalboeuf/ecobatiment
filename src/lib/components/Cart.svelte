@@ -21,6 +21,7 @@
   export let visible: boolean
 
   let publications: Entry<Item>[]
+  let waiting = false
 
 	onMount(async () => {
 		const id = sessionStorage.getItem("cart-id")
@@ -113,7 +114,9 @@
         <td>{$cart?.lines.length ? money($cart.estimatedCost.totalAmount.amount) : '–'}</td>
       </tr>
     </table>
-    <button class="full" disabled={$cart?.lines.length === 0}>{panier.fields.checkout}</button>
+    <form action={$cart?.checkoutUrl} on:submit={() => waiting = true}>
+      <button class="full" disabled={$cart?.lines.length === 0 || waiting}>{panier.fields.checkout}</button>
+    </form>
   </aside>
 </section>
 {/if}
