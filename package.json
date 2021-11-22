@@ -9,6 +9,7 @@
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
   },
   "devDependencies": {
+    "@contentful/rich-text-plain-text-renderer": "^15.6.2",
     "@sveltejs/adapter-vercel": "^1.0.0-next.31",
     "@sveltejs/kit": "next",
     "node-sass": "^6.0.1",
