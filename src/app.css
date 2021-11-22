@@ -67,7 +67,11 @@ a {
 
   a:hover,
   a:focus {
-    color: var(--highlight);
+    color: var(--highlight); 
+  }
+
+  a:hover img {
+    outline: 1px solid var(--highlight);
   }
 
 h1, .h1 {
