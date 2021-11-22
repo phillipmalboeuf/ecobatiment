@@ -42,15 +42,7 @@
 </script>
 
 <div bind:this={footer}>
-  {#if visible}
-  <footer class="visible" transition:fly={{ y: 100 }}>
-    <Footer {navigation} {sousNavigation} {contact} bind:cartVisible bind:visible on:click={hide} />
-  </footer>
-  {:else}
-  <footer>
-    <Footer {navigation} {sousNavigation} {contact} bind:cartVisible bind:visible />
-  </footer>
-  {/if}
+  <Footer {navigation} {sousNavigation} {contact} bind:cartVisible bind:visible on:click={hide} />
 </div>
 
 <header>
@@ -91,7 +83,6 @@
 
 
 <style lang="scss">
-  
   header {
     --header-color: var(--dark);
     --header-background: var(--light);
@@ -149,23 +140,6 @@
           text-decoration: underline;
         }
       }
-    }
-  }
-
-  footer {
-    z-index: 4;
-    width: 100%;
-    color: var(--light);
-    background: var(--dark);
-    
-    overflow-y: scroll;
-    padding: calc(var(--margins) * 2);
-
-    &.visible {
-      position: fixed;
-      top: 100%;
-      transform: translateY(-100%);
-      max-height: 100vh;
     }
   }
 </style>

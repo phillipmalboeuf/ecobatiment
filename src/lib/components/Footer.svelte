@@ -1,5 +1,7 @@
 <script lang="ts">
   import type { Entry } from 'contentful'
+  import { fade, fly } from 'svelte/transition'
+
   import I from './icons/I.svelte'
   import LogoComplet from './icons/LogoComplet.svelte'
   import type { Lien } from './Link.svelte'
@@ -17,110 +19,146 @@
   export let cartVisible: boolean
 </script>
 
-<aside>
-  <button on:click={() => cartVisible = !cartVisible}>
-    {#if cartVisible}
-    <I i='close' big />
+{#key visible}
+<footer class:visible transition:fly={{ y: 100 }}>
+  <aside>
+    <button on:click={() => cartVisible = !cartVisible}>
+      {#if cartVisible}
+      <I i='close' big />
+      {:else}
+      <I i='panier' big />
+      {/if}
+    </button>
+
+    {#if !visible}
+    <button on:click={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+      <I i='up' big />
+    </button>
     {:else}
-    <I i='panier' big />
+    <button on:click={() => visible = false}>
+      <I i='close' big />
+    </button>
     {/if}
-  </button>
+  </aside>
 
-  {#if !visible}
-  <button on:click={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-    <I i='up' big />
-  </button>
-  {:else}
-  <button on:click={() => visible = false}>
-    <I i='close' big />
-  </button>
-  {/if}
-</aside>
-
-<nav>
-  {#each navigation.fields.liens as lien}
-  <div>
-    <h4><a on:click href={lien.fields.lien}>{lien.fields.titre}</a></h4>
-    {#if lien.fields.sousLiens}
-    {#each lien.fields.sousLiens as l}
-    <a on:click href={l.fields.lien}>{l.fields.titre}</a>
+  <nav>
+    {#each navigation.fields.liens as lien}
+    <div>
+      <h4><a on:click href={lien.fields.lien}>{lien.fields.titre}</a></h4>
+      {#if lien.fields.sousLiens}
+      {#each lien.fields.sousLiens as l}
+      <a on:click href={l.fields.lien}>{l.fields.titre}</a>
+      {/each}
+      {/if}
+    </div>
     {/each}
-    {/if}
-  </div>
-  {/each}
-</nav>
+  </nav>
 
-<hr>
+  <hr>
 
-<nav>
-  <div>
-    <h4>Contact</h4>
-    {#if contact.fields.telephone}<a href="tel:{contact.fields.telephone}" target="_blank"><I  i="phone" /> {contact.fields.telephone}</a>{/if}
-    {#if contact.fields.email}<a href="mailto:{contact.fields.email}" target="_blank"><I  i="courriel" /> {contact.fields.email}</a>{/if}
-    {#if contact.fields.adresse}<a style="display: flex;" href="{contact.fields.lienDadresse}" target="_blank">
-      <I  i="map" />
-      <p>{contact.fields.adresse}</p>
-    </a>{/if}
-  </div>
+  <nav>
+    <div>
+      <h4>Contact</h4>
+      {#if contact.fields.telephone}<a href="tel:{contact.fields.telephone}" target="_blank"><I  i="phone" /> {contact.fields.telephone}</a>{/if}
+      {#if contact.fields.email}<a href="mailto:{contact.fields.email}" target="_blank"><I  i="courriel" /> {contact.fields.email}</a>{/if}
+      {#if contact.fields.adresse}<a style="display: flex;" href="{contact.fields.lienDadresse}" target="_blank">
+        <I  i="map" />
+        <p>{contact.fields.adresse}</p>
+      </a>{/if}
+    </div>
 
-  {#if contact.fields.photoDadresse}<figure>
-    <a href="{contact.fields.lienDadresse}" target="_blank">
-    <Picture media={contact.fields.photoDadresse} small ar={1 / 2} />
+    {#if contact.fields.photoDadresse}<figure>
+      <a href="{contact.fields.lienDadresse}" target="_blank">
+      <Picture media={contact.fields.photoDadresse} small ar={1 / 2} />
+      </a>
+    </figure>{/if}
+
+    <div class="social">
+      <h4>Médias sociaux</h4>
+      {#if contact.fields.facebook}<a href="{contact.fields.facebook}" target="_blank"><I  i="facebook" /> Facebook</a>{/if}
+      {#if contact.fields.twitter}<a href="{contact.fields.twitter}" target="_blank"><I  i="twitter" /> Twitter</a>{/if}
+      {#if contact.fields.instagram}<a href="{contact.fields.instagram}" target="_blank"><I  i="instagram" /> Instagram</a>{/if}
+      {#if contact.fields.linkedIn}<a href="{contact.fields.linkedIn}" target="_blank"><I  i="linkedin" /> LinkedIn</a>{/if}
+    </div>
+
+    {#each sousNavigation.fields.liens as lien}
+    <div>
+      <h4><a on:click href={lien.fields.lien}>{lien.fields.titre}</a></h4>
+      {#if lien.fields.sousLiens}
+      {#each lien.fields.sousLiens as l}
+      <a on:click href={l.fields.lien}>{l.fields.titre}</a>
+      {/each}
+      {/if}
+    </div>
+    {/each}
+  </nav>
+
+
+  <nav>
+    <small>{contact.fields.copyright}</small>
+    <a on:click href="/" class="logo">
+      <LogoComplet />
     </a>
-  </figure>{/if}
-
-  <div class="social">
-    <h4>Médias sociaux</h4>
-    {#if contact.fields.facebook}<a href="{contact.fields.facebook}" target="_blank"><I  i="facebook" /> Facebook</a>{/if}
-    {#if contact.fields.twitter}<a href="{contact.fields.twitter}" target="_blank"><I  i="twitter" /> Twitter</a>{/if}
-    {#if contact.fields.instagram}<a href="{contact.fields.instagram}" target="_blank"><I  i="instagram" /> Instagram</a>{/if}
-    {#if contact.fields.linkedIn}<a href="{contact.fields.linkedIn}" target="_blank"><I  i="linkedin" /> LinkedIn</a>{/if}
-  </div>
-
-  {#each sousNavigation.fields.liens as lien}
-  <div>
-    <h4><a on:click href={lien.fields.lien}>{lien.fields.titre}</a></h4>
-    {#if lien.fields.sousLiens}
-    {#each lien.fields.sousLiens as l}
-    <a on:click href={l.fields.lien}>{l.fields.titre}</a>
-    {/each}
-    {/if}
-  </div>
-  {/each}
-</nav>
-
-
-<nav>
-  <small>{contact.fields.copyright}</small>
-  <a on:click href="/" class="logo">
-    <LogoComplet />
-  </a>
-</nav>
+  </nav>
+</footer>
+{/key}
 
 <style lang="scss">
-  aside {
-    margin: calc(var(--s2) * -1) calc(var(--s2) * -1) var(--s3) auto; 
-    text-align: right;
+  footer {
+    position: relative;
+    z-index: 4;
+    width: 100%;
+    height: 100vh;
+    overflow-y: scroll;
 
-    @media (max-width: 888px) {
-      margin: calc(var(--s1) * -1) calc(var(--s1) * -1) var(--s3) auto; 
+    color: var(--light);
+    background: var(--dark);
+    padding: calc(var(--margins) * 2);
+
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+
+    &.visible {
+      position: fixed;
+      top: 100%;
+      transform: translateY(-100%);
     }
+  }
+
+  aside {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: var(--margins);
 
     button {
       background: transparent;
       border: none;
+      padding: 0;
+    }
+  }
+
+  a.logo {
+    margin: 0 auto;
+    grid-column: span 5;
+
+    @media (min-width: 888px) {
+      position: absolute;
+      bottom: var(--margins);
+      right: var(--margins);
     }
   }
 
   nav {
     width: 100%;
-    max-width: var(--width);
-    margin: 0 auto;
-    margin-bottom: var(--s3);
+    max-width: calc(var(--width) - (var(--margins) * 2));
+    margin: var(--s3) auto;
 
     &:last-child {
       margin-bottom: 0;
-      max-width: none;
+      flex: 1;
+      align-items: flex-end;
     }
 
     a {
@@ -131,11 +169,12 @@
       margin-bottom: var(--s1);
     }
 
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: var(--gutter);
 
     @media (max-width: 888px) {
-      flex-direction: column;
+      grid-template-columns: 1fr;
       row-gap: var(--s2);
 
       h4 {
@@ -157,11 +196,7 @@
     }
 
     > small {
-      align-self: flex-end;
-
-      @media (max-width: 888px) {
-        align-self: flex-start;
-      }
+      grid-column: span 4;
     }
   }
 
@@ -170,15 +205,9 @@
     max-width: var(--width);
   }
 
-  a.logo {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    row-gap: 0.25rem;
-  }
-
   figure {
-    max-width: 25%;
+    max-width: 75%;
+    grid-column: span 2;
 
     @media (max-width: 888px) {
       display: none;

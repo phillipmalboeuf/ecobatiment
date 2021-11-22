@@ -5,7 +5,8 @@
   export interface PageDocument {
     titre: string
     id: string
-    description: any
+    description?: any
+    corps: RichTextContent
     photo: Asset
     contenu: Entry<any>[]
   }
