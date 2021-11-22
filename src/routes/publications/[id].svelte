@@ -9,6 +9,9 @@
 
 <script lang="ts">
   import type { Asset, Entry, EntryCollection, RichTextContent } from 'contentful'
+  import { getProduct, ProductDocument } from '$lib/clients/shopify'
+  import { onMount } from 'svelte'
+
   import type { Item } from '$lib/components/Collection.svelte'
   import type { Theme } from '$lib/components/Themes.svelte'
   import Page from '$lib/components/Page.svelte'
@@ -17,14 +20,24 @@
   import Connexe from '$lib/components/Connexe.svelte'
   import Themes from '$lib/components/Themes.svelte'
   import Form from '$lib/components/Form.svelte'
-import { date } from '$lib/formatters'
+  import { date, money } from '$lib/formatters'
+
 
 	export let publication: Entry<Item & {
     contenu: Entry<any>[]
     photos: Asset[]
     petiteDescription: RichTextContent
     elementsConnexes: Entry<any>[]
+    shopifyHandle: string
   }>
+  
+  let product: ProductDocument
+
+  onMount(async () => {
+    if (publication.fields.shopifyHandle) {
+      product = await getProduct(publication.fields.shopifyHandle)
+    }
+  })
 </script>
 
 <!-- {#if projet.fields.photo}
@@ -51,9 +64,12 @@ import { date } from '$lib/formatters'
   <div>
     <h6>{date(publication.fields.date)}</h6>
     <h2>{publication.fields.titre}</h2>
+    {#if product}<h6>{money(product.priceRange.minVariantPrice.amount)}{#if product.priceRange.minVariantPrice.amount !== product.priceRange.maxVariantPrice.amount} – {money(product.priceRange.maxVariantPrice.amount)}{/if}</h6>{/if}
     {#if publication.fields.corps}<Document body={publication.fields.corps} />{/if}
     
-    <Form />
+    {#if publication.fields.shopifyHandle && product}
+    <Form {product} />
+    {/if}
 
     <small>{#if publication.fields.petiteDescription}<Document body={publication.fields.petiteDescription} />{/if}</small>
   </div>
@@ -83,6 +99,10 @@ import { date } from '$lib/formatters'
     @media (max-width: 888px) {
       grid-column: span 12;
     }
+  }
+
+  h2 {
+    margin-bottom: var(--s2);
   }
 
   // aside {

@@ -1,17 +1,45 @@
 <script lang="ts">
+  import { addToCart, getCart, ProductDocument } from '$lib/clients/shopify'
+  import { money } from '$lib/formatters'
+  import { cart } from './Cart.svelte'
 
+  export let product: ProductDocument
+  let waiting = false
+  
+  let variant = product.variants[0]
 </script>
 
-<form action="">
-  <label for="type">Type de document</label>
-  <select name="type" id="type">
-    <option value="id">Document Imprimé – 50$</option>
+<form 
+  on:change={e => {
+    variant = product.variants.find(variant => {
+      let found = true
+      Object.keys(variant.selectedOptions).forEach(name => e.currentTarget[name].value === variant.selectedOptions[name])
+      return found
+    })
+  }}
+  on:submit={async e => {
+    e.preventDefault()
+
+    waiting = true
+    await addToCart($cart.id, variant.id, e.target["quantity"].value)
+    $cart = await getCart(sessionStorage.getItem("cart-id"))
+    waiting = false
+  }}>
+  {#if product.options[0].name !== 'Title'}
+  {#each product.options as option}
+  <label for={option.name}>{option.name}</label>
+  <select name={option.name} id={option.name}>
+    {#each option.values as value}
+    <option {value}>{value}</option>
+    {/each}
   </select>
+  {/each}
+  {/if}
 
   <label for="quantity">Quantité</label>
   <input type="number" min=1 name="quantity" id="quantity" value=1>
 
-  <button class="full" type="submit">Ajouter au panier d'achat</button>
+  <button class="full" disabled={waiting || !product.availableForSale} type="submit">{#if waiting}Un instant...{:else}Ajouter au panier d'achat – {money(variant.priceV2.amount)}{/if}</button>
 </form>
 
 <style lang="scss">

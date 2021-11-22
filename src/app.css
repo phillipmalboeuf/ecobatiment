@@ -170,6 +170,12 @@ button.full {
   border-radius: var(--s2);
 }
 
+button[disabled] {
+  /* text-decoration: line-through; */
+  pointer-events: none;
+  opacity: 0.33;
+}
+
 ul,
 ol {
   padding-left: 1rem;

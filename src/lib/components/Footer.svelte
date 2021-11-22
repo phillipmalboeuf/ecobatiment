@@ -109,6 +109,7 @@
     z-index: 4;
     width: 100%;
     height: 100vh;
+    max-height: 66rem;
     overflow-y: scroll;
 
     color: var(--light);
@@ -177,7 +178,7 @@
     @media (max-width: 888px) {
       grid-template-columns: 1fr;
       row-gap: var(--s2);
-      
+
       &:first-of-type h5 {
         margin-bottom: 0;
       }

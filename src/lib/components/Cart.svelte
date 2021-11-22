@@ -1,349 +1,88 @@
+<script lang="ts" context="module">
+	import { writable } from 'svelte/store'
+	import { CartDocument, getCart, createCart, products, removeFromCart, updateQuantity } from '$lib/clients/shopify'
+  export let cart = writable<CartDocument>()
+</script>
+
 <script lang="ts">
-import { date, money } from '$lib/formatters';
+	import { date, money } from '$lib/formatters'
 
   import type { Entry } from 'contentful'
+	import { afterUpdate, onMount } from 'svelte'
 
   import { fade, fly } from 'svelte/transition'
   import I from './icons/I.svelte'
   import Picture from './Picture.svelte'
   import Themes from './Themes.svelte'
-
-	const token = "a5789537d2790d52bedca5cdd42ffa15"
-
+  import type { Item } from './Collection.svelte'
+  import { respond } from '$lib/responses'
 
   export let panier: Entry<any>
-
   export let visible: boolean
-  export let items = [
-    {
-	"metadata": {
-		"tags": []
-	},
-	"sys": {
-		"space": {
-			"sys": {
-				"type": "Link",
-				"linkType": "Space",
-				"id": "9m5iliq43y44"
-			}
-		},
-		"id": "4ZEaMRaTsrxQKdbpmdAYJ4",
-		"type": "Entry",
-		"createdAt": "2021-11-07T15:23:30.388Z",
-		"updatedAt": "2021-11-14T17:20:59.767Z",
-		"environment": {
-			"sys": {
-				"id": "master",
-				"type": "Link",
-				"linkType": "Environment"
-			}
-		},
-		"revision": 4,
-		"contentType": {
-			"sys": {
-				"type": "Link",
-				"linkType": "ContentType",
-				"id": "publication"
-			}
-		},
-		"locale": "en-US"
-	},
-	"fields": {
-		"titre": "Valoriser les bâtiments existants",
-		"id": "valoriser-les-batiments-existants",
-		"shopifyHandle": "valoriser-les-batiments-existants",
-		"date": "2021-11-17T00:00-04:00",
-		"vedette": true,
-		"futur": false,
-		"type": "Livre",
-		"themes": [
-			{
-				"metadata": {
-					"tags": []
-				},
-				"sys": {
-					"space": {
-						"sys": {
-							"type": "Link",
-							"linkType": "Space",
-							"id": "9m5iliq43y44"
-						}
-					},
-					"id": "QK7ACLfIEB3GcpW8qJRwM",
-					"type": "Entry",
-					"createdAt": "2021-11-02T21:30:11.019Z",
-					"updatedAt": "2021-11-02T21:30:11.019Z",
-					"environment": {
-						"sys": {
-							"id": "master",
-							"type": "Link",
-							"linkType": "Environment"
-						}
-					},
-					"revision": 1,
-					"contentType": {
-						"sys": {
-							"type": "Link",
-							"linkType": "ContentType",
-							"id": "theme"
-						}
-					},
-					"locale": "en-US"
-				},
-				"fields": {
-					"titre": "Habitation",
-					"id": "habitation"
-				}
-			},
-			{
-				"metadata": {
-					"tags": []
-				},
-				"sys": {
-					"space": {
-						"sys": {
-							"type": "Link",
-							"linkType": "Space",
-							"id": "9m5iliq43y44"
-						}
-					},
-					"id": "2du7lnnDfezjWBoNEU91xV",
-					"type": "Entry",
-					"createdAt": "2021-11-02T21:31:02.036Z",
-					"updatedAt": "2021-11-02T21:31:02.036Z",
-					"environment": {
-						"sys": {
-							"id": "master",
-							"type": "Link",
-							"linkType": "Environment"
-						}
-					},
-					"revision": 1,
-					"contentType": {
-						"sys": {
-							"type": "Link",
-							"linkType": "ContentType",
-							"id": "theme"
-						}
-					},
-					"locale": "en-US"
-				},
-				"fields": {
-					"titre": "Patrimoine bâti",
-					"id": "patrimoine-bati"
-				}
-			}
-		],
-		"photo": {
-			"metadata": {
-				"tags": []
-			},
-			"sys": {
-				"space": {
-					"sys": {
-						"type": "Link",
-						"linkType": "Space",
-						"id": "9m5iliq43y44"
-					}
-				},
-				"id": "1eRFsaeetr7L5IVxxzSJia",
-				"type": "Asset",
-				"createdAt": "2021-11-14T17:20:35.630Z",
-				"updatedAt": "2021-11-14T17:20:35.630Z",
-				"environment": {
-					"sys": {
-						"id": "master",
-						"type": "Link",
-						"linkType": "Environment"
-					}
-				},
-				"revision": 1,
-				"locale": "en-US"
-			},
-			"fields": {
-				"title": "Clocher",
-				"file": {
-					"url": "//images.ctfassets.net/9m5iliq43y44/1eRFsaeetr7L5IVxxzSJia/e68254e2ddc2ce5292dd35ea8abdb9a8/unadjustednonraw_thumb_38a5_51592656839_o.jpg",
-					"details": {
-						"size": 215740,
-						"image": {
-							"width": 1086,
-							"height": 724
-						}
-					},
-					"fileName": "unadjustednonraw_thumb_38a5_51592656839_o.jpg",
-					"contentType": "image/jpeg"
-				}
-			}
-		},
-		"photos": [
-			{
-				"metadata": {
-					"tags": []
-				},
-				"sys": {
-					"space": {
-						"sys": {
-							"type": "Link",
-							"linkType": "Space",
-							"id": "9m5iliq43y44"
-						}
-					},
-					"id": "4qj1jl25g58sWHZiZEytC6",
-					"type": "Asset",
-					"createdAt": "2021-11-03T00:24:24.264Z",
-					"updatedAt": "2021-11-03T00:24:24.264Z",
-					"environment": {
-						"sys": {
-							"id": "master",
-							"type": "Link",
-							"linkType": "Environment"
-						}
-					},
-					"revision": 1,
-					"locale": "en-US"
-				},
-				"fields": {
-					"title": "Église",
-					"description": "",
-					"file": {
-						"url": "//images.ctfassets.net/9m5iliq43y44/4qj1jl25g58sWHZiZEytC6/404f05a383a34c3548eb875a7621d5d1/Screen_Shot_2021-11-02_at_8.24.04_PM.png",
-						"details": {
-							"size": 1052428,
-							"image": {
-								"width": 1022,
-								"height": 682
-							}
-						},
-						"fileName": "Screen Shot 2021-11-02 at 8.24.04 PM.png",
-						"contentType": "image/png"
-					}
-				}
-			},
-			{
-				"metadata": {
-					"tags": []
-				},
-				"sys": {
-					"space": {
-						"sys": {
-							"type": "Link",
-							"linkType": "Space",
-							"id": "9m5iliq43y44"
-						}
-					},
-					"id": "177QlbAtl667YvwDHx1a8D",
-					"type": "Asset",
-					"createdAt": "2021-11-02T21:37:25.553Z",
-					"updatedAt": "2021-11-03T00:02:17.346Z",
-					"environment": {
-						"sys": {
-							"id": "master",
-							"type": "Link",
-							"linkType": "Environment"
-						}
-					},
-					"revision": 2,
-					"locale": "en-US"
-				},
-				"fields": {
-					"title": "Rue",
-					"description": "Crédit photo: Lorem Ipsum",
-					"file": {
-						"url": "//images.ctfassets.net/9m5iliq43y44/177QlbAtl667YvwDHx1a8D/d42c6c95d1a67fea15ce00e5b5b01e5e/Screen_Shot_2021-11-02_at_5.36.50_PM.png",
-						"details": {
-							"size": 1444394,
-							"image": {
-								"width": 1021,
-								"height": 765
-							}
-						},
-						"fileName": "Screen Shot 2021-11-02 at 5.36.50 PM.png",
-						"contentType": "image/png"
-					}
-				}
-			},
-			{
-				"metadata": {
-					"tags": []
-				},
-				"sys": {
-					"space": {
-						"sys": {
-							"type": "Link",
-							"linkType": "Space",
-							"id": "9m5iliq43y44"
-						}
-					},
-					"id": "1eRFsaeetr7L5IVxxzSJia",
-					"type": "Asset",
-					"createdAt": "2021-11-14T17:20:35.630Z",
-					"updatedAt": "2021-11-14T17:20:35.630Z",
-					"environment": {
-						"sys": {
-							"id": "master",
-							"type": "Link",
-							"linkType": "Environment"
-						}
-					},
-					"revision": 1,
-					"locale": "en-US"
-				},
-				"fields": {
-					"title": "Clocher",
-					"file": {
-						"url": "//images.ctfassets.net/9m5iliq43y44/1eRFsaeetr7L5IVxxzSJia/e68254e2ddc2ce5292dd35ea8abdb9a8/unadjustednonraw_thumb_38a5_51592656839_o.jpg",
-						"details": {
-							"size": 215740,
-							"image": {
-								"width": 1086,
-								"height": 724
-							}
-						},
-						"fileName": "unadjustednonraw_thumb_38a5_51592656839_o.jpg",
-						"contentType": "image/jpeg"
-					}
-				}
-			}
-		],
-	}
-}
-  ]
+
+  let publications: Entry<Item>[]
+
+	onMount(async () => {
+		const id = sessionStorage.getItem("cart-id")
+		if (id) {
+			$cart = await getCart(id)
+		} else {
+			$cart = await createCart()
+			sessionStorage.setItem("cart-id", $cart.id)
+		}
+	})
+
+	cart.subscribe(async value => {
+		if (value?.lines.length > 0) {
+			visible = true
+
+      publications = await Promise.all(value.lines.map(async line => (await respond(fetch, `/publications/${line.merchandise.product.handle}.json`)).props.publication))
+		}
+	})
 </script>
 
-{#if visible}
+{#if visible && $cart}
 <section transition:fly={{ y: 100 }}>
   <button class="close" on:click={() => visible = false}><I i="close" big /></button>
   <h4>{panier.fields.titre}</h4>
 
   <ol>
-    {#each [...items, ...items] as item}
+    {#each $cart.lines as item, index}
     <li>
+			
+      {#if publications && publications[index]}
       <figure>
-        <a href="/{item.sys.contentType.sys.id}s/{item.fields.id}">
-          <Picture media={item.fields.photo} ar={1} />
+        <a href="/{publications[index].sys.contentType.sys.id}s/{publications[index].fields.id}">
+          <Picture media={publications[index].fields.photo} ar={1} />
         </a>
       </figure>
 
       <div>
-        <Themes base="{item.sys.contentType.sys.id}s" themes={item.fields.themes} />
+        <Themes base="{publications[index].sys.contentType.sys.id}s" themes={publications[index].fields.themes} />
 
         <h5>
-          {money(50)}<br>
-          <a href="/{item.sys.contentType.sys.id}s/{item.fields.id}">{item.fields.titre}</a><br>
-          <small>{date(item.fields.date)}</small>
+          {money(item.merchandise.priceV2.amount)}<br>
+          <a href="/{publications[index].sys.contentType.sys.id}s/{publications[index].fields.id}">{publications[index].fields.titre}</a><br>
+          <small>{date(publications[index].fields.date)}</small>
         </h5>
 
         <h5>Type de document</h5>
       </div>
+      {/if}
 
       <form>
         <label for="quantity">{panier.fields.quantite}</label>
-        <input type="number" name="quantity" id="quantity" min={1} value={1}>
+        <input on:change={async e => {
+          $cart = await updateQuantity($cart.id, item.id, parseInt(e.currentTarget.value))
+        }} type="number" name="quantity" id="quantity" min={1} value={item.quantity}>
       </form>
 
-      <button class="trash" on:click={() => false}><I i="trash" big /></button>
+      <button class="trash" on:click={async () => {
+        $cart = await removeFromCart($cart.id, item.id)
+      }}><I i="trash" big /></button>
     </li>
+		{:else}
+		<li><a href="/publications" style="text-decoration: underline;">Remplir votre panier</a></li>
     {/each}
   </ol>
 
@@ -352,7 +91,7 @@ import { date, money } from '$lib/formatters';
     <table>
       <tr>
         <th>{panier.fields.sousTotal}</th>
-        <td>{money(100)}</td>
+        <td>{$cart?.lines.length ? money($cart.estimatedCost.subtotalAmount.amount) : '–'}</td>
       </tr>
       <tr>
         <th>{panier.fields.livraison}</th>
@@ -371,10 +110,10 @@ import { date, money } from '$lib/formatters';
     <table>
       <tr>
         <th>{panier.fields.estimationDuTotal}</th>
-        <td>{money(100)}</td>
+        <td>{$cart?.lines.length ? money($cart.estimatedCost.totalAmount.amount) : '–'}</td>
       </tr>
     </table>
-    <button class="full">{panier.fields.checkout}</button>
+    <button class="full" disabled={$cart?.lines.length === 0}>{panier.fields.checkout}</button>
   </aside>
 </section>
 {/if}
@@ -383,7 +122,7 @@ import { date, money } from '$lib/formatters';
   section {
     position: fixed;
     bottom: 0;
-    z-index: 2;
+    z-index: 20;
     width: 100%;
     max-height: 100vh;
     color: var(--dark);

@@ -14,5 +14,5 @@ export const date = (value: string | Date, time=false, lang='fr') =>
     )
   : '–'
 
-export const money = (value: number) => 
-  value !== undefined && value !== null ? `$${value.toFixed(2)}` : `–`
+export const money = (value: number | string) => 
+  value !== undefined && value !== null ? `$${parseFloat(value as string).toFixed(2)}` : `–`

@@ -10,8 +10,6 @@ export const get: RequestHandler = async ({ params, query }) => {
     // entries('theme', locale)
   ])
 
-  console.log(publications)
-
   if (publications.items.length) {
     return {
       body: {
