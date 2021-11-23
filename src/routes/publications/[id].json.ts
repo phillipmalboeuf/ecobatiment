@@ -1,6 +1,7 @@
 import { contentful, entries } from '$lib/clients/contentful'
 import type { RequestHandler } from '@sveltejs/kit'
 import type { Entry } from 'contentful'
+import json from 'json-complete'
 
 // @ts-ignore
 export const get: RequestHandler = async ({ params, query }) => {
@@ -12,9 +13,9 @@ export const get: RequestHandler = async ({ params, query }) => {
 
   if (publications.items.length) {
     return {
-      body: {
+      body: json.encode({
         publication: publications.items[0]
-      }
+      })
     }
   }
 }

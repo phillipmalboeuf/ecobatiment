@@ -6,7 +6,7 @@
   
   import Document from '../document/Document.svelte'
   import Picture from '../Picture.svelte'
-import I from '../icons/I.svelte';
+  import I from '../icons/I.svelte'
 
   let ready: boolean
   onMount(async () => {

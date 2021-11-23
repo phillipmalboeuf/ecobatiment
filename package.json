@@ -23,6 +23,7 @@
   },
   "type": "module",
   "dependencies": {
-    "contentful": "^9.1.3"
+    "contentful": "^9.1.3",
+    "json-complete": "^2.0.1"
   }
 }

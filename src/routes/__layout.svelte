@@ -1,12 +1,9 @@
 <script context="module">
 	import '../app.css'
+	import { respond } from '$lib/responses'
 
 	export async function load({ page, fetch, session, context }) {
-		const res = await fetch(`/layout.json`)
-
-		return {
-			props: await res.json()
-		}
+		return respond(fetch, `/layout.json`)
 	}
 </script>
 

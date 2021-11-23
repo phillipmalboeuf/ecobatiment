@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
 	import { writable } from 'svelte/store'
 	import { CartDocument, getCart, createCart, products, removeFromCart, updateQuantity } from '$lib/clients/shopify'
-  export let cart = writable<CartDocument>()
+  export const cart = writable<CartDocument>()
 </script>
 
 <script lang="ts">

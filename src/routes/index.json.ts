@@ -1,4 +1,5 @@
 import { contentful } from '$lib/clients/contentful';
+import json from 'json-complete'
 
 export async function get({ params }) {
 
@@ -8,9 +9,9 @@ export async function get({ params }) {
 
 
   return {
-    body: {
+    body: json.encode({
       accueil,
       // accueil
-    }
+    })
   }
 }
