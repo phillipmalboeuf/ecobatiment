@@ -22,6 +22,14 @@
   {#if item.fields.lien}
   <span class:disabled={item.fields.lien.fields.disabled}><Link lien={item.fields.lien} /></span>
   {/if}
+  {#if item.sys.contentType.sys.id === 'projet' && item.fields.futur}
+  <span><strong>En cours</strong></span>
+  {/if}
+
+  {#if item.sys.contentType.sys.id === 'publication' && item.fields.shopifyHandle}
+  <span><strong>Acheter</strong></span>
+  {/if}
+
   {#if item.fields.photo}
   <a href="/{base(item.sys.contentType.sys.id)}{item.fields.id}">
     <figure>
@@ -67,7 +75,8 @@
       // grid-column: span 12;
     }
 
-    span :global(a) {
+    span :global(a),
+    span strong {
       position: absolute;
       z-index: 2;
       top: var(--s1);
@@ -82,6 +91,10 @@
       &:focus {
         background: var(--dark);
       }
+    }
+
+    span strong {
+      pointer-events: none;
     }
 
     span.disabled :global(a) {
