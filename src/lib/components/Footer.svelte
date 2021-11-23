@@ -164,6 +164,7 @@
 
     a {
       display: block;
+      margin-bottom: 0.25rem;
     }
 
     h5 {
