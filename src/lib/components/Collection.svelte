@@ -31,10 +31,16 @@
   export let items: EntryCollection<Item>
   export let themes: EntryCollection<Theme>
 
-  let checked: string[] = $page.query.has("q") ? $page.query.get("q").split(',') : []
+  let checked: string[] = []
+  let currentPage: number
+
+  page.subscribe(p => {
+    checked = p.query.has("q") ? p.query.get("q").split(',') : []
+    currentPage = p.query.has("p") ? parseInt(p.query.get("p")) : 0 
+  })
 
   $: {
-    browser && goto((checked.length > 0 ? `?q=${checked.join(',')}` : '?') + ($page.query.has("p") ? `&p=${$page.query.get("p")}` : ''), { keepfocus: true, noscroll: true })
+    browser && goto((checked.length > 0 ? `?q=${checked.join(',')}` : '?') + (currentPage ? `&p=${currentPage}` : ''), { keepfocus: true, noscroll: true })
   }
 
   let visibleThemes = true
@@ -141,7 +147,7 @@
 </section>
 
 <section>
-  <Pagination {base} {items} {checked} />
+  <Pagination {base} {items} {checked} {currentPage} />
 </section>
 
 <style lang="scss">

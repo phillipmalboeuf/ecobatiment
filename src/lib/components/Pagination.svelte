@@ -8,14 +8,12 @@
   export let checked: string[]
   export let items: EntryCollection<Item>
 
-  let currentPage: number
-  $: {
-    currentPage = $page.query.has("p") ? parseInt($page.query.get("p")) : 0 
-  } 
+  export let currentPage: number
+
   let numberOfPages = Math.ceil(items.total / items.limit)
 </script>
 
-{#if numberOfPages > 1}
+{#if numberOfPages > 0}
 {#each new Array(numberOfPages) as _, index}
 <a class:current={index === currentPage} href="/{base}?{checked.length > 0 ? `q=${checked.join(',')}&` : ''}p={index}">{index+1}</a>
 {/each}

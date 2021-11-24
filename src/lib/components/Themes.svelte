@@ -14,7 +14,7 @@
 
 <nav>
   {#each themes as theme}
-  <a href="/{base}?themes={theme.fields.id}">{theme.fields.titre}</a>
+  <a href="/{base}?q={theme.fields.id}">{theme.fields.titre}</a>
   {/each}
 </nav>
 
