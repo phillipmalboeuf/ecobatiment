@@ -25,15 +25,16 @@
 
   import Items from './Items.svelte'
   import I from './icons/I.svelte'
+  import Pagination from './Pagination.svelte'
 
   export let base: string
   export let items: EntryCollection<Item>
   export let themes: EntryCollection<Theme>
 
-  export let checked: string[] = $page.query.has("q") ? $page.query.get("q").split(',') : []
+  let checked: string[] = $page.query.has("q") ? $page.query.get("q").split(',') : []
 
   $: {
-    browser && goto(checked.length > 0 ? `?q=${checked.join(',')}` : '?', { keepfocus: true, noscroll: true })
+    browser && goto((checked.length > 0 ? `?q=${checked.join(',')}` : '?') + ($page.query.has("p") ? `&p=${$page.query.get("p")}` : ''), { keepfocus: true, noscroll: true })
   }
 
   let visibleThemes = true
@@ -137,6 +138,10 @@
   {:else}
   <em>Aucun résultat retrouvé.</em>
   {/if}
+</section>
+
+<section>
+  <Pagination {base} {items} {checked} />
 </section>
 
 <style lang="scss">

@@ -7,6 +7,7 @@ import json from 'json-complete'
 export const get: RequestHandler = async ({ params, query }) => {
   const locale = query.get('locale')
   const checked = query.get('q')
+  const page = query.get('p')
 
 	const [activites, themes] = await Promise.all([
     entries('activite', locale, { 'order': '-fields.date', ...checked && {
@@ -22,7 +23,7 @@ export const get: RequestHandler = async ({ params, query }) => {
         'fields.themes.sys.id[in]': (await entries<{ id: string }>('theme', locale, { 'fields.id[in]': checked }))
           .items.map(theme => theme.sys.id).join(',')
       }
-    } }),
+    } }, 2, page && parseInt(page)),
     entries('theme', locale)
   ])
 

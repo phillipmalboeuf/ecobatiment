@@ -3,7 +3,7 @@
   import { respond } from '$lib/responses'
   
   export const load: Load = async ({ page, fetch, session, stuff }) => {
-		return respond(fetch, `/publications.json${page.query.has("q") ? `?q=${page.query.get("q")}` : ''}`)
+		return respond(fetch, `/publications.json?${page.query.toString()}`)
 	}
 </script>
 
