@@ -13,7 +13,7 @@
   let numberOfPages = Math.ceil(items.total / items.limit)
 </script>
 
-{#if numberOfPages > 0}
+{#if numberOfPages > 1}
 {#each new Array(numberOfPages) as _, index}
 <a class:current={index === currentPage} href="/{base}?{checked.length > 0 ? `q=${checked.join(',')}&` : ''}p={index}">{index+1}</a>
 {/each}
