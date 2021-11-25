@@ -128,6 +128,9 @@ const cartNode = `{
     subtotalAmount {
       amount
     }
+    totalTaxAmount {
+      amount
+    }
   }
   discountCodes {
     applicable
@@ -227,6 +230,9 @@ export interface CartDocument {
       amount: number
     }
     subtotalAmount: {
+      amount: number
+    }
+    totalTaxAmount: {
       amount: number
     }
   }
