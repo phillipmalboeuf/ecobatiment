@@ -76,13 +76,21 @@
 
       <form>
         <label for="quantity">{panier.fields.quantite}</label>
-        <input on:change={async e => {
-          $cart = await updateQuantity($cart.id, item.id, parseInt(e.currentTarget.value))
+        <input disabled={waiting} on:change={async e => {
+          const value = e.currentTarget.value
+          clearTimeout(timer)
+          timer = setTimeout(async () => {
+            waiting = true
+            $cart = await updateQuantity($cart.id, item.id, parseInt(value))
+            waiting = false
+          }, 500)
         }} type="number" name="quantity" id="quantity" min={1} value={item.quantity}>
       </form>
 
       <button class="trash" on:click={async () => {
+        waiting = true
         $cart = await removeFromCart($cart.id, item.id)
+        waiting = false
       }}><I i="trash" big /></button>
     </li>
 		{:else}
