@@ -19,6 +19,7 @@
 
   export let panier: Entry<any>
   export let visible: boolean
+  export let number: number
 
   let publications: Entry<Item>[]
   let waiting = false
@@ -37,6 +38,7 @@
 	cart.subscribe(async value => {
 		if (value?.lines.length > 0) {
 			visible = true
+      number = value.lines.reduce((total, line) => total += line.quantity, 0)
 
       publications = await Promise.all(value.lines.map(async line => (await respond(fetch, `/publications/${line.merchandise.product.handle}.json`)).props.publication))
 		}

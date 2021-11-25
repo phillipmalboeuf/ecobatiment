@@ -22,6 +22,7 @@
   let visible = false
   let footer: HTMLDivElement
   let cartVisible = false
+  let cartNumber: number
 
   // let locale = getContext('locale')
 
@@ -65,6 +66,9 @@
       <I i='close' big />
       {:else}
       <I i='panier' big />
+      {#if cartNumber > 0}
+      <span>{cartNumber}</span>
+      {/if}
       {/if}
     </button>
 
@@ -79,7 +83,7 @@
   </nav>
 </header>
 
-<Cart bind:visible={cartVisible} {panier} />
+<Cart bind:visible={cartVisible} bind:number={cartNumber} {panier} />
 
 
 <style lang="scss">
@@ -98,10 +102,17 @@
     padding: var(--margins);
 
     button {
+      position: relative;
       color: currentColor;
       background: none;
       border: none;
       padding: 0;
+
+      span {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
     }
 
     nav {
