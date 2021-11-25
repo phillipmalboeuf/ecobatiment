@@ -17,6 +17,7 @@
   export let contact: Entry<any>
   export let visible: boolean
   export let cartVisible: boolean
+  export let cartNumber: number
 </script>
 
 {#key visible}
@@ -27,6 +28,9 @@
       <I i='close' big />
       {:else}
       <I i='panier' big />
+      {/if}
+      {#if cartNumber > 0}
+      <span>{cartNumber}</span>
       {/if}
     </button>
 
@@ -134,9 +138,16 @@
     padding: var(--margins);
 
     button {
+      position: relative;
       background: transparent;
       border: none;
       padding: 0;
+
+      span {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
     }
   }
 

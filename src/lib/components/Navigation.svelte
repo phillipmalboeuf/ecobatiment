@@ -43,7 +43,7 @@
 </script>
 
 <div bind:this={footer}>
-  <Footer {navigation} {sousNavigation} {contact} bind:cartVisible bind:visible on:click={hide} />
+  <Footer {navigation} {sousNavigation} {contact} {cartNumber} bind:cartVisible bind:visible on:click={hide} />
 </div>
 
 <header>
