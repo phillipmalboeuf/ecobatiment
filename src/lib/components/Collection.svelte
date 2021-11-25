@@ -13,6 +13,7 @@
     vedette: boolean
     futur: boolean
     lien: Entry<Lien>
+    type?: string
     shopifyHandle?: string
   }
 </script>

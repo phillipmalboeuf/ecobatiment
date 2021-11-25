@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
 	import { writable } from 'svelte/store'
-	import { CartDocument, getCart, createCart, products, removeFromCart, updateQuantity } from '$lib/clients/shopify'
+	import { CartDocument, getCart, createCart, products, removeFromCart, updateQuantity, updateDiscountCode, removeDiscountCode } from '$lib/clients/shopify'
   export const cart = writable<CartDocument>()
 </script>
 
@@ -22,6 +22,7 @@
 
   let publications: Entry<Item>[]
   let waiting = false
+  let timer
 
 	onMount(async () => {
 		const id = sessionStorage.getItem("cart-id")
@@ -62,12 +63,12 @@
         <Themes base="{publications[index].sys.contentType.sys.id}s" themes={publications[index].fields.themes} />
 
         <h5>
-          {money(item.merchandise.priceV2.amount)}<br>
+          {money(item.estimatedCost.totalAmount.amount / item.quantity)}<br>
           <a href="/{publications[index].sys.contentType.sys.id}s/{publications[index].fields.id}">{publications[index].fields.titre}</a><br>
           <small>{date(publications[index].fields.date)}</small>
         </h5>
 
-        <h5>Type de document</h5>
+        <h5>{publications[index].fields.type}</h5>
       </div>
       {/if}
 
@@ -104,7 +105,26 @@
       </tr>
       <tr>
         <th>{panier.fields.codePromotionnel}</th>
-        <td><input type="text" name="code" id="code"></td>
+        <td>
+          {#if $cart.discountCodes.length > 0}
+          <button class="promo" on:click={async () => {
+            waiting = true
+            $cart = await removeDiscountCode($cart.id)
+            waiting = false
+          }}><span>{$cart.discountCodes[0].code}</span> <I i="close" /></button>
+          {:else}
+          <input disabled={waiting} on:input={async e => {
+            
+            const value = e.currentTarget.value
+            clearTimeout(timer)
+            timer = setTimeout(async () => {
+              waiting = true
+              $cart = await updateDiscountCode($cart.id, value)
+              waiting = false
+            }, 500)
+          }} type="text" name="code" id="code">
+          {/if}
+        </td>
       </tr>
     </table>
     <hr>
@@ -250,6 +270,13 @@
     @media (max-width: 888px) {
       padding: var(--s0);
     }
+  }
+
+  button.promo {
+    font-size: 1rem;
+    background: transparent;
+    border: none;
+    padding: 0;
   }
 
   button.trash {

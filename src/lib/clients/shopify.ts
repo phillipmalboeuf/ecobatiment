@@ -124,12 +124,14 @@ const cartNode = `{
   estimatedCost {
     totalAmount {
       amount
-      currencyCode
     }
     subtotalAmount {
       amount
-      currencyCode
     }
+  }
+  discountCodes {
+    applicable
+    code
   }
   lines(first:20) {
     edges {
@@ -139,6 +141,19 @@ const cartNode = `{
         attributes {
           key
           value
+        }
+        estimatedCost {
+          totalAmount {
+            amount
+          }
+          subtotalAmount {
+            amount
+          }
+        }
+        discountAllocations {
+          discountedAmount {
+            amount
+          }
         }
         merchandise {
           ... on ProductVariant {
@@ -152,11 +167,9 @@ const cartNode = `{
             }
             priceV2 {
               amount
-              currencyCode
             }
             compareAtPriceV2 {
               amount
-              currencyCode
             }
             product {
               title
@@ -173,6 +186,19 @@ const cartNode = `{
 export interface LineDocument {
   id: string
   quantity: number
+  estimatedCost: {
+    totalAmount: {
+      amount: number
+    }
+    subtotalAmount: {
+      amount: number
+    }
+  }
+  discountAllocations: {
+    discountedAmount: {
+      amount: number
+    }
+  }[]
   merchandise: {
     id: string
     sku: string
@@ -204,6 +230,10 @@ export interface CartDocument {
       amount: number
     }
   }
+  discountCodes: {
+    applicable: boolean
+    code: string
+  }[]
   checkoutUrl: string
 }
 
@@ -272,5 +302,32 @@ export async function updateQuantity(cart_id: string, id: string, quantity: numb
       }
     }`).then(result => {
       return postprocessCart(result.cartLinesUpdate.cart)
+    })
+}
+
+export async function updateDiscountCode(cart_id: string, code: string) {
+  return request(`
+    mutation {
+      cartDiscountCodesUpdate(discountCodes: ["${code}"], cartId: "${cart_id}") {
+        cart ${cartNode}
+        userErrors {
+          code
+          field
+          message
+        }
+      }
+    }`).then(result => {
+      return postprocessCart(result.cartDiscountCodesUpdate.cart)
+    })
+}
+
+export async function removeDiscountCode(cart_id: string) {
+  return request(`
+    mutation {
+      cartDiscountCodesUpdate(discountCodes: [], cartId: "${cart_id}") {
+        cart ${cartNode}
+      }
+    }`).then(result => {
+      return postprocessCart(result.cartDiscountCodesUpdate.cart)
     })
 }
