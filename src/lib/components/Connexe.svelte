@@ -26,7 +26,7 @@
     </a>
 
     <div>
-      <Themes base={item.sys.contentType.sys.id} themes={item.fields.themes} />
+      <Themes base="{item.sys.contentType.sys.id}s" themes={item.fields.themes} />
 
       <a href="/{item.sys.contentType.sys.id}s/{item.fields.id}"><h5>{item.fields.titre}</h5></a>
       {#if item.fields.date}<small>{date(item.fields.date)}</small>{/if}
