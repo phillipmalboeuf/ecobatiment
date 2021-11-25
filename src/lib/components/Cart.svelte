@@ -129,7 +129,7 @@
             waiting = true
             $cart = await updateDiscountCode($cart.id, code)
             waiting = false
-          }}>Save</button>
+          }}>Ajouter</button>
           {/if}
         </td>
       </tr>
