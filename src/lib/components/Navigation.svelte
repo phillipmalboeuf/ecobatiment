@@ -66,9 +66,9 @@
       <I i='close' big />
       {:else}
       <I i='panier' big />
+      {/if}
       {#if cartNumber > 0}
       <span>{cartNumber}</span>
-      {/if}
       {/if}
     </button>
 
