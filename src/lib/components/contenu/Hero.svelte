@@ -15,7 +15,7 @@
 <div>
   <section id={hero.fields.id} class="grid">
     <figure>
-      <Picture media={hero.fields.photo} ar={1 / 2} />
+      <Picture media={hero.fields.photo} ar={1 / 2} eager />
     </figure>
 
     <h1>{hero.fields.titre}</h1>
