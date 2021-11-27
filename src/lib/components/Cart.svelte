@@ -66,7 +66,7 @@
         <Themes base="{publications[index].sys.contentType.sys.id}s" themes={publications[index].fields.themes} />
 
         <h5>
-          {#if item.estimatedCost.subtotalAmount.amount !== item.estimatedCost.totalAmount.amount}<em>{money(item.estimatedCost.subtotalAmount.amount)}</em> {/if}{money(item.estimatedCost.totalAmount.amount / item.quantity)}<br>
+          {#if item.estimatedCost.subtotalAmount.amount !== item.estimatedCost.totalAmount.amount}<em>{money(item.estimatedCost.subtotalAmount.amount / item.quantity)}</em> {/if}{money(item.estimatedCost.totalAmount.amount / item.quantity)}<br>
           <a href="/{publications[index].sys.contentType.sys.id}s/{publications[index].fields.id}">{publications[index].fields.titre}</a><br>
           <small>{date(publications[index].fields.date)}</small>
         </h5>
@@ -138,7 +138,7 @@
     <table>
       <tr>
         <th>{panier.fields.estimationDuTotal}</th>
-        <td>{#if $cart?.lines.length}{#if $cart.estimatedCost.subtotalAmount.amount !== $cart.estimatedCost.totalAmount.amount}<em>{money($cart.estimatedCost.subtotalAmount.amount)}</em> {/if}{money($cart.estimatedCost.totalAmount.amount)}{:else}–{/if}</td>
+        <td>{#if $cart?.lines.length}{#if $cart.estimatedCost.subtotalAmount.amount > $cart.estimatedCost.totalAmount.amount}<em>{money($cart.estimatedCost.subtotalAmount.amount)}</em> {/if}{money($cart.estimatedCost.totalAmount.amount)}{:else}–{/if}</td>
       </tr>
     </table>
     <form action={$cart?.checkoutUrl} on:submit={() => waiting = true}>
