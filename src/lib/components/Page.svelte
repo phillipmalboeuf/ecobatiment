@@ -16,14 +16,29 @@
 
 <script lang="ts">
   import Contenu from './Contenu.svelte'
-  import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
 
 	export let page: Entry<PageDocument>
 </script>
 
 <svelte:head>
   <title>{page.fields.titre} – Écobâtiment</title>
-  {#if page.fields.description}<meta name="description" content={documentToPlainTextString(page.fields.description)}>{/if}
+  <meta property="og:title" content="{page.fields.titre} – Écobâtiment" />
+  <meta name="twitter:title" content="{page.fields.titre} – Écobâtiment">
+  <meta name="twitter:card" value="summary_large_image">
+
+  {#if page.fields.description}
+  <meta name="description" content={page.fields.description}>
+  <meta property="og:description" content="{page.fields.description}" />
+  <meta name="twitter:description" content="{page.fields.description}">
+  {/if}
+
+  {#if page.fields.photo}
+  <meta property="og:image" content="https:{page.fields.photo.fields.file.url}?w=1200&h=630" />
+  <meta property="twitter:image" content="https:{page.fields.photo.fields.file.url}?w=600&h=314" />
+  <meta name="twitter:card" value="summary_large_image">
+  {:else}
+  <meta name="twitter:card" value="summary">
+  {/if}
 
   {#if page.fields.contenu && page.fields.contenu[0].sys.contentType.sys.id === 'hero'}
   <style>
