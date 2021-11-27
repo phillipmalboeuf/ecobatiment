@@ -24,7 +24,6 @@
   <title>{page.fields.titre} – Écobâtiment</title>
   <meta property="og:title" content="{page.fields.titre} – Écobâtiment" />
   <meta name="twitter:title" content="{page.fields.titre} – Écobâtiment">
-  <meta name="twitter:card" value="summary_large_image">
 
   {#if page.fields.description}
   <meta name="description" content={page.fields.description}>
