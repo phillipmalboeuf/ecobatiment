@@ -33,7 +33,7 @@
 
   {#if page.fields.photo}
   <meta property="og:image" content="https:{page.fields.photo.fields.file.url}?w=1200&h=630" />
-  <meta property="twitter:image" content="https:{page.fields.photo.fields.file.url}?w=600&h=314" />
+  <meta name="twitter:image" content="https:{page.fields.photo.fields.file.url}?w=600&h=314" />
   <meta name="twitter:card" value="summary_large_image">
   {:else}
   <meta name="twitter:card" value="summary">
