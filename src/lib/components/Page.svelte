@@ -27,8 +27,8 @@
 
   {#if page.fields.description}
   <meta name="description" content={page.fields.description}>
-  <meta property="og:description" content="{page.fields.description}" />
-  <meta name="twitter:description" content="{page.fields.description}">
+  <meta property="og:description" content={page.fields.description} />
+  <meta name="twitter:description" content={page.fields.description}>
   {/if}
 
   {#if page.fields.photo}
