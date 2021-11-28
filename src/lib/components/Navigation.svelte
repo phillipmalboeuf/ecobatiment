@@ -99,7 +99,7 @@
     color: var(--header-color);
     background: var(--header-background);
     
-    padding: var(--margins);
+    padding: calc(var(--margins) / 1.33) var(--margins);
 
     button {
       position: relative;

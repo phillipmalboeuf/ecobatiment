@@ -118,7 +118,7 @@
 
     color: var(--light);
     background: var(--dark);
-    padding: calc(var(--margins) * 2);
+    padding: calc(var(--margins) * 2) calc(var(--margins) * 2) calc(var(--margins) * 1.25);
 
     display: flex;
     flex-direction: column;

@@ -27,8 +27,8 @@
 
 
 <style lang="scss">
-  section.grid {
-    margin-top: var(--s3);
+  section.grid:first-child {
+    margin-top: 0;
   }
 
   div {
