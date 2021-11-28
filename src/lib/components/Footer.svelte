@@ -18,6 +18,8 @@
   export let visible: boolean
   export let cartVisible: boolean
   export let cartNumber: number
+
+  let focus: boolean
 </script>
 
 {#key visible}
@@ -65,14 +67,14 @@
       <h5>Contact</h5>
       {#if contact.fields.telephone}<a href="tel:{contact.fields.telephone}" target="_blank"><I  i="phone" /> {contact.fields.telephone}</a>{/if}
       {#if contact.fields.email}<a href="mailto:{contact.fields.email}" target="_blank"><I  i="courriel" /> {contact.fields.email}</a>{/if}
-      {#if contact.fields.adresse}<a style="display: flex;" href="{contact.fields.lienDadresse}" target="_blank">
+      {#if contact.fields.adresse}<a class:focus on:pointerenter={() => focus = true} on:pointerleave={() => focus = undefined} style="display: flex;" href="{contact.fields.lienDadresse}" target="_blank">
         <I  i="map" />
         <p>{contact.fields.adresse}</p>
       </a>{/if}
     </div>
 
     {#if contact.fields.photoDadresse}<figure>
-      <a href="{contact.fields.lienDadresse}" target="_blank">
+      <a class:focus on:pointerenter={() => focus = true} on:pointerleave={() => focus = undefined} href="{contact.fields.lienDadresse}" target="_blank">
       <Picture media={contact.fields.photoDadresse} small ar={1 / 2} />
       </a>
     </figure>{/if}

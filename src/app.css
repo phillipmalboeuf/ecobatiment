@@ -66,11 +66,14 @@ a {
 }
 
   a:hover,
-  a:focus {
+  a:focus,
+  a.focus {
     color: var(--highlight); 
   }
 
-  a:hover img {
+  a:hover img,
+  a:focus img,
+  a.focus img {
     outline: 1px solid var(--highlight);
   }
 

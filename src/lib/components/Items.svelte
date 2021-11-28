@@ -11,6 +11,8 @@
   export let vedette:boolean = false
   export let corps:boolean = false
 
+  let focus: string
+
   function base(id: string) {
     return id === 'service' ? 'consultation#' : `${id}s/`
   }
@@ -31,7 +33,7 @@
   {/if}
 
   {#if item.fields.photo}
-  <a href="/{base(item.sys.contentType.sys.id)}{item.fields.id}">
+  <a href="/{base(item.sys.contentType.sys.id)}{item.fields.id}" class:focus={focus === item.fields.id} on:pointerenter={() => focus = item.fields.id} on:pointerleave={() => focus = undefined}>
     <figure>
       <Picture media={item.fields.photo} noDescription={!corps} ar={(vedette || item.sys.contentType.sys.id === 'service') ? 1 / 2.5 : 1} />
     </figure>
@@ -40,7 +42,7 @@
   <div class:corps>
     <div>
       {#if item.fields.themes}<Themes base={base(item.sys.contentType.sys.id)} themes={item.fields.themes} />{/if}
-      <a href="/{base(item.sys.contentType.sys.id)}{item.fields.id}">
+      <a href="/{base(item.sys.contentType.sys.id)}{item.fields.id}" class:focus={focus === item.fields.id} on:pointerenter={() => focus = item.fields.id} on:pointerleave={() => focus = undefined}>
         <h4>{item.fields.titre}</h4>
       </a>
       {#if item.fields.date}{date(item.fields.date)}{/if}
