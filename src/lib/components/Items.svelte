@@ -35,7 +35,7 @@
   {#if item.fields.photo}
   <a href="/{base(item.sys.contentType.sys.id)}{item.fields.id}" class:focus={focus === item.fields.id} on:pointerenter={() => focus = item.fields.id} on:pointerleave={() => focus = undefined}>
     <figure>
-      <Picture media={item.fields.photo} noDescription={!corps} ar={(vedette || item.sys.contentType.sys.id === 'service') ? 1 / 2.5 : 1} />
+      <Picture media={item.fields.photo} noDescription={!corps} ar={(vedette || item.sys.contentType.sys.id === 'service') ? 1 / 2.5 : 1} small={!vedette} />
     </figure>
   </a>{/if}
 
