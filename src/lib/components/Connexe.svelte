@@ -46,12 +46,34 @@
     margin-bottom: var(--s2);
   }
 
+  @media (max-width: 888px) {
+    h5 {
+      grid-column: span 2 !important;
+    }
+    
+    section.grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    figure {
+      margin-bottom: var(--s1);
+    }
+
+    article {
+      margin-bottom: var(--s2);
+    }
+  }
+
   div {
     padding: 0 var(--s1);
 
     h5 {
       text-transform: none;
       margin: var(--s0) 0;
+    }
+
+    @media (max-width: 888px) {
+      padding: 0 var(--s0);
     }
   }
 </style>
