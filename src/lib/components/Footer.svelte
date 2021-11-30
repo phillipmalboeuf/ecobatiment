@@ -88,7 +88,7 @@
     </div>
 
     {#each sousNavigation.fields.liens as lien}
-    <div>
+    <div class="sub">
       <h5><a on:click href={lien.fields.lien}>{lien.fields.titre}</a></h5>
       {#if lien.fields.sousLiens}
       {#each lien.fields.sousLiens as l}
@@ -157,6 +157,10 @@
     margin: 0 auto;
     grid-column: span 5;
 
+    @media (max-width: 888px) {
+      display: none;
+    }
+
     @media (min-width: 888px) {
       position: absolute;
       bottom: var(--margins);
@@ -191,10 +195,14 @@
 
     @media (max-width: 888px) {
       grid-template-columns: 1fr;
-      row-gap: var(--s2);
+      row-gap: var(--s1);
 
       &:first-of-type h5 {
         margin-bottom: 0;
+      }
+
+      h5 {
+        font-size: 1.33rem;
       }
 
       &:first-of-type > div > a {
@@ -203,6 +211,14 @@
 
       .social {
         order: -1;
+      }
+
+      .sub {
+        order: -2;
+
+        > a {
+          display: none;
+        }
       }
     }
 
@@ -214,6 +230,10 @@
   hr {
     margin: var(--s3) auto;
     max-width: var(--width);
+
+    @media (max-width: 888px) {
+      margin: 0 auto;
+    }
   }
 
   figure {

@@ -43,7 +43,7 @@
     font-size: 2.66rem;
 
     @media (max-width: 888px) {
-      font-size: 1.5rem;
+      font-size: 1.33rem;
     }
   }
 

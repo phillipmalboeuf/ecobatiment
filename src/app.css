@@ -120,19 +120,19 @@ small > p {
 
 @media (max-width: 888px) {
 h1, .h1 {
-  font-size: 2.5rem;
+  font-size: 2.25rem;
 }
 
 h2, .h2 {
-  font-size: 2rem;
+  font-size: 1.75rem;
 }
 
 h4, .h4 {
-  font-size: 1.5rem;
+  font-size: 1.33rem;
 }
 
 h5, .h5 {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 /* h6, .h6 {

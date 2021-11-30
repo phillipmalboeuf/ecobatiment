@@ -141,5 +141,9 @@
 
   aside :global(p) {
     font-size: 1.33rem;
+
+    @media (max-width: 888px) {
+      font-size: 1.1rem;
+    }
   }
 </style>

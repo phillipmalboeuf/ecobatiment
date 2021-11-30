@@ -55,7 +55,7 @@
     font-size: 2rem;
 
     @media (max-width: 888px) {
-      font-size: 1.5rem;
+      font-size: 1.33rem;
     }
   }
 

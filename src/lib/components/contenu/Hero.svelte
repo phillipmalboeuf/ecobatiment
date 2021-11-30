@@ -28,7 +28,11 @@
 
 <style lang="scss">
   section.grid:first-child {
-    margin-top: 0;
+    margin-top: var(--s2);
+
+    @media (min-width: 888px) {
+      margin-top: 0;
+    }
   }
 
   div {

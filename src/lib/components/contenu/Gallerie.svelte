@@ -12,9 +12,10 @@
 </script>
 
 <section id={gallerie.fields.id} class="grid" style="grid-template-columns: repeat({gallerie.fields.photos.length > 4 ? gallerie.fields.photos.length : 4}, 1fr);">  
+  {#if gallerie.fields.titre}<h5 style="grid-column: span {gallerie.fields.photos.length > 4 ? gallerie.fields.photos.length : 4}">{gallerie.fields.titre}</h5>{/if}
+
   {#each gallerie.fields.photos as media, index}
   <figure>
-    {#if gallerie.fields.titre && index === 0}<figcaption>{gallerie.fields.titre}</figcaption>{/if}
     <Picture {media} small ar={{
       'Grand': 3 / 1,
       'Medium': 2 / 1,
@@ -31,14 +32,15 @@
     margin-bottom: var(--s1);
   }
 
-  figcaption {
-    position: absolute;
-    top: var(--s1);
-    left: var(--s1);
-    width: 100%;
+  h5 {
+    // grid-column: span 4;
   }
 
   @media (max-width: 888px) {
+    h5 {
+      grid-column: span 2 !important;
+    }
+    
     section.grid {
       grid-template-columns: repeat(2, 1fr) !important;
     }

@@ -58,7 +58,7 @@
     
       :global(img) {
         object-fit: cover;
-        aspect-ratio: 1 !important;
+        aspect-ratio: 1.33 !important;
       }
     }
 
