@@ -18,11 +18,14 @@
 
 <a class:plus class:disabled={lien.fields.disabled} href={lien.fields.lien} target={lien.fields.externe && '_blank'}>{#if plus}<I i='plus' /> {/if}{lien.fields.titre}</a>
 
-<style>
+<style lang="scss">
   a.plus {
     display: flex;
     align-items: center;
-    column-gap: var(--s1);
+
+    :global(svg) {
+      margin-right: var(--s1);
+    }
   }
 
   a.disabled {

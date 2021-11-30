@@ -136,7 +136,6 @@
         width: auto;
         display: flex;
         align-items: center;
-        column-gap: calc(var(--gutter) * 1.5);
 
         @media (max-width: 1200px) {
           display: none;
@@ -144,6 +143,7 @@
 
         a {
           font-size: 1rem;
+          padding: calc(var(--gutter) / 2) calc(var(--gutter) / 1.5);
           text-transform: uppercase;
         }
 

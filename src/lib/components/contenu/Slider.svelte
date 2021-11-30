@@ -82,7 +82,6 @@
     bottom: var(--s3);
 
     display: flex;
-    column-gap: var(--s0);
 
     button {
       font-size: 0;
@@ -92,6 +91,7 @@
       height: 0.66rem;
       width: 0.66rem;
       border-radius: 1rem;
+      margin: 0 var(--s0);
 
       &.active {
         background: currentColor;
