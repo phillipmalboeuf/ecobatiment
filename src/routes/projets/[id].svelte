@@ -21,12 +21,13 @@
 	export let projet: Entry<Item & {
     contenu: Entry<any>[],
     elementsConnexes: Entry<any>[]
+    dark: boolean
   }>
 </script>
 
 {#if projet.fields.photo}
-<figure>
-  <figcaption><h1>{projet.fields.titre}</h1></figcaption>
+<figure style="--title: {projet.fields.photo}">
+  <figcaption><h1 class:dark={projet.fields.dark}>{projet.fields.titre}</h1></figcaption>
   <Picture media={projet.fields.photo} ar={1 / 2.5} />
 </figure>
 {:else}
@@ -67,11 +68,25 @@
       top: var(--s3);
       left: var(--s3);
       width: 80%;
+
+      @media (max-width: 888px) {
+        top: var(--s2);
+        left: var(--s1);
+        width: 100%;
+      }
     }
 
     h1 {
-      color: var(--light);
+      color: var(--dark);
       font-size: 2rem;
+
+      @media (min-width: 888px) {
+        font-size: 2.5rem;
+      }
+
+      &.dark {
+        color: var(--light);
+      }
     }
   }
 
