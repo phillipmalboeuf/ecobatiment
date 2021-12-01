@@ -72,7 +72,7 @@
       @media (max-width: 888px) {
         top: var(--s2);
         left: var(--s1);
-        width: 100%;
+        width: 90%;
       }
     }
 
