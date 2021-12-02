@@ -71,6 +71,10 @@
   article {
     text-align: center;
     padding: var(--s5) 20vw;
+    min-height: 42vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     @media (max-width: 888px) {
       padding: var(--s5) 0;
