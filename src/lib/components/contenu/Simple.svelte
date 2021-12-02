@@ -20,10 +20,12 @@
       <Picture {media} small />
     </figure>
     {/each}
+    {:else}
+    {#if contenu.fields.titre}<h4>{contenu.fields.titre}</h4>{/if}
     {/if}
   </aside>
   <div>
-    {#if contenu.fields.titre}<h4>{contenu.fields.titre}</h4>{/if}
+    {#if contenu.fields.titre && contenu.fields.photos}<h4>{contenu.fields.titre}</h4>{/if}
     <Document body={contenu.fields.corps} />
   </div>
 </section>
