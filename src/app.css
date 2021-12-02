@@ -113,6 +113,10 @@ p {
   white-space: pre-line;
 }
 
+p:not(:last-child) {
+  min-height: 1em;
+}
+
 small,
 small > p {
   font-size: 0.75rem;

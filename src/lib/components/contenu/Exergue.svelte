@@ -22,7 +22,7 @@
     {/if}
   </nav>
 
-  <div>
+  <div class:right={!intro.fields.technicalites}>
     <Document body={intro.fields.corps} />
   </div>
   
@@ -36,6 +36,10 @@
 <style lang="scss">
   div {
     grid-column: span 5;
+
+    &.right {
+      grid-column: 7 / span 6;
+    }
 
     @media (max-width: 888px) {
       grid-column: span 12;

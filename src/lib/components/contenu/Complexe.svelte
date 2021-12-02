@@ -19,11 +19,13 @@
     {#if contenu.fields.technicalites}<Document body={contenu.fields.technicalites} />{/if}
   </aside>
   <div class="columns">
+    {#if contenu.fields.photos}
     {#each contenu.fields.photos as media}
     <figure>
       <Picture {media} small />
     </figure>
     {/each}
+    {/if}
     <Document body={contenu.fields.corps} />
   </div>
 </section>
