@@ -20,14 +20,14 @@
     <h4>{service.fields.titre}</h4>
 
     {#if service.fields.exemplesDeProjets}
-    <h6>Exemples de projets</h6>
+    <h6>Projets</h6>
     {#each service.fields.exemplesDeProjets as projet}
     <a href="/projets/{projet.fields.id}">{projet.fields.titre}</a>
     {/each}
     {/if}
 
     {#if service.fields.exemplesDePublications}
-    <h6>Exemples de publications</h6>
+    <h6>Publications</h6>
     {#each service.fields.exemplesDePublications as publication}
     <a href="/publications/{publication.fields.id}">{publication.fields.titre}</a>
     {/each}
