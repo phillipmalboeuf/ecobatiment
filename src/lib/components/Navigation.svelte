@@ -125,7 +125,7 @@
       // margin: 0 auto;
       
       > div {
-        width: 25%;
+        width: 20%;
       }
 
       > div:last-child {
@@ -145,6 +145,10 @@
           font-size: 1rem;
           padding: calc(var(--gutter) / 2) calc(var(--gutter) / 1.5);
           text-transform: uppercase;
+
+          @media (max-width: 1500px) {
+            padding: calc(var(--gutter) / 2) calc(var(--gutter) / 2);
+          }
         }
 
         a.active {
