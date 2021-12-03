@@ -56,7 +56,7 @@
   }
 
   div :global(p) {
-    font-size: 2rem;
+    font-size: 1.66rem;
 
     @media (max-width: 888px) {
       font-size: 1.33rem;
