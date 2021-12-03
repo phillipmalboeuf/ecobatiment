@@ -34,6 +34,10 @@
       <Themes base="{item.sys.contentType.sys.id}s" themes={item.fields.themes} />
       {/if}
 
+      {#if item.sys.contentType.sys.id === 'service'}
+      <span>Service</span>
+      {/if}
+
       <a href="/{base(item.sys.contentType.sys.id)}{item.fields.id}"><h5>{item.fields.titre}</h5></a>
       {#if item.fields.date}<small>{date(item.fields.date)}</small>{/if}
     </div>
