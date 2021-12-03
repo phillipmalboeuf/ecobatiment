@@ -139,8 +139,7 @@
     }
   }
 
-  aside :global(p),
-  aside :global(li) {
+  aside :global(p) {
     font-size: 1.33rem;
 
     @media (max-width: 888px) {

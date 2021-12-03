@@ -93,16 +93,14 @@
   aside {
     grid-column: span 8;
 
-    :global(p),
-    :global(li) {
+    :global(p) {
       font-size: 2rem;
     }
 
     @media (max-width: 888px) {
       grid-column: span 12;
 
-      :global(p),
-      :global(li) {
+      :global(p) {
         font-size: 1rem;
       }
     }
