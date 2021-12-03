@@ -55,7 +55,8 @@
     margin-bottom: var(--s1);
   }
 
-  div :global(p) {
+  div :global(p),
+  div :global(li) {
     font-size: 2rem;
 
     @media (max-width: 888px) {

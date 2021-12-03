@@ -39,7 +39,8 @@
     }
   }
 
-  div :global(p) {
+  div :global(p),
+  div :global(li) {
     font-size: 2.66rem;
 
     @media (max-width: 888px) {
