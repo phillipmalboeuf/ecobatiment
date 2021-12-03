@@ -59,6 +59,10 @@
       <Picture {media} small />
     </figure>
     {/each}
+    {:else if publication.fields.photo}
+    <figure>
+      <Picture media={publication.fields.photo} small />
+    </figure>
     {/if}
   </aside>
   <div>
