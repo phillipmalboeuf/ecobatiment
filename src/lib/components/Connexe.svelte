@@ -21,7 +21,7 @@
   <article>
     <a href="/{item.sys.contentType.sys.id}s/{item.fields.id}">
       <figure>
-        <Picture media={item.fields.photo} small ar={1 / (4 - grid)} noDescription />
+        <Picture media={item.fields.photo} small ar={1 / (5 - grid)} noDescription />
       </figure>
     </a>
 
