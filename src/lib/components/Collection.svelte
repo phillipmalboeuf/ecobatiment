@@ -203,7 +203,7 @@
       column-gap: var(--s0);
       margin-bottom: var(--s0);
 
-      &:before {
+      & > *:before {
         content: none;
       }
     }
