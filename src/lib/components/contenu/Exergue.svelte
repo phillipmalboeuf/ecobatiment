@@ -22,7 +22,7 @@
     {/if}
   </nav>
 
-  <div class:right={!intro.fields.technicalites}>
+  <div class:right={!intro.fields.technicalites && !intro.fields.titre}>
     <Document body={intro.fields.corps} />
   </div>
   
