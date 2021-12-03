@@ -29,6 +29,7 @@
     petiteDescription: RichTextContent
     elementsConnexes: Entry<any>[]
     shopifyHandle: string
+    gratuit: Asset
   }>
   
   let product: ProductDocument
@@ -75,6 +76,10 @@
     <Form {product} />
     {/if}
 
+    {#if publication.fields.gratuit}
+    <a class:button={!publication.fields.shopifyHandle} href={publication.fields.gratuit.fields.file.url} target="_blank">Télécharger gratuitement</a>
+    {/if}
+
     <small>{#if publication.fields.petiteDescription}<Document body={publication.fields.petiteDescription} />{/if}</small>
   </div>
 </section>
@@ -107,6 +112,19 @@
 
   h2 {
     margin-bottom: var(--s2);
+  }
+
+  a {
+    display: block;
+    margin-top: var(--s2);
+    width: 100%;
+
+    &:not(.button) {
+      margin-top: calc(var(--s2) * -1);
+      margin-bottom: var(--s2);
+      text-decoration: underline;
+      text-align: center;
+    }
   }
 
   // aside {

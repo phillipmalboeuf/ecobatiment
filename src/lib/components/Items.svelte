@@ -32,6 +32,10 @@
   <span><strong>Acheter</strong></span>
   {/if}
 
+  {#if item.sys.contentType.sys.id === 'publication' && item.fields.gratuit}
+  <span class="disabled"><strong>Télécharger</strong></span>
+  {/if}
+
   {#if item.fields.photo}
   <a href="/{base(item.sys.contentType.sys.id)}{item.fields.id}" class:focus={focus === item.fields.id} on:pointerenter={() => focus = item.fields.id} on:pointerleave={() => focus = undefined}>
     <figure>
@@ -99,7 +103,8 @@
       pointer-events: none;
     }
 
-    span.disabled :global(a) {
+    span.disabled :global(a),
+    span.disabled strong {
       background: var(--muted);
     }
   }

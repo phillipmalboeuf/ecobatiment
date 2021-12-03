@@ -15,6 +15,7 @@
     lien: Entry<Lien>
     type?: string
     shopifyHandle?: string
+    gratuit?: Asset
   }
 </script>
 

@@ -164,6 +164,7 @@ input {
   cursor: pointer;
 }
 
+a.button,
 button.full {
   font-size: var(--s1);
   color: var(--light);
