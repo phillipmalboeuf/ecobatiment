@@ -9,6 +9,10 @@
   export let items: Entry<Item>[]
 
   const grid = items.length > 4 ? 4 : items.length
+
+  function base(id: string) {
+    return id === 'service' ? 'consultation#' : `${id}s/`
+  }
 </script>
 
 
@@ -19,14 +23,16 @@
 
   {#each items as item, index}
   <article>
-    <a href="/{item.sys.contentType.sys.id}s/{item.fields.id}">
+    <a href="/{base(item.sys.contentType.sys.id)}{item.fields.id}">
       <figure>
         <Picture media={item.fields.photo} small ar={1 / (5 - grid)} noDescription />
       </figure>
     </a>
 
     <div>
+      {#if item.fields.themes}
       <Themes base="{item.sys.contentType.sys.id}s" themes={item.fields.themes} />
+      {/if}
 
       <a href="/{item.sys.contentType.sys.id}s/{item.fields.id}"><h5>{item.fields.titre}</h5></a>
       {#if item.fields.date}<small>{date(item.fields.date)}</small>{/if}
