@@ -155,16 +155,14 @@
 
   a.logo {
     margin: 0 auto;
-    grid-column: span 5;
 
     @media (max-width: 888px) {
       display: none;
     }
 
     @media (min-width: 888px) {
-      position: absolute;
-      bottom: var(--margins);
-      right: var(--margins);
+      margin-top: calc(var(--s4) * -1);
+      margin-bottom: calc(var(--s1) * -1);
     }
   }
 
@@ -174,7 +172,8 @@
     margin: var(--s3) auto;
 
     &:last-child {
-      margin-bottom: 0;
+      margin: 0 auto;
+      // margin-top: calc(var(--s3) * -1);
       flex: 1;
       align-items: flex-end;
     }
