@@ -63,7 +63,7 @@
   <hr>
 
   <nav>
-    <div>
+    <div class="contact">
       <h5>Contact</h5>
       {#if contact.fields.telephone}<a href="tel:{contact.fields.telephone}" target="_blank"><I  i="phone" /> {contact.fields.telephone}</a>{/if}
       {#if contact.fields.email}<a href="mailto:{contact.fields.email}" target="_blank"><I  i="courriel" /> {contact.fields.email}</a>{/if}
@@ -156,6 +156,10 @@
   a.logo {
     margin: 0 auto;
 
+    @media (max-width: 1200px) {
+      :global(svg) { height: 7rem; }
+    }
+
     @media (max-width: 888px) {
       display: none;
     }
@@ -192,6 +196,15 @@
     grid-template-columns: repeat(5, 1fr);
     column-gap: var(--gutter);
 
+    @media (max-width: 1200px) {
+      .contact,
+      .social {
+        a {
+          margin-left: -1.66em;
+        }
+      }
+    }
+
     @media (max-width: 888px) {
       grid-template-columns: 1fr;
       row-gap: var(--s1);
@@ -206,6 +219,13 @@
 
       &:first-of-type > div > a {
         display: none;
+      }
+
+      .contact,
+      .social {
+        a {
+          margin-left: 0;
+        }
       }
 
       .social {

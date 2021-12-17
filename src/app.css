@@ -45,7 +45,7 @@ html {
   -webkit-tap-highlight-color: var(--mutedlight);
 }
 
-@media (max-width: 888px) {
+@media (max-width: 1200px) {
   html {
     font-size: 16px;
   }
