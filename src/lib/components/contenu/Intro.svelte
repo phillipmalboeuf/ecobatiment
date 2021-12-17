@@ -65,6 +65,10 @@
     margin-bottom: 0;
     // grid-row: span 2;
 
+    @media (max-width: 1200px) {
+      :global(svg) { width: 80%; height: 80%; }
+    }
+
     @media (max-width: 888px) {
       display: none;
     }
