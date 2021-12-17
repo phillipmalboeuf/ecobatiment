@@ -38,7 +38,7 @@
       </figure>
 
       <div>
-        <h6>{membre.fields.poste}</h6>
+        <h6>{membre.fields.poste.replace('<br>', '\n')}</h6>
         <h5>{membre.fields.nom}</h5>
         <h6>{membre.fields.acros}</h6>
         <br><br>
@@ -59,7 +59,7 @@
   {#key selected}
   <section transition:fly={{ y: -50 }} class="grid corps" style="--start: {selected + 3};">
     <div>
-      <h6>{equipe.fields.membres[selected].fields.poste}</h6>
+      <h6>{equipe.fields.membres[selected].fields.poste.replace('<br>', ' ')}</h6>
       <h5>{equipe.fields.membres[selected].fields.nom}</h5>
       <h6>{equipe.fields.membres[selected].fields.acros}</h6>
     </div>
@@ -141,6 +141,7 @@
   h6, h5 {
     font-weight: normal;
     margin-bottom: var(--s1);
+    white-space: pre-line;
   }
 
   .corps {
