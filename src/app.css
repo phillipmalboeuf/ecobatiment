@@ -231,17 +231,8 @@ input[type="checkbox"] {
   position: relative;
 }
 
-input[type="checkbox"]:checked:before {
-  content: "";
+input[type="checkbox"]:checked {
   background-color: currentColor;
-  width: 0.70em;
-  height: 0.70em;
-  border-radius: 0.15em;
-  /* border-radius: 0.33em; */
-
-  position: absolute;
-  top: 0.05em;
-  left: 0.05em;
 }
 
 figure {
