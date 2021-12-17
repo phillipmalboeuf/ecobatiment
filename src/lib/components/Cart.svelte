@@ -37,9 +37,12 @@
 	})
 
 	cart.subscribe(async value => {
+    if (value) {
+      number = value.lines.reduce((total, line) => total += line.quantity, 0)
+    }
+
 		if (value?.lines.length > 0) {
 			visible = true
-      number = value.lines.reduce((total, line) => total += line.quantity, 0)
 
       publications = await Promise.all(value.lines.map(async line => (await respond(fetch, `/publications/${line.merchandise.product.handle}.json`)).props.publication))
 		}
