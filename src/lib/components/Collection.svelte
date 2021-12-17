@@ -154,6 +154,9 @@
 
 <style lang="scss">
   nav {
+    position: sticky;
+    align-self: flex-start;
+    top: calc(var(--gutter) * 2);
     grid-column: span 2;
 
     @media (max-width: 888px) {

@@ -126,6 +126,10 @@
       
       > div {
         width: 20%;
+
+        @media (max-width: 888px) {
+          width: 30%;
+        }
       }
 
       > div:last-child {
