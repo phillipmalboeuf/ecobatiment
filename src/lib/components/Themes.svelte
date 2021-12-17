@@ -24,10 +24,17 @@
   }
   
   a {
+    font-size: 0.88em;
+    opacity: 0.75;
     text-transform: none;
 
     &:not(:last-child):after {
       content: ", ";
+    }
+
+    &:hover,
+    &:focus {
+      opacity: 1;
     }
   }
 </style>

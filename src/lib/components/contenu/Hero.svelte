@@ -67,6 +67,10 @@
     grid-column: span 4;
     padding: var(--s4);
 
+    @media (max-width: 1200px) {
+      padding: var(--s1) var(--s3) var(--s4);
+    }
+
     @media (max-width: 888px) {
       grid-column: span 12;
       padding: 0;
@@ -80,6 +84,11 @@
       height: 3px;
       background: var(--highlight);
       width: 20%;
+
+      @media (max-width: 1200px) {
+         top: calc(var(--s3));
+        right: calc(100% - var(--s1));
+      }
 
       @media (max-width: 888px) {
         display: none;
