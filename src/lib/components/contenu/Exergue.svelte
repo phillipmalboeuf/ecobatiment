@@ -43,6 +43,10 @@
 
     @media (max-width: 888px) {
       grid-column: span 12;
+
+      &.right {
+        grid-column: span 12;
+      }
     }
   }
 
