@@ -16,10 +16,10 @@
 
   {#each gallerie.fields.photos as media, index}
   <figure>
-    <Picture {media} small ar={{
-      'Grand': 3 / 1,
-      'Medium': 2 / 1,
-      'Petit': 1
+    <Picture {media} small={gallerie.fields.photos.length > 3} ar={{
+      'Grand': 3 / Math.max(5 - gallerie.fields.photos.length, 1),
+      'Moyen': 2 / Math.max(5 - gallerie.fields.photos.length, 1),
+      'Petit': 1 / Math.max(5 - gallerie.fields.photos.length, 1),
     }[gallerie.fields.taille] || 1} />
   </figure>
   {/each}
