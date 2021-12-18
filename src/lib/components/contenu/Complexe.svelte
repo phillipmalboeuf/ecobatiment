@@ -34,7 +34,11 @@
 
 <style lang="scss">
   aside {
-    grid-column: span 6;
+    grid-column: span 5;
+
+    @media (max-width: 1200px) {
+      grid-column: span 5;
+    }
 
     @media (max-width: 888px) {
       grid-column: span 12;
@@ -43,6 +47,10 @@
 
   div {
     grid-column: span 6;
+
+    @media (max-width: 1200px) {
+      grid-column: span 7;
+    }
 
     @media (max-width: 888px) {
       grid-column: span 12;
