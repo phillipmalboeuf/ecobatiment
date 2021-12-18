@@ -21,7 +21,7 @@
     </figure>
     {/each}
     {:else}
-    {#if contenu.fields.titre}<h4>{contenu.fields.titre}</h4>{/if}
+    {#if contenu.fields.titre}<h6>{contenu.fields.titre}</h6>{/if}
     {/if}
   </aside>
   <div>
@@ -34,7 +34,7 @@
 
 <style lang="scss">
   aside {
-    grid-column: span 5;
+    grid-column: span 4;
 
     @media (max-width: 888px) {
       grid-column: span 12;
@@ -42,7 +42,7 @@
   }
 
   div {
-    grid-column: 7 / span 6;
+    grid-column: 6 / span 6;
 
     @media (max-width: 888px) {
       grid-column: span 12;
