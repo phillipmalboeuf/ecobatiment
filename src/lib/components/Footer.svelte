@@ -41,7 +41,10 @@
       <I i='up' big />
     </button>
     {:else}
-    <button on:click={() => visible = false}>
+    <button on:click={() => {
+      visible = false
+      document.documentElement.classList.remove('noscroll')
+    }}>
       <I i='close' big />
     </button>
     {/if}

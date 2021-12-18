@@ -37,8 +37,14 @@
     // document.getElementById('main').addEventListener('click', () => visible = false, { passive: true, capture: false })
 	})
 
+  function toggle() {
+    visible = !visible
+    document.documentElement.classList.toggle('noscroll')
+  }
+
   function hide() {
     visible = false
+    document.documentElement.classList.remove('noscroll')
   }
 </script>
 
@@ -72,7 +78,7 @@
       {/if}
     </button>
 
-    <button on:click={() => visible = !visible}>
+    <button on:click={toggle}>
       {#if visible}
       <I i='close' big />
       {:else}
