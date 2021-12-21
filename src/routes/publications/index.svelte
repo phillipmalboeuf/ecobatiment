@@ -21,7 +21,7 @@
 <section class="grid">
   <h1>Publications</h1>
   
-  <Collection base="publications" {themes} items={publications} />
+  <Collection base="publications" {themes} items={publications} noDate />
 </section>
 
 <style lang="scss">

@@ -10,6 +10,7 @@
   export let items: Entry<Item>[]
   export let vedette:boolean = false
   export let corps:boolean = false
+  export let noDate:boolean = false
 
   let focus: string
 
@@ -49,7 +50,7 @@
       <a href="/{base(item.sys.contentType.sys.id)}{item.fields.id}" class:focus={focus === item.fields.id} on:pointerenter={() => focus = item.fields.id} on:pointerleave={() => focus = undefined}>
         <h4>{item.fields.titre}</h4>
       </a>
-      {#if item.fields.date}{date(item.fields.date)}{/if}
+      {#if !noDate && item.fields.date}{date(item.fields.date)}{/if}
     </div>
 
     {#if corps && item.fields.corps}<aside>

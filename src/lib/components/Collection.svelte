@@ -32,6 +32,7 @@
   export let base: string
   export let items: EntryCollection<Item>
   export let themes: EntryCollection<Theme>
+  export let noDate = false
 
   let checked: string[] = []
   let currentPage: number
@@ -136,13 +137,13 @@
 
 <section>
   {#if items.items.length > 0}
-  <Items items={items.items.filter(item => item.fields.vedette)} vedette />
+  <Items items={items.items.filter(item => item.fields.vedette)} vedette noDate />
 
   {#if items.items.find(item => item.fields.vedette)}
   <hr>
   {/if}
 
-  <Items items={items.items.filter(item => !item.fields.vedette)} />
+  <Items items={items.items.filter(item => !item.fields.vedette)} noDate />
   {:else}
   <em>Aucun résultat retrouvé.</em>
   {/if}

@@ -67,7 +67,7 @@
     {/if}
   </aside>
   <div>
-    <h6>{date(publication.fields.date)}</h6>
+    <!-- <h6>{date(publication.fields.date)}</h6> -->
     <h2>{publication.fields.titre}</h2>
     {#if product}<h6>{money(product.priceRange.minVariantPrice.amount)}{#if product.priceRange.minVariantPrice.amount !== product.priceRange.maxVariantPrice.amount} – {money(product.priceRange.maxVariantPrice.amount)}{/if}</h6>{/if}
     {#if publication.fields.corps}<Document body={publication.fields.corps} />{/if}
