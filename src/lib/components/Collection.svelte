@@ -137,13 +137,13 @@
 
 <section>
   {#if items.items.length > 0}
-  <Items items={items.items.filter(item => item.fields.vedette)} vedette noDate />
+  <Items items={items.items.filter(item => item.fields.vedette)} vedette {noDate} />
 
   {#if items.items.find(item => item.fields.vedette)}
   <hr>
   {/if}
 
-  <Items items={items.items.filter(item => !item.fields.vedette)} noDate />
+  <Items items={items.items.filter(item => !item.fields.vedette)} {noDate} />
   {:else}
   <em>Aucun résultat retrouvé.</em>
   {/if}
