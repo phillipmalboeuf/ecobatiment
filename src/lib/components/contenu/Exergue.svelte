@@ -38,7 +38,7 @@
     grid-column: span 5;
 
     &.right {
-      grid-column: 6 / span 6;
+      grid-column: 7 / span 6;
 
       @media (max-width: 1200px) {
         grid-column: 6 / span 7;
