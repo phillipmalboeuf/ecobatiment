@@ -34,7 +34,7 @@
 
 <style lang="scss">
   aside {
-    grid-column: span 4;
+    grid-column: span 5;
 
     @media (max-width: 888px) {
       grid-column: span 12;
@@ -42,7 +42,7 @@
   }
 
   div {
-    grid-column: 6 / span 6;
+    grid-column: 7 / span 5;
 
     @media (max-width: 888px) {
       grid-column: span 12;
