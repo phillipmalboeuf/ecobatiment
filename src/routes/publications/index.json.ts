@@ -14,7 +14,7 @@ export const get: RequestHandler = async ({ params, query }) => {
 	const [publications, themes] = await Promise.all([
     entries('publication', locale, { 'order': '-fields.date', ...checked && {
       ...checked.includes('futur') && { 'fields.futur': true },
-      ...checked.includes('dispo') && { 'fields.shopifyHandle[exists]': true },
+      ...checked.includes('dispo') && { 'fields.futur': false },
       ...checked.includes('Livre') && { 'fields.type': 'Livre' },
       ...checked.includes('Fiche informative') && { 'fields.type': 'Fiche informative' },
       ...checked.includes('Article') && { 'fields.type': 'Article' },
