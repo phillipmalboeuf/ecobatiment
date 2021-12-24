@@ -14,18 +14,21 @@
   })
 
   export let slider: Entry<{
-    titre: string
-    id: string
+    titre?: string
+    id?: string
     slides: Entry<{
-      corps: RichTextContent
+      corps?: RichTextContent
+      media?: Asset
     }>[]
   }>
+  export let initialPageIndex: number = undefined
 </script>
 
 <section id={slider.fields.id}>
   <!-- <h4>{slider.fields.titre}</h4> -->
   {#if ready}
   <Carousel
+    {initialPageIndex}
     let:currentPageIndex
     let:pagesCount
     let:showPage
@@ -34,7 +37,8 @@
   >
     {#each slider.fields.slides as slide, index}
     <article>
-      <Document body={slide.fields.corps} />
+      {#if slide.fields.corps}<Document body={slide.fields.corps} />{/if}
+      {#if slide.fields.media}<Picture media={slide.fields.media} />{/if}
     </article>
     {/each}
     <button slot="prev" on:click={showPrevPage} class="arrow arrow-prev">
@@ -79,6 +83,10 @@
     @media (max-width: 888px) {
       padding: var(--s5) 0;
     }
+
+    :global(img) {
+      pointer-events: none;
+    }
   }
 
   .dots {
@@ -107,5 +115,9 @@
     border: none;
     background: transparent;
     padding: var(--s1);
+
+    @media (max-width: 888px) {
+      padding: var(--s0);
+    }
   }
 </style>
