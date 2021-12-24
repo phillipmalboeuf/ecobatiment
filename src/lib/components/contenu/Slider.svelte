@@ -38,7 +38,7 @@
     {#each slider.fields.slides as slide, index}
     <article>
       {#if slide.fields.corps}<Document body={slide.fields.corps} />{/if}
-      {#if slide.fields.media}<Picture media={slide.fields.media} />{/if}
+      {#if slide.fields.media}<Picture media={slide.fields.media} eager />{/if}
     </article>
     {/each}
     <button slot="prev" on:click={showPrevPage} class="arrow arrow-prev">
