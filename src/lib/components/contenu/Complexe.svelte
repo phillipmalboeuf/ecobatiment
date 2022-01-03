@@ -15,7 +15,7 @@
 
 <section class="grid" id={contenu.fields.id}>  
   <aside>
-    {#if contenu.fields.titre}<h4>{contenu.fields.titre}</h4>{/if}
+    {#if contenu.fields.titre}<h5>{contenu.fields.titre}</h5>{/if}
     {#if contenu.fields.technicalites}<Document body={contenu.fields.technicalites} />{/if}
   </aside>
   <div class="columns">

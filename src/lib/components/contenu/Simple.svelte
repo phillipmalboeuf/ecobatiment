@@ -25,7 +25,7 @@
     {/if}
   </aside>
   <div>
-    {#if contenu.fields.titre && contenu.fields.photos}<h4>{contenu.fields.titre}</h4>{/if}
+    {#if contenu.fields.titre && contenu.fields.photos}<h5>{contenu.fields.titre}</h5>{/if}
     <Document body={contenu.fields.corps} />
   </div>
 </section>
