@@ -20,7 +20,7 @@
 </script>
 
 
-{#each items as item}
+{#each items.filter(item => item.sys.contentType) as item}
 <article class:vedette class:service={item.sys.contentType.sys.id === 'service'}>
   {#if item.fields.lien}
   <span class:disabled={item.fields.lien.fields.disabled}><Link lien={item.fields.lien} /></span>

@@ -33,9 +33,11 @@
       index === selected ? selected = undefined : selected = index
       e.currentTarget.blur()
     }}>
+      {#if membre.fields.photo}
       <figure>
         <Picture media={membre.fields.photo} small ar={2.5 / 1} noDescription />
       </figure>
+      {/if}
 
       <div>
         <h6>{membre.fields.poste.replace('<br>', '\n')}</h6>
