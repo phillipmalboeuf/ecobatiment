@@ -12,11 +12,13 @@
   export let themes: Entry<Theme>[]
 </script>
 
+{#if themes}
 <nav>
   {#each themes as theme}
   <a href="/{base}?q={theme.fields.id}">{theme.fields.titre}</a>
   {/each}
 </nav>
+{/if}
 
 <style lang="scss">
   nav {
