@@ -2,8 +2,8 @@
   import type { Load } from '@sveltejs/kit'
   import { respond } from '$lib/responses'
   
-  export const load: Load = async ({ page, fetch, session, stuff }) => {
-		return respond(fetch, `/publications.json?${page.query.toString()}`)
+  export const load: Load = async ({ url, fetch, session, stuff }) => {
+		return respond(fetch, `/publications.json?${url.searchParams.toString()}`)
 	}
 </script>
 

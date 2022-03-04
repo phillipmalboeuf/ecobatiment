@@ -3,11 +3,10 @@ import type { RequestHandler } from '@sveltejs/kit'
 import type { Entry } from 'contentful'
 import json from 'json-complete'
 
-// @ts-ignore
-export const get: RequestHandler = async ({ params, query }) => {
-  const locale = query.get('locale')
-  const checked = query.get('q')
-  const page = query.get('p')
+export const get: RequestHandler = async ({ params, url }) => {
+  const locale = url.searchParams.get('locale')
+  const checked = url.searchParams.get('q')
+  const page = url.searchParams.get('p')
 
 	const [activites, themes] = await Promise.all([
     entries('activite', locale, { 'order': '-fields.date', ...checked && {

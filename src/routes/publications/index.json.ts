@@ -5,11 +5,10 @@ import json from 'json-complete'
 
 ['Livre', 'Fiche informative', 'Article', 'Outil']
 
-// @ts-ignore
-export const get: RequestHandler = async ({ params, query }) => {
-  const locale = query.get('locale')
-  const checked = query.get('q')
-  const page = query.get('p')
+export const get: RequestHandler = async ({ params, url }) => {
+  const locale = url.searchParams.get('locale')
+  const checked = url.searchParams.get('q')
+  const page = url.searchParams.get('p')
 
 	const [publications, themes] = await Promise.all([
     entries('publication', locale, { 'order': '-fields.date', ...checked && {

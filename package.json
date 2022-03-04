@@ -13,14 +13,14 @@
   },
   "devDependencies": {
     "@contentful/rich-text-plain-text-renderer": "^15.6.2",
-    "@sveltejs/adapter-vercel": "^1.0.0-next.31",
-    "@sveltejs/kit": "next",
+    "@sveltejs/adapter-vercel": "^1.0.0-next.41",
+    "@sveltejs/kit": "^1.0.0-next.272",
     "node-sass": "^6.0.1",
     "sass": "^1.43.4",
-    "svelte": "^3.42.6",
+    "svelte": "^3.46.4",
     "svelte-carousel": "^1.0.16",
     "svelte-check": "^2.2.6",
-    "svelte-preprocess": "^4.9.4",
+    "svelte-preprocess": "^4.10.2",
     "tslib": "^2.3.1",
     "typescript": "^4.4.3"
   },

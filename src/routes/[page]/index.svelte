@@ -2,8 +2,8 @@
   import type { Load } from '@sveltejs/kit'
   import { respond } from '$lib/responses'
   
-  export const load: Load = async ({ page, fetch, session, stuff }) => {
-		return respond(fetch, `/${page.params.page}.json`)
+  export const load: Load = async ({ params, fetch, session, stuff }) => {
+		return respond(fetch, `/${params.page}/page.json`)
 	}
 </script>
 

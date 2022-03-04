@@ -3,9 +3,8 @@ import type { RequestHandler } from '@sveltejs/kit'
 import type { Entry } from 'contentful'
 import json from 'json-complete'
 
-// @ts-ignore
-export const get: RequestHandler = async ({ params, query }) => {
-  const locale = query.get('locale')
+export const get: RequestHandler = async ({ params, url }) => {
+  const locale = url.searchParams.get('locale')
 	const [publications] = await Promise.all([
     entries('publication', locale, { 'fields.id': params.id }),
     // entries('theme', locale)

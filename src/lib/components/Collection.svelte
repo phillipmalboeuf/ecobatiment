@@ -38,8 +38,8 @@
   let currentPage: number
 
   page.subscribe(p => {
-    checked = p.query.has("q") ? p.query.get("q").split(',') : []
-    currentPage = p.query.has("p") ? parseInt(p.query.get("p")) : 0 
+    checked = p.url.searchParams.has("q") ? p.url.searchParams.get("q").split(',') : []
+    currentPage = p.url.searchParams.has("p") ? parseInt(p.url.searchParams.get("p")) : 0 
   })
 
   $: {

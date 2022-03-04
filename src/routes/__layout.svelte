@@ -2,7 +2,7 @@
 	import '../app.css'
 	import { respond } from '$lib/responses'
 
-	export async function load({ page, fetch, session, context }) {
+	export async function load({ params, fetch, session, context }) {
 		return respond(fetch, `/layout.json`)
 	}
 </script>
@@ -36,7 +36,7 @@
 	<slot></slot>
 </main>
 
-<Navigation {navigation} {sousNavigation} {contact} {panier} path={$page.path} />
+<Navigation {navigation} {sousNavigation} {contact} {panier} path={$page.url.pathname} />
 
 <style lang="scss">
 	main {
