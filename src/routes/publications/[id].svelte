@@ -77,7 +77,7 @@
     {/if}
 
     {#if publication.fields.gratuit}
-    <a class:button={!publication.fields.shopifyHandle} href={publication.fields.gratuit.fields.file.url} target="_blank">Télécharger gratuitement</a>
+    <a class:button={!publication.fields.shopifyHandle} href={publication.fields.gratuit.fields.file.url} target="_blank">Télécharger maintenant</a>
     {/if}
 
     <small>{#if publication.fields.petiteDescription}<Document body={publication.fields.petiteDescription} />{/if}</small>
