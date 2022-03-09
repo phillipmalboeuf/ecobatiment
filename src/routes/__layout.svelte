@@ -41,8 +41,8 @@
 <style lang="scss">
 	main {
     min-height: 100vh;
-    margin: var(--s4) 0 0;
-    padding: var(--margins);
+    margin: 0;
+    padding: calc(var(--s4) + var(--margins)) var(--margins) var(--margins);
 
 		@media (max-width: 888px) {
       margin-top: var(--s3);
