@@ -1,4 +1,6 @@
 <script lang="ts">
+import { page } from '$app/stores';
+
   import type { Entry } from 'contentful'
 
   import { onMount, getContext } from 'svelte'
@@ -55,9 +57,11 @@
 <header>
   <nav>
   <div>
+    {#key $page.url.pathname}
     <a class="logo" href="/" on:click={hide} aria-label="Écobâtiment">
       <Logotype />
     </a>
+    {/key}
   </div>
 
   <div>
