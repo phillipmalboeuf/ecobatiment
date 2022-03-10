@@ -44,9 +44,9 @@
     margin: 0;
     padding: calc(var(--s4) + var(--margins)) var(--margins) var(--margins);
 
-		@media (max-width: 888px) {
-      margin-top: var(--s3);
-    }
+		// @media (max-width: 888px) {
+    //   margin-top: var(--s3);
+    // }
 	}
 
 	main:before {
