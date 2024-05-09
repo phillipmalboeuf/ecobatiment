@@ -8,14 +8,23 @@
 
 <style>
   img,
-  video {
+  video,
+  object {
     width: 100%;
     max-width: 100%;
+  }
+
+  object {
+    min-height: 66vh;
   }
 </style>
 
 {#if media.fields.file.contentType.startsWith('video/')}
 <video src="{media.fields.file.url}" autoplay muted loop playsinline />
+{:else if media.fields.file.contentType.endsWith('/pdf')}
+<object data={media.fields.file.url} type="application/pdf">
+<p>This browser does not support PDFs. Please download the PDF to view it: <a href={media.fields.file.url} target="_blank">Download PDF</a>.</p>
+</object>
 {:else}
 <picture>
   {#if small}

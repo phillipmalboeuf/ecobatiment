@@ -29,6 +29,7 @@
     petiteDescription: RichTextContent
     elementsConnexes: Entry<any>[]
     shopifyHandle: string
+    lienExterne: string
     gratuit: Asset
   }>
   
@@ -74,6 +75,10 @@
     
     {#if publication.fields.shopifyHandle && product}
     <Form {product} />
+    {/if}
+
+    {#if publication.fields.lienExterne}
+    <a class:button={!publication.fields.shopifyHandle} href={publication.fields.lienExterne} target="_blank">Commandez ici</a>
     {/if}
 
     {#if publication.fields.gratuit}
