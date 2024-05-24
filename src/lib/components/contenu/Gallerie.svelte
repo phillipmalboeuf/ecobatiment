@@ -25,6 +25,7 @@
   }
 </script>
 
+{#if gallerie.fields.photos}
 <section id={gallerie.fields.id} class="grid" style="grid-template-columns: repeat({gallerie.fields.photos.length < 4 ? gallerie.fields.photos.length : 4}, 1fr);">  
   {#if gallerie.fields.titre}<h5 style="grid-column: span {gallerie.fields.photos.length < 4 ? gallerie.fields.photos.length : 4}">{gallerie.fields.titre}</h5>{/if}
 
@@ -38,6 +39,7 @@
   </figure>
   {/each}
 </section>
+{/if}
 
 {#if showSlider != undefined}
 <aside transition:fade>
