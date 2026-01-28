@@ -1,28 +1,13 @@
-<script context="module">
-	import '../app.css'
-	import { respond } from '$lib/responses'
-
-	export async function load({ params, fetch, session, context }) {
-		return respond(fetch, `/layout.json`)
-	}
-</script>
-
 <script lang="ts">
+	import '../app.css'
 	import type { Entry, RichTextContent } from 'contentful'
-	
+	import type { LayoutData } from './$types'
 
 	import Navigation from '$lib/components/Navigation.svelte'
-	import { getStores, navigating, page, session } from '$app/stores'
+	import { navigating, page } from '$app/stores'
 	import type { Lien } from '$lib/components/Link.svelte'
 
-	export let navigation: Entry<{
-		liens: Entry<Lien>[]
-	}>
-	export let sousNavigation: Entry<{
-		liens: Entry<Lien>[]
-	}>
-	export let contact: Entry<any>
-	export let panier: Entry<any>
+	export let data: LayoutData
 </script>
 
 <!-- <nav>
@@ -36,7 +21,7 @@
 	<slot></slot>
 </main>
 
-<Navigation {navigation} {sousNavigation} {contact} {panier} path={$page.url.pathname} />
+<Navigation navigation={data.navigation} sousNavigation={data.sousNavigation} contact={data.contact} panier={data.panier} path={$page.url.pathname} />
 
 <style lang="scss">
 	main {

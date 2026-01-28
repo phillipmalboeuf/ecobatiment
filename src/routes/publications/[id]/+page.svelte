@@ -1,16 +1,8 @@
-<script context="module" lang="ts">
-  import type { Load } from '@sveltejs/kit'
-  import { respond } from '$lib/responses'
-  
-  export const load: Load = async ({ params, fetch, session, stuff }) => {
-		return respond(fetch, `/publications/${params.id}.json`)
-	}
-</script>
-
 <script lang="ts">
   import type { Asset, Entry, EntryCollection, RichTextContent } from 'contentful'
   import { getProduct, ProductDocument } from '$lib/clients/shopify'
   import { onMount } from 'svelte'
+  import type { PageData } from './$types'
 
   import type { Item } from '$lib/components/Collection.svelte'
   import type { Theme } from '$lib/components/Themes.svelte'
@@ -22,16 +14,8 @@
   import Form from '$lib/components/Form.svelte'
   import { date, money } from '$lib/formatters'
 
-
-	export let publication: Entry<Item & {
-    contenu: Entry<any>[]
-    photos: Asset[]
-    petiteDescription: RichTextContent
-    elementsConnexes: Entry<any>[]
-    shopifyHandle: string
-    lienExterne: string
-    gratuit: Asset
-  }>
+  export let data: PageData
+  const publication = data.publication
   
   let product: ProductDocument
 

@@ -1,16 +1,8 @@
-<script context="module" lang="ts">
-  import type { Load } from '@sveltejs/kit'
-  import { respond } from '$lib/responses'
-  
-  export const load: Load = async ({ params, fetch, session, stuff }) => {
-		return respond(fetch, `/activites/${params.id}.json`)
-	}
-</script>
-
 <script lang="ts">
   import type { Asset, Entry, EntryCollection, RichTextContent } from 'contentful'
   import type { Item } from '$lib/components/Collection.svelte'
   import type { Theme } from '$lib/components/Themes.svelte'
+  import type { PageData } from './$types'
   import Page from '$lib/components/Page.svelte'
   import Document from '$lib/components/document/Document.svelte'
   import Picture from '$lib/components/Picture.svelte'
@@ -20,12 +12,8 @@
   import Link from '$lib/components/Link.svelte'
   import { date } from '$lib/formatters'
 
-	export let activite: Entry<Item & {
-    contenu: Entry<any>[]
-    photos: Asset[]
-    petiteDescription: RichTextContent
-    elementsConnexes: Entry<any>[]
-  }>
+  export let data: PageData
+  const activite = data.activite
 </script>
 
 <section class="grid">

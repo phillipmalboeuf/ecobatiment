@@ -1,4 +1,5 @@
-import { createClient } from 'contentful'
+import pkg from 'contentful'
+const { createClient } = pkg
 
 export const contentful = createClient({
   space: '9m5iliq43y44',

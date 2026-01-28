@@ -1,16 +1,8 @@
-<script context="module" lang="ts">
-  import type { Load } from '@sveltejs/kit'
-  import { respond } from '$lib/responses'
-  
-  export const load: Load = async ({ params, fetch, session, stuff }) => {
-		return respond(fetch, `/projets/${params.id}.json`)
-	}
-</script>
-
 <script lang="ts">
   import type { Entry, EntryCollection } from 'contentful'
   import type { Item } from '$lib/components/Collection.svelte'
   import type { Theme } from '$lib/components/Themes.svelte'
+  import type { PageData } from './$types'
   import Page from '$lib/components/Page.svelte'
   import Document from '$lib/components/document/Document.svelte'
   import Picture from '$lib/components/Picture.svelte'
@@ -18,11 +10,8 @@
   import Themes from '$lib/components/Themes.svelte'
   import { date } from '$lib/formatters'
 
-	export let projet: Entry<Item & {
-    contenu: Entry<any>[],
-    elementsConnexes: Entry<any>[]
-    dark: boolean
-  }>
+  export let data: PageData
+  const projet = data.projet
 </script>
 
 {#if projet.fields.photo}

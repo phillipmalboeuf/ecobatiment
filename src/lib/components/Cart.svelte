@@ -15,7 +15,6 @@
   import Picture from './Picture.svelte'
   import Themes from './Themes.svelte'
   import type { Item } from './Collection.svelte'
-  import { respond } from '$lib/responses'
 
   export let panier: Entry<any>
   export let visible: boolean
@@ -44,7 +43,11 @@
 		if (value?.lines.length > 0) {
 			visible = true
 
-      publications = await Promise.all(value.lines.map(async line => (await respond(fetch, `/publications/${line.merchandise.product.handle}.json`)).props.publication))
+      publications = await Promise.all(value.lines.map(async line => {
+        const res = await fetch(`/publications/${line.merchandise.product.handle}.json`)
+        const data = await res.json()
+        return data.publication
+      }))
 		}
 	})
 </script>
