@@ -50,7 +50,7 @@
 </script>
 
 {#if visible && $cart}
-<section transition:fly={{ y: 100 }}>
+<section transition:fly|global={{ y: 100 }}>
   <button class="close" on:click={() => visible = false}><I i="close" big /></button>
   <h4>{panier.fields.titre}</h4>
 

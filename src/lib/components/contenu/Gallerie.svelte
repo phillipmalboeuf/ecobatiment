@@ -42,10 +42,10 @@
 {/if}
 
 {#if showSlider != undefined}
-<aside transition:fade>
+<aside transition:fade|global>
   <button on:click={hide} />
   <button class="close" on:click={hide}>Fermer <I i='close' /></button>
-  <div transition:fly={{ y: 100 }}>
+  <div transition:fly|global={{ y: 100 }}>
     <Slider initialPageIndex={showSlider} slider={{ fields: {
       // @ts-ignore
       slides: gallerie.fields.photos.map(media => ({

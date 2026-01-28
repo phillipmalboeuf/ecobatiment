@@ -23,7 +23,7 @@
 </script>
 
 {#key visible}
-<footer class:visible transition:fly={{ y: 100 }}>
+<footer class:visible transition:fly|global={{ y: 100 }}>
   <aside>
     <button on:click={() => cartVisible = !cartVisible}>
       {#if cartVisible}

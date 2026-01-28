@@ -59,7 +59,7 @@
 
   {#if selected !== undefined}
   {#key selected}
-  <section transition:fly={{ y: -50 }} class="grid corps" style="--start: {selected + 3};">
+  <section transition:fly|global={{ y: -50 }} class="grid corps" style="--start: {selected + 3};">
     <div>
       <h6>{equipe.fields.membres[selected].fields.poste.replace('<br>', ' ')}</h6>
       <h5>{equipe.fields.membres[selected].fields.nom}</h5>
