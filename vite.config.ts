@@ -4,5 +4,8 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
 	// plugins: [paraglide({ project: './project.inlang', outdir: './src/lib/paraglide' }),sveltekit()]
-	plugins: [sveltekit()]
+	plugins: [sveltekit()],
+	// ssr: {
+	// 	external: ['svelte-carousel']
+	// }
 });

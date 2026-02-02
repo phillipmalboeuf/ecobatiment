@@ -1,6 +1,6 @@
 
 
-import axios, { AxiosRequestConfig } from 'axios'
+import axios from 'axios'
 
 async function request(query: string) {
   let results = await axios.post<{ data: any }>(`https://ecobatiment.myshopify.com/api/unstable/graphql.json`, query, {

@@ -1,4 +1,6 @@
 import { entries } from '$lib/clients/contentful'
+import type { PageDocument } from '$lib/components/Page.svelte'
+import type { Entry } from 'contentful'
 import type { ServerLoad } from '@sveltejs/kit'
 
 export const load: ServerLoad = async ({ params, url }) => {
@@ -9,7 +11,7 @@ export const load: ServerLoad = async ({ params, url }) => {
 
 	if (publications.items.length) {
 		return {
-			publication: publications.items[0]
+			publication: publications.items[0] as Entry<PageDocument>
 		}
 	}
 

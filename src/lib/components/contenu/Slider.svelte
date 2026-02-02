@@ -2,16 +2,30 @@
   import type { Asset, Entry, RichTextContent } from 'contentful'
   import { fade, fly, slide } from 'svelte/transition'
   import { onMount } from 'svelte'
-  import Carousel from 'svelte-carousel'
+  import { browser } from '$app/environment'
   
   import Document from '../document/Document.svelte'
   import Picture from '../Picture.svelte'
   import I from '../icons/I.svelte'
 
-  let ready: boolean
-  onMount(async () => {
-    ready = true
-  })
+  let Carousel: any = null
+  let ready: boolean = false
+  let mounted = false
+  
+  // Only run onMount in browser
+  if (browser) {
+    onMount(async () => {
+      mounted = true
+      // try {
+      //   // Use dynamic import with explicit client-side only loading
+      //   const module = await import('svelte-carousel')
+      //   Carousel = module.default
+      //   ready = true
+      // } catch (error) {
+      //   console.error('Failed to load svelte-carousel:', error)
+      // }
+    })
+  }
 
   export let slider: Entry<{
     titre?: string
@@ -26,8 +40,9 @@
 
 <section id={slider.fields.id}>
   <!-- <h4>{slider.fields.titre}</h4> -->
-  {#if ready}
-  <Carousel
+  {#if browser && ready && Carousel}
+  <svelte:component
+    this={Carousel}
     {initialPageIndex}
     let:currentPageIndex
     let:pagesCount
@@ -57,7 +72,15 @@
         >{pageIndex + 1}</button>
       {/each}
     </div>
-  </Carousel>
+  </svelte:component>
+  {:else}
+    <!-- Fallback content while carousel loads -->
+    {#each slider.fields.slides as slide, index}
+    <article>
+      {#if slide.fields.corps}<Document body={slide.fields.corps} />{/if}
+      {#if slide.fields.media}<Picture media={slide.fields.media} eager />{/if}
+    </article>
+    {/each}
   {/if}
 </section>
 

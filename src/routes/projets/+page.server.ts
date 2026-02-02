@@ -1,4 +1,7 @@
 import { entries } from '$lib/clients/contentful'
+import type { EntryCollection } from 'contentful'
+import type { Item } from '$lib/components/Collection.svelte'
+import type { Theme } from '$lib/components/Themes.svelte'
 import type { ServerLoad } from '@sveltejs/kit'
 
 export const load: ServerLoad = async ({ url }) => {
@@ -22,7 +25,7 @@ export const load: ServerLoad = async ({ url }) => {
 	])
 
 	return {
-		projets,
-		themes
+		projets: projets as EntryCollection<Item>,
+		themes: themes as EntryCollection<Theme>
 	}
 }

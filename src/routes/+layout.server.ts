@@ -1,4 +1,6 @@
 import { contentful } from '$lib/clients/contentful'
+import type { Entry } from 'contentful'
+import type { Lien } from '$lib/components/Link.svelte'
 
 export async function load() {
 	const [navigation, sousNavigation, contact, panier] = await Promise.all([
@@ -9,9 +11,9 @@ export async function load() {
 	])
 
 	return {
-		navigation,
-		sousNavigation,
-		contact,
-		panier
+		navigation: navigation as Entry<{ liens: Entry<Lien>[] }>,
+		sousNavigation: sousNavigation as Entry<{ liens: Entry<Lien>[] }>,
+		contact: contact as Entry<any>,
+		panier: panier as Entry<any>
 	}
 }

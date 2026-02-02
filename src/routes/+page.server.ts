@@ -7,8 +7,6 @@ export async function load() {
 		contentful.getEntry('E9D3f7VUjSrwHAMTde2lC', { include: 3 })
 	])
 
-	console.log(accueil)
-
 	return {
 		accueil: accueil as Entry<PageDocument>
 	}
